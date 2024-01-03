@@ -7,13 +7,13 @@
                 <path d="M152 1.5L2 1.5" stroke="#29ABE2" stroke-width="3" stroke-linecap="round" />
             </svg>
         </div>
-        <form class="login-form">
+        <form class="login-form" #loginform>
             <div class="input-container">
-                <input type="text" class="" placeholder="Email">
+                <input type="text" class="" (input)="this.removeWrongInput()" placeholder="Email" #email>
                 <div class="icon-container icon-container-mail"></div>
             </div>
             <div class="input-container">
-                <input type="text" placeholder="Password">
+                <input type="password" (input)="this.removeWrongInput()" placeholder="Password" #password>
                 <div class="icon-container icon-container-password"></div>
             </div>
             <div class="rememberme-container">
@@ -23,8 +23,8 @@
             </div>
         </form>
         <div class="button-container">
-            <button>Log in</button>
-            <button (click)="this.authService.authGuestLogin()" >Guest Log in</button>
+            <button (click)="this.loginEmailPassword(email.value, password.value)">Log in</button>
+            <button (click)="this.guestLogin()" >Guest Log in</button>
         </div>
     </div>
     <div class="not-a-user">

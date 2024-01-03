@@ -142,7 +142,7 @@
                     border: 1px solid #FF001F;
                 }
 
-                &:last-child {
+                &:nth-child(2) {
                     &::after {
                         content: "Your password and email don't match. Try again.";
                         position: absolute;
@@ -321,6 +321,7 @@
 @media (max-width: 500px) {
     .login-content {
         padding: 32px 15px !important;
+
         .login-form {
             input {
                 width: 240px !important;

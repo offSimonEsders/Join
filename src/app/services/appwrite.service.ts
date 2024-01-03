@@ -31,6 +31,16 @@ export class AppwriteService {
       });
   }
 
+  async appwriteLoginEmailPassword(email: string, password: string) {
+    try {
+      this.loggedInUser = await this.account.createEmailSession(email, password);
+      return this.loggedInUser;
+    }
+    catch {
+      return false;
+    }
+  }
+
   async appwriteSignInAnonymsly() {
     this.loggedInUser = await this.account.createAnonymousSession();
   }
