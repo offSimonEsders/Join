@@ -7,7 +7,7 @@ export const routes: Routes = [
     {
         path: '', component: UserAccessComponent, children: [
             { path: '', component: LoginComponent },
-            { path: 'reg', component: RegistrationComponent } // Fügen Sie die neue Kindroute hinzu
+            { path: 'registration', component: RegistrationComponent } // Fügen Sie die neue Kindroute hinzu
         ]
     }
 ];

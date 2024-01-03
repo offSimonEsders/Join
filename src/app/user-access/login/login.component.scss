@@ -1,0 +1,232 @@
+.login-frame {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    h1,
+    h2,
+    p {
+        margin: 0;
+    }
+
+    .login-content {
+        display: inline-flex;
+        padding: 48px 115px;
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+        border-radius: 30px;
+        background: var(--white, #FFF);
+        box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+
+            h1 {
+                color: #000;
+                text-align: center;
+                font-size: 61px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 120%;
+            }
+        }
+
+    }
+
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 32px;
+
+        .input-container {
+            position: relative;
+
+            input {
+                display: flex;
+                align-items: center;
+                outline: none;
+                width: 422px;
+                padding: 12px 21px;
+                gap: 10px;
+                border-radius: 10px;
+                border: 1px solid var(--Style, #D1D1D1);
+                background: #FFF;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 120%;
+
+                &::placeholder {
+                    color: var(--Style, #D1D1D1);
+                }
+
+                &:focus {
+                    border: 1px solid var(--Ligth-blue, #29ABE2);
+                }
+
+            }
+
+            .icon-container {
+                position: absolute;
+                top: 50%;
+                right: 21px;
+                height: 24px;
+                width: 24px;
+                transform: translateY(-50%);
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+
+            .icon-container-mail {
+                background-image: url('../../../assets/Icons/Mail_Icon.svg');
+            }
+
+            .icon-container-password {
+                background-image: url('../../../assets/Icons/Lock_Icon.svg');
+            }
+
+        }
+
+        .rememberme-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+            width: 150px;
+            margin-left: 39px;
+
+            #remembermecheckbox {
+                display: none;
+
+                &:checked+label {
+                    background-image: url('../../../assets/Icons/Checkbox/Checkbox_checked.svg');
+
+                    &:hover {
+                        background-image: url('../../../assets/Icons/Checkbox/Checkbox_checked_hovered.svg');
+                    }
+
+                }
+
+            }
+
+            label {
+                height: 24px;
+                width: 24px;
+                background-image: url('../../../assets/Icons/Checkbox/Checkbox_unchecked.svg');
+                background-position: center;
+                background-repeat: no-repeat;
+
+                &:hover {
+                    cursor: pointer;
+                    background-image: url('../../../assets/Icons/Checkbox/Checkbox_unchecked_hovered.svg');
+                }
+            }
+
+            p {
+                transform: translateY(2px);
+            }
+
+        }
+
+    }
+
+    .wrong-input {
+
+        .input-container {
+
+            input {
+                border: 1px solid #FF001F;
+            }
+
+            &:last-child {
+                &::after {
+                    content: "Your password and email don't match. Try again.";
+                    position: absolute;
+                    margin-top: 8px;
+                    color: #FF8190;
+                    font-size: 13px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 120%;
+                }
+            }
+
+        }
+
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 35px;
+
+        button {
+            &:first-child {
+                display: flex;
+                height: 48px;
+                padding: 15px 24px;
+                justify-content: center;
+                align-items: center;
+                border: none;
+                gap: 10px;
+                border-radius: 8px;
+                background: #2A3647;
+                color: #FFF;
+                font-size: 21px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 120%;
+
+                &:hover {
+                    cursor: pointer;
+                    background: var(--Ligth-blue, #29ABE2);
+                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                }
+
+                &:active {
+                    background: #091931;
+                }
+
+            }
+
+            &:last-child {
+                display: flex;
+                height: 48px;
+                padding: 15px 24px;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                border-radius: 8px;
+                border: none;
+                outline: 1px solid var(--Version-2-main-color, #2A3647);
+                background: var(--white, #FFF);
+                color: var(--Version-2-main-color, #2A3647);
+                font-size: 21px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 120%;
+
+                &:hover {
+                    cursor: pointer;
+                    color: var(--Ligth-blue, #29ABE2);
+                    outline: 2px solid var(--Ligth-blue, #29ABE2);
+                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                }
+
+                &:active {
+                    color: #091931;
+                    outline: 1px solid #091931;
+                }
+
+            }
+        }
+
+    }
+
+}
