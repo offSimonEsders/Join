@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { AppwriteService } from './services/appwrite.service';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +12,9 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'Join';
+
+  constructor(private appwriteService: AppwriteService) {
+    
+  }
+
 }
