@@ -62,12 +62,4 @@ export class AppwriteService {
     }
   }
 
-  appwriteAutoLogOut() {
-    if (localStorage.getItem('rememberme') == 'false' || localStorage.getItem('rememberme') == undefined) {
-      if (localStorage.getItem('cookieFallback') != '[]') {
-        this.appwriteLogOut();
-      }
-    }
-  }
-
 }

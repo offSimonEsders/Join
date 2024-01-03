@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AppwriteService } from '../../services/appwrite.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,12 +11,12 @@ import { AppwriteService } from '../../services/appwrite.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public router: Router, public appwriteService: AppwriteService) {
+  constructor(public router: Router, public authService: AuthService) {
 
   }
 
   async ngOnInit() {
-    this.appwriteService.appwriteAutoLogOut();
+    this.authService.authAutoLogOut();
   }
 
 }

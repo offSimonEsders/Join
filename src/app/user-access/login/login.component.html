@@ -24,7 +24,7 @@
         </form>
         <div class="button-container">
             <button>Log in</button>
-            <button>Guest Log in</button>
+            <button (click)="this.authService.authGuestLogin()" >Guest Log in</button>
         </div>
     </div>
     <div class="not-a-user">
