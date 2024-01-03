@@ -26,30 +26,24 @@ export class AppwriteService {
   appwriteSignUp(newUserEmail: string, newUserPassword: string, newUserName: string): void {
     this.account.create(ID.unique(), newUserEmail, newUserPassword, newUserName)
       .then((response) => {
-        console.log(response);
       })
       .catch((error) => {
-        console.log(error);
       });
   }
 
   async appwriteSignInAnonymsly() {
     this.loggedInUser = await this.account.createAnonymousSession();
-    console.log("login:", this.loggedInUser)
   }
 
   async appwriteGetCurrentUser() {
     try {
       this.loggedInUser = await this.account.get();
-      console.log(this.loggedInUser)
-      return true;
+      return this.loggedInUser;
     }
     catch {
-
+      return false;
     }
 
-    return false;
-    
   }
 
   async appwriteLogOut() {
@@ -57,7 +51,7 @@ export class AppwriteService {
       await this.account.deleteSession('current');
       this.loggedInUser = null;
     }
-    catch {
+    catch (error) {
 
     }
   }
