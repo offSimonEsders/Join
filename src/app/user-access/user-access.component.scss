@@ -6,4 +6,41 @@
     max-width: 100vw;
     width: 100%;
     background: #F6F7F8;
+
+    .user-access-content {
+
+        .legal-container {
+            display: inline-flex;
+            justify-content: center;
+            align-items: flex-start;
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            gap: 16px;
+            transform: translateX(-50%);
+
+            a {
+                text-decoration: none;
+                display: flex;
+                padding: 8px;
+                align-items: center;
+                gap: 8px;
+                color: var(--icon, #A8A8A8);
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 120%;
+
+                &:hover {
+                    cursor: pointer;
+                    text-decoration: underline;
+                    color: var(--Ligth-blue, #29ABE2);
+                }
+
+            }
+
+        }
+
+    }
+
 }
