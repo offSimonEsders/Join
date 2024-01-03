@@ -276,3 +276,65 @@
     }
 
 }
+
+@media (max-width: 800px) {
+    .login-content {
+        padding: 32px 57.5px !important;
+    }
+
+    .not-a-user {
+        position: static !important;
+        margin-top: 67px;
+    }
+}
+
+@media (max-width:600px) {
+    .login-content {
+        padding: 32px 30px !important;
+
+        .header {
+            h1 {
+                font-size: 47px !important;
+            }
+        }
+
+        .login-form {
+            input {
+                width: 320px !important;
+            }
+        }
+
+        .button-container {
+            flex-direction: column;
+            gap: 21px !important;
+
+            button {
+                width: 180px;
+                height: 51px;
+            }
+
+        }
+
+    }
+}
+
+@media (max-width: 500px) {
+    .login-content {
+        padding: 32px 15px !important;
+        .login-form {
+            input {
+                width: 240px !important;
+            }
+        }
+    }
+}
+
+@media (max-width: 370px) {
+    .login-content {
+        .login-form {
+            input {
+                width: 200px !important;
+            }
+        }
+    }
+}

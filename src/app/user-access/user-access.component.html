@@ -1,9 +1,12 @@
 <section class="user-access-frame">
 
-    <div class="disappearing-container"></div>
+    <div class="disappearing-container" #disappearingcontainer></div>
 
     <div class="user-access-content">
-        <div class="join-logo-big"></div>
+        <div class="logo-container" #logoContainer>
+            <div class="join-logo-big animate-join-logo" #bigLogo></div>
+            <div class="logo-placeholder"></div>
+        </div>
         <router-outlet></router-outlet>
         <div class="legal-container">
             <a href="/privacypolicy" target="_blank">Privacy Policy</a>
