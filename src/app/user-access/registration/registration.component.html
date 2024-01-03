@@ -1,1 +1,42 @@
-<p>registration works!</p>
+<div class="registration-frame">
+
+    <div class="registration-content">
+
+        <button class="back-to-login" (click)="this.router.navigate([''])"></button>
+
+        <div class="header">
+            <h1>Sign up</h1>
+            <svg xmlns="http://www.w3.org/2000/svg" width="154" height="3" viewBox="0 0 154 3" fill="none">
+                <path d="M152 1.5L2 1.5" stroke="#29ABE2" stroke-width="3" stroke-linecap="round" />
+            </svg>
+        </div>
+
+        <form class="registration-form">
+            <div class="input-container">
+                <input type="text" placeholder="Name">
+                <div class="icon-container icon-container-name"></div>
+            </div>
+            <div class="input-container">
+                <input type="text" placeholder="Email">
+                <div class="icon-container icon-container-mail"></div>
+            </div>
+            <div class="input-container">
+                <input type="text" placeholder="Password">
+                <div class="icon-container icon-container-password"></div>
+            </div>
+            <div class="input-container">
+                <input type="text" placeholder="Password">
+                <div class="icon-container icon-container-password"></div>
+            </div>
+            <div class="rememberme-container">
+                <input type="checkbox" name="" id="remembermecheckbox">
+                <label for="remembermecheckbox"></label>
+                <p>I accept the</p>
+                <a href="/privacypolicy">Privacy policy</a>
+            </div>
+            <button>Sign up</button>
+        </form>
+
+    </div>
+
+</div>

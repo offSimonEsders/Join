@@ -1,0 +1,211 @@
+.registration-frame {
+
+    h1,
+    h2,
+    p {
+        margin: 0;
+    }
+
+    .registration-content {
+        display: inline-flex;
+        padding: 48px 88px;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        gap: 32px;
+        border-radius: 30px;
+        background: var(--white, #FFF);
+        box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
+
+        .back-to-login {
+            cursor: pointer;
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            top: 64px;
+            left: 48px;
+            flex-shrink: 0;
+            border: none;
+            background-color: transparent;
+            background-image: url('../../../assets/Icons/Arrow_Icon.svg');
+            background-size: 32px 32px;
+
+            &:hover {
+                background-image: url('../../../assets/Icons/Arrow_Icon_hovered.svg');
+            }
+
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+
+            h1 {
+                color: #000;
+                text-align: center;
+                font-size: 61px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 120%;
+            }
+        }
+
+        .registration-form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 24px;
+
+            .input-container {
+                position: relative;
+
+                input {
+                    display: flex;
+                    align-items: center;
+                    outline: none;
+                    width: 378px;
+                    padding: 12px 21px;
+                    gap: 10px;
+                    border-radius: 10px;
+                    border: 1px solid var(--Style, #D1D1D1);
+                    background: #FFF;
+                    font-size: 20px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 120%;
+
+                    &::placeholder {
+                        color: var(--Style, #D1D1D1);
+                    }
+
+                    &:focus {
+                        border: 1px solid var(--Ligth-blue, #29ABE2);
+                    }
+
+                }
+
+                .icon-container {
+                    position: absolute;
+                    top: 50%;
+                    right: 21px;
+                    height: 24px;
+                    width: 24px;
+                    transform: translateY(-50%);
+                    background-position: center;
+                    background-repeat: no-repeat;
+                }
+
+                .icon-container-name {
+                    background-image: url('../../../assets/Icons/Person_Icon.svg');
+                }
+
+                .icon-container-mail {
+                    background-image: url('../../../assets/Icons/Mail_Icon.svg');
+                }
+
+                .icon-container-password {
+                    background-image: url('../../../assets/Icons/Lock_Icon.svg');
+                }
+
+            }
+
+            .rememberme-container {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                align-self: center;
+                margin-top: 14px;
+                gap: 8px;
+                width: 250px;
+
+                #remembermecheckbox {
+                    display: none;
+
+                    &:checked+label {
+                        background-image: url('../../../assets/Icons/Checkbox/Checkbox_checked.svg');
+
+                        &:hover {
+                            background-image: url('../../../assets/Icons/Checkbox/Checkbox_checked_hovered.svg');
+                        }
+
+                    }
+
+                }
+
+                label {
+                    height: 24px;
+                    width: 24px;
+                    background-image: url('../../../assets/Icons/Checkbox/Checkbox_unchecked.svg');
+                    background-position: center;
+                    background-repeat: no-repeat;
+
+                    &:hover {
+                        cursor: pointer;
+                        background-image: url('../../../assets/Icons/Checkbox/Checkbox_unchecked_hovered.svg');
+                    }
+                }
+
+                p,
+                a {
+                    transform: translateY(2px);
+                }
+
+                p {
+                    margin-left: 4px;
+                }
+
+                a {
+                    text-decoration: none;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    color: var(--Ligth-blue, #29ABE2);
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 120%;
+
+                    &:hover {
+                        cursor: pointer;
+                        text-decoration: underline;
+                        color: var(--Ligth-blue, #29ABE2);
+                    }
+
+                }
+
+            }
+
+            button {
+                display: flex;
+                padding: 15px 24px;
+                justify-content: center;
+                align-items: center;
+                align-self: center;
+                border: none;
+                gap: 10px;
+                border-radius: 8px;
+                background: #2A3647;
+                color: #FFF;
+                font-size: 21px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 120%;
+
+                &:hover {
+                    cursor: pointer;
+                    background: var(--Ligth-blue, #29ABE2);
+                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                }
+
+                &:active {
+                    background: #091931;
+                }
+
+            }
+
+        }
+    }
+
+}
