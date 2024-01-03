@@ -21,7 +21,7 @@ export class AppwriteService {
    * @param {string} newUserPassword - Password for email of new user
    * @param {string} newUserName - Name of new user
    */
-  appwriteSignUp(newUserEmail: string, newUserPassword: string, newUserName: string) {
+  appwriteSignUp(newUserEmail: string, newUserPassword: string, newUserName: string): void {
     this.account.create(ID.unique(), newUserEmail, newUserPassword, newUserName)
       .then((response) => {
         console.log(response);
