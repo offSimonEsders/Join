@@ -209,3 +209,55 @@
     }
 
 }
+
+@media (max-width: 800px) {
+    .registration-content {
+        padding: 32px 44px;
+    }
+}
+
+@media (max-width: 700px) {
+    .registration-content {
+        padding: 32px 30px !important;
+
+        .header {
+            h1 {
+                font-size: 47px !important;
+            }
+        }
+
+        .registration-form {
+            input {
+                width: 320px !important;
+            }
+        }
+
+    }
+}
+
+@media (max-width: 500px) {
+    .registration-content {
+        padding: 32px 15px !important;
+
+        .back-to-login {
+            top: 40px !important;
+            left: 20px !important;
+        }
+
+        .registration-form {
+            input {
+                width: 240px !important;
+            }
+        }
+    }
+}
+
+@media (max-width: 370px) {
+    .registration-content {
+        .registration-form {
+            input {
+                width: 200px !important;
+            }
+        }
+    }
+}

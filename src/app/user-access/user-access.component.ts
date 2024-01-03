@@ -21,10 +21,15 @@ export class UserAccessComponent implements AfterViewInit {
         const bigLogoElement = this.bigLogo?.nativeElement;
         const logoContainer = this.logoContainer?.nativeElement;
         const disappearingcontainer = this.disappearingcontainer?.nativeElement;
+        if (this.router.url === '/registration') {
+            bigLogoElement.classList.remove('animate-join-logo');
+            disappearingcontainer.style.display = 'none';
+            return;
+        }
         if (bigLogoElement && window.innerWidth <= 800) {
             bigLogoElement.style.left = ((window.innerWidth - logoContainer.offsetWidth) / 2) + 'px';
             bigLogoElement.style.top = '37px';
-            if(this.router.url == '/registration') {
+            if (this.router.url === '/registration') {
                 bigLogoElement.classList.remove('animate-join-logo');
                 disappearingcontainer.style.display = 'none';
                 return;
