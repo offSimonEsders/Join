@@ -21,38 +21,49 @@ export class UserAccessComponent implements AfterViewInit {
         const bigLogoElement = this.bigLogo?.nativeElement;
         const logoContainer = this.logoContainer?.nativeElement;
         const disappearingcontainer = this.disappearingcontainer?.nativeElement;
-        if (this.router.url === '/registration') {
-            bigLogoElement.classList.remove('animate-join-logo');
-            disappearingcontainer.style.display = 'none';
-            return;
-        }
-        if (bigLogoElement && window.innerWidth <= 800) {
-            bigLogoElement.style.left = ((window.innerWidth - logoContainer.offsetWidth) / 2) + 'px';
-            bigLogoElement.style.top = '37px';
-            if (this.router.url === '/registration') {
-                bigLogoElement.classList.remove('animate-join-logo');
-                disappearingcontainer.style.display = 'none';
-                return;
-            }
-            bigLogoElement.classList.add('animate-join-logo');
-            disappearingcontainer.style.display = 'flex';
-            bigLogoElement.style.backgroundImage = "url('../../assets/Logos/Join_Logo_Light.svg')";
-        }
+        this.changeLogoStyleOnResize(bigLogoElement, logoContainer);
+        this.changeLogoStyleOnAnimationEnd(bigLogoElement, logoContainer, disappearingcontainer);
+        this.changeLogoAnimationOnRoute(bigLogoElement, disappearingcontainer)
+        this.changeLogoAnimationOnWindowWidth(bigLogoElement, logoContainer, disappearingcontainer);
+    }
+
+    changeLogoStyleOnResize(bigLogoElement: any, logoContainer: any) {
         window.addEventListener('resize', () => {
-            if (bigLogoElement && window.innerWidth <= 800) {
+            if (bigLogoElement && window.innerWidth <= 1000) {
                 bigLogoElement.style.left = ((window.innerWidth - logoContainer.offsetWidth) / 2) + 'px';
                 bigLogoElement.style.top = '37px';
             }
-        })
+        });
+    }
+
+    changeLogoStyleOnAnimationEnd(bigLogoElement: any, logoContainer: any, disappearingcontainer:any) {
         bigLogoElement.addEventListener('animationend', () => {
-            if (bigLogoElement && window.innerWidth <= 800) {
+            if (bigLogoElement && window.innerWidth <= 1000) {
                 bigLogoElement.style.left = ((window.innerWidth - logoContainer.offsetWidth) / 2) + 'px';
                 bigLogoElement.style.top = '37px';
                 bigLogoElement.style.backgroundImage = "url('../../assets/Logos/Join_Logo_Dark.svg')";
                 bigLogoElement.classList.remove('animate-join-logo');
                 disappearingcontainer.style.display = 'none';
             }
-        })
+        });
     }
 
+    changeLogoAnimationOnRoute(bigLogoElement: any, disappearingcontainer:any) {
+        if (this.router.url === '/registration') {
+            bigLogoElement.classList.remove('animate-join-logo');
+            disappearingcontainer.style.display = 'none';
+            return;
+        }
+    }
+
+    changeLogoAnimationOnWindowWidth(bigLogoElement: any, logoContainer: any, disappearingcontainer:any) {
+        if (bigLogoElement && window.innerWidth <= 1000) {
+            bigLogoElement.style.left = ((window.innerWidth - logoContainer.offsetWidth) / 2) + 'px';
+            bigLogoElement.style.top = '37px';
+            this.changeLogoAnimationOnRoute(bigLogoElement, disappearingcontainer);
+            bigLogoElement.classList.add('animate-join-logo');
+            disappearingcontainer.style.display = 'flex';
+            bigLogoElement.style.backgroundImage = "url('../../assets/Logos/Join_Logo_Light.svg')";
+        }
+    }
 }
