@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SidebarComponent } from "./sidebar/sidebar.component";
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./header/header.component";
 
 @Component({
@@ -10,6 +10,16 @@ import { HeaderComponent } from "./header/header.component";
     styleUrl: './home.component.scss',
     imports: [SidebarComponent, RouterOutlet, HeaderComponent]
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+
+    constructor (private router: Router) {
+        
+    }
+
+    ngOnInit() {
+        if (this.router.url == '/home') {
+            this.router.navigate(['/home/summary']);
+        }
+    }
 
 }
