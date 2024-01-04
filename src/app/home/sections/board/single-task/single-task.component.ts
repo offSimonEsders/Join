@@ -12,7 +12,7 @@ export class SingleTaskComponent {
   @Input() task: any;
 
   getDoneTasks() {
-    return this.task.subtasksdone.filter((value: boolean) => {if(value) {}}).length;
+    return this.task.subtasksdone.filter((value: any) => {if(value == 'true') { return value; }}).length;
   }
 
 }
