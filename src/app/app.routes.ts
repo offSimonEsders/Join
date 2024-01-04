@@ -6,6 +6,10 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { SummaryComponent } from './home/sections/summary/summary.component';
+import { AddTaskComponent } from './home/sections/add-task/add-task.component';
+import { BoardComponent } from './home/sections/board/board.component';
+import { ContactsComponent } from './home/sections/contacts/contacts.component';
 
 export const routes: Routes = [
     {
@@ -16,5 +20,10 @@ export const routes: Routes = [
     },
     { path: 'privacypolicy', component: PrivacyPolicyComponent },
     { path: 'legalnotice', component: LegalNoticeComponent },
-    { path: 'home', component: HomeComponent, canActivate: [AuthGuardService]}
+    { path: 'home', component: HomeComponent, canActivate: [AuthGuardService], children: [
+        { path: 'summary', component: SummaryComponent, canActivate: [AuthGuardService] },
+        { path: 'addtask', component: AddTaskComponent, canActivate: [AuthGuardService]},
+        { path: 'board', component: BoardComponent, canActivate: [AuthGuardService] },
+        { path: 'contacts', component: ContactsComponent, canActivate: [AuthGuardService] },
+    ]}
 ];

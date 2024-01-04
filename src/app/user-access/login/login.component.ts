@@ -23,12 +23,14 @@ export class LoginComponent implements OnInit {
   async loginEmailPassword(email: string, password: string) {
     if (!await this.appwriteService.appwriteLoginEmailPassword(email, password)) {
       this.loginform?.nativeElement.classList.add('wrong-input');
+      return;
     }
+    this.router.navigate(['home/summary']);
   }
 
   async guestLogin() {
     await this.appwriteService.appwriteSignInAnonymsly();
-    this.router.navigate(['home']);
+    this.router.navigate(['home/summary']);
   }
 
   async autoLogOut() {
