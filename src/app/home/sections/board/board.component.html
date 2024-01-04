@@ -53,7 +53,7 @@
                     </button>
                 </div>
                 <div class="tasks">
-                    <app-single-task></app-single-task>
+                    <app-single-task *ngFor="let task of this.tasksToDO" [task]="task"></app-single-task>
                 </div>
             </div>
             <div class="task-section in-progress-sec">
@@ -74,7 +74,9 @@
                         </svg>
                     </button>
                 </div>
-                <div class="tasks"></div>
+                <div class="tasks">
+                    <app-single-task *ngFor="let task of this.tasksInProgress" [task]="task"></app-single-task>
+                </div>
             </div>
             <div class="task-section await-feedback-sec">
                 <div class="task-head">
@@ -94,13 +96,17 @@
                         </svg>
                     </button>
                 </div>
-                <div class="tasks"></div>
+                <div class="tasks">
+                    <app-single-task *ngFor="let task of this.tasksAwaitFeedback" [task]="task"></app-single-task>
+                </div>
             </div>
             <div class="task-section done-sec">
                 <div class="task-head">
                     Done
                 </div>
-                <div class="tasks"></div>
+                <div class="tasks">
+                    <app-single-task *ngFor="let task of this.tasksDone" [task]="task"></app-single-task>
+                </div>
             </div>
         </div>
 

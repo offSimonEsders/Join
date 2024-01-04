@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Client, Account, ID } from 'appwrite';
+import { Client, Account, ID, Databases } from 'appwrite';
+
+const dataBaseID = '6594cb434043ac3121d8';
+const tasksID = '6596e8b9f0bcc7400acc';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +11,7 @@ export class AppwriteService {
 
   client = new Client();
   account!: Account;
+  dataBase!: Databases;
 
   loggedInUser: any = null;
 
@@ -16,6 +20,7 @@ export class AppwriteService {
       .setEndpoint('https://cloud.appwrite.io/v1')
       .setProject('65949b66b5d7b911fa48');
     this.account = new Account(this.client);
+    this.dataBase = new Databases(this.client);
   }
 
   /**
@@ -63,6 +68,15 @@ export class AppwriteService {
     }
     catch (error) {
 
+    }
+  }
+
+  async getTasks() {
+    try {
+      return (await this.dataBase.listDocuments(dataBaseID, tasksID)).documents;
+    }
+    catch {
+      return false;
     }
   }
 
