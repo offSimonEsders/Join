@@ -1,14 +1,15 @@
 .sidebar-frame {
     display: flex;
-    width: 232px;
-    height: calc(100vh - 128px);
-    padding: 64px 0px;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    flex-shrink: 0;
+    position: relative;
+    width: 232px;
+    height: calc(100vh - 128px);
+    padding: 64px 0px;
     background: #2A3647;
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+    border: none;
+    box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.1);
 
     .sidebar-nav {
         display: flex;
