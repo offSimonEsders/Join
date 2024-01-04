@@ -38,9 +38,9 @@ export class BoardComponent implements OnInit {
     filterForState(statefilter: string) {
         return this.data.filter((task: any) => {
             if (task.state == statefilter) {
-                console.log(task)
-                return task;
+                return Object.values(task);
             }
+            return;
         });
     }
 

@@ -22,12 +22,19 @@
         align-items: flex-start;
         gap: 10px;
         border-radius: 8px;
-        background: #1FD7C1;
         color: #FFF;
         font-size: 16px;
         font-style: normal;
         font-weight: 400;
         line-height: 120%;
+    }
+
+    .userstory {
+        background: #0038FF;
+    }
+
+    .technicaltask {
+        background: #1FD7C1;
     }
 
     .title-description-container {
