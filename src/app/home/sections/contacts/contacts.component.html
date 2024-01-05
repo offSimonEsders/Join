@@ -2,7 +2,7 @@
 
     <div class="contacts-list-container">
         <div class="add-contact-button-container">
-            <button>
+            <button (click)="this.changeCreateEditContact()">
                 Add new contact
                 <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33" fill="none">
                     <mask id="mask0_120784_4635" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
@@ -27,7 +27,7 @@
                             <path d="M0.5 1H352.5" stroke="#D1D1D1" stroke-linecap="round" />
                         </svg>
                     </div>
-                    <app-contacts-list-element *ngFor="let contact of contacts" [contact]="contact"
+                    <app-contacts-list-element *ngFor="let contact of this.contacts" [contact]="contact"
                         [letter]="letter"></app-contacts-list-element>
                 </section>
             </ng-container>
@@ -35,6 +35,6 @@
 
     </div>
 
-    <app-create-edit-contact></app-create-edit-contact>
+    <app-create-edit-contact *ngIf="this.showCreateEditContact" (valueChange)="this.changeCreateEditContact()"></app-create-edit-contact>
 
 </section>

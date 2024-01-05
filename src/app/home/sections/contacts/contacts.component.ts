@@ -16,6 +16,8 @@ export class ContactsComponent implements OnInit {
 
     letters: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
+    showCreateEditContact: boolean = false;
+
     constructor(private appwriteService: AppwriteService) {
 
     }
@@ -23,6 +25,10 @@ export class ContactsComponent implements OnInit {
     async ngOnInit() {
         this.contacts = (await this.appwriteService.getContacts());
         console.log(this.contacts)
+    }
+
+    changeCreateEditContact() {
+        this.showCreateEditContact = !this.showCreateEditContact;
     }
 
     returnIfNameWithLetterexist(letter: string) {
