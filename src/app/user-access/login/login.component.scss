@@ -81,11 +81,11 @@
                 }
 
                 .icon-container-mail {
-                    background-image: url('../../../assets/Icons/Mail_Icon.svg');
+                    background-image: url(../../../assets/Icons/Mail_Icon.svg);
                 }
 
                 .icon-container-password {
-                    background-image: url('../../../assets/Icons/Lock_Icon.svg');
+                    background-image: url(../../../assets/Icons/Lock_Icon.svg);
                 }
 
             }
@@ -102,10 +102,10 @@
                     display: none;
 
                     &:checked+label {
-                        background-image: url('../../../assets/Icons/Checkbox/Checkbox_checked.svg');
+                        background-image: url(../../../assets/Icons/Checkbox/Checkbox_checked.svg);
 
                         &:hover {
-                            background-image: url('../../../assets/Icons/Checkbox/Checkbox_checked_hovered.svg');
+                            background-image: url(../../../assets/Icons/Checkbox/Checkbox_checked_hovered.svg);
                         }
 
                     }
@@ -115,13 +115,13 @@
                 label {
                     height: 24px;
                     width: 24px;
-                    background-image: url('../../../assets/Icons/Checkbox/Checkbox_unchecked.svg');
+                    background-image: url(../../../assets/Icons/Checkbox/Checkbox_unchecked.svg);
                     background-position: center;
                     background-repeat: no-repeat;
 
                     &:hover {
                         cursor: pointer;
-                        background-image: url('../../../assets/Icons/Checkbox/Checkbox_unchecked_hovered.svg');
+                        background-image: url(../../../assets/Icons/Checkbox/Checkbox_unchecked_hovered.svg);
                     }
                 }
 
