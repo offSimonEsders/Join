@@ -61,8 +61,31 @@
         }
 
         .contact-list {
+            display: flex;
+            flex-direction: column;
+            overflow: auto;
+            position: relative;
             margin: 0;
             padding: 0;
+            padding-bottom: 25px;
+
+            .devider {
+                h2 {
+                    display: flex;
+                    padding: 17px 36px;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: flex-start;
+                    gap: 8px;
+                    align-self: stretch;
+                    color: #000;
+                    font-size: 20px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 120%;
+                }
+            }
+
         }
 
     }

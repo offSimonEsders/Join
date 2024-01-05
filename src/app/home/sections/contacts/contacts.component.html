@@ -19,7 +19,18 @@
         </div>
 
         <ul class="contact-list">
-            <app-contacts-list-element *ngFor="let contact of contacts" [contact]="contact"></app-contacts-list-element>
+            <ng-container *ngFor="let letter of letters">
+                <section class="contact-sorted" *ngIf="this.returnIfNameWithLetterexist(letter)">
+                    <div class="devider">
+                        <h2>{{letter}}</h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="353" height="2" viewBox="0 0 353 2" fill="none">
+                            <path d="M0.5 1H352.5" stroke="#D1D1D1" stroke-linecap="round" />
+                        </svg>
+                    </div>
+                    <app-contacts-list-element *ngFor="let contact of contacts" [contact]="contact"
+                        [letter]="letter"></app-contacts-list-element>
+                </section>
+            </ng-container>
         </ul>
 
     </div>
