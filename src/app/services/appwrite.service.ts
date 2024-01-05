@@ -3,6 +3,7 @@ import { Client, Account, ID, Databases, Query } from 'appwrite';
 
 const dataBaseID = '6594cb434043ac3121d8';
 const tasksID = '6596e8b9f0bcc7400acc';
+const contactsID = '659848432eef04745aa2';
 
 @Injectable({
   providedIn: 'root'
@@ -82,6 +83,10 @@ export class AppwriteService {
 
   async updateTask(taskID: string, task: any) {
     await this.dataBase.updateDocument(dataBaseID, tasksID, taskID, task);
+  }
+
+  async getContacts() {
+    return (await this.dataBase.listDocuments(dataBaseID, contactsID, [ Query.orderAsc('name') ])).documents;
   }
 
 }

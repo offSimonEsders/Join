@@ -3,4 +3,68 @@
     width: 100vw;
     height: calc(100% - 96px);
     background: #F6F7F8;
+
+    h1,
+    h2,
+    p {
+        margin: 0;
+    }
+
+    .contacts-list-container {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        width: 354px;
+        height: calc(100vh - 96px);
+        padding: 0 52px;
+        background: #FFF;
+
+        .add-contact-button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 22.5px 0;
+
+            button {
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 352px;
+                padding: 12px 0px;
+                gap: 16px;
+                flex-shrink: 0;
+                border-radius: 10px;
+                border: 1px solid #2A3647;
+                background: #2A3647;
+                color: var(--white, #FFF);
+                font-size: 21px;
+                font-style: normal;
+                font-weight: 700;
+                line-height: 120%;
+
+                &:hover {
+                    cursor: pointer;
+                    background: var(--Ligth-blue, #29ABE2);
+                    border-color: var(--Ligth-blue, #29ABE2);
+                    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                }
+
+                &:active {
+                    background: #091931;
+                    border-color: #091931;
+                }
+
+            }
+
+        }
+
+        .contact-list {
+            margin: 0;
+            padding: 0;
+        }
+
+    }
+
 }
