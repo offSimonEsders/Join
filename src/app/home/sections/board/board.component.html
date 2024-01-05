@@ -52,7 +52,7 @@
                         </svg>
                     </button>
                 </div>
-                <div class="tasks">
+                <div class="tasks" dropzone="true" (dragover)="this.allowDropEvent($event)" (drop)="this.dropTask($event, 'ToDo')">
                     <app-single-task *ngFor="let task of this.tasksToDO" [task]="task"></app-single-task>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                         </svg>
                     </button>
                 </div>
-                <div class="tasks">
+                <div class="tasks" dropzone="true" (dragover)="this.allowDropEvent($event)" (drop)="this.dropTask($event, 'InProgress')">
                     <app-single-task *ngFor="let task of this.tasksInProgress" [task]="task"></app-single-task>
                 </div>
             </div>
@@ -96,7 +96,7 @@
                         </svg>
                     </button>
                 </div>
-                <div class="tasks">
+                <div class="tasks" dropzone="true" (dragover)="this.allowDropEvent($event)" (drop)="this.dropTask($event, 'AwaitFeedback')">
                     <app-single-task *ngFor="let task of this.tasksAwaitFeedback" [task]="task"></app-single-task>
                 </div>
             </div>
@@ -104,7 +104,7 @@
                 <div class="task-head">
                     Done
                 </div>
-                <div class="tasks">
+                <div class="tasks" dropzone="true" (dragover)="this.allowDropEvent($event)" (drop)="this.dropTask($event, 'Done')">
                     <app-single-task *ngFor="let task of this.tasksDone" [task]="task"></app-single-task>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-<section class="task-frame">
+<section class="task-frame" draggable="true" (dragstart)="this.setDragData($event, this.task)">
     <div class="task-category" [ngClass]="this.task.category == 'User Story' ? 'userstory' : 'technicaltask'">
         {{this.task.category}}</div>
     <div class="title-description-container">

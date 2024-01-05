@@ -44,4 +44,31 @@ export class BoardComponent implements OnInit {
         });
     }
 
+    allowDropEvent(event: any) {
+        event.preventDefault()
+    }
+
+    dropTask(event: any, newState: string) {
+        const task = JSON.parse(event.dataTransfer.getData('task'));
+        const index = this.changeTaskState(task, newState);
+        this.filterForAllStates();
+        this.prepareAndUploadTask(index);
+    }
+
+    changeTaskState(task: any, newState: string) {
+        const index = this.data.findIndex((t: any) => { if (t.$id === task.$id) { return t.$id } });
+        task.state = newState;
+        this.data.splice(index, 1);
+        this.data.push(task);
+        console.log(this.data)
+        return index;
+    }
+
+    async prepareAndUploadTask(index: string) {
+        const task = this.data[index];
+        delete task.$databaseId;
+        delete task.$collectionId;
+        await this.appwriteService.updateTask(String(task.$id), task);
+    }
+
 }

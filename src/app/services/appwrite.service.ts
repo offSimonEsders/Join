@@ -80,4 +80,8 @@ export class AppwriteService {
     }
   }
 
+  async updateTask(taskID: string, task: any) {
+    await this.dataBase.updateDocument(dataBaseID, tasksID, taskID, task);
+  }
+
 }
