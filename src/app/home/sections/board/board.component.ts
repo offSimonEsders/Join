@@ -52,7 +52,7 @@ export class BoardComponent implements OnInit {
         const task = JSON.parse(event.dataTransfer.getData('task'));
         const changedTask = this.changeTaskState(task, newState);
         this.filterForAllStates();
-        this.prepareAndUploadTask(changedTask);
+        this.changeTasksorder();
     }
 
     changeTaskState(task: any, newState: string) {
@@ -60,7 +60,6 @@ export class BoardComponent implements OnInit {
         task.state = newState;
         this.data.splice(index, 1);
         this.data.push(task);
-        console.log(this.data)
         return task;
     }
 
@@ -68,6 +67,13 @@ export class BoardComponent implements OnInit {
         delete task.$databaseId;
         delete task.$collectionId;
         await this.appwriteService.updateTask(String(task.$id), task);
+    }
+
+    async changeTasksorder() {
+        for (let i = 0; i < this.data.length; i++) {
+            this.data[i].index = i;
+            await this.prepareAndUploadTask(this.data[i]);
+        }
     }
 
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Client, Account, ID, Databases } from 'appwrite';
+import { Client, Account, ID, Databases, Query } from 'appwrite';
 
 const dataBaseID = '6594cb434043ac3121d8';
 const tasksID = '6596e8b9f0bcc7400acc';
@@ -73,7 +73,7 @@ export class AppwriteService {
 
   async getTasks() {
     try {
-      return (await this.dataBase.listDocuments(dataBaseID, tasksID)).documents;
+      return (await this.dataBase.listDocuments(dataBaseID, tasksID, [ Query.orderAsc('index') ])).documents;
     }
     catch {
       return false;
