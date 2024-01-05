@@ -50,9 +50,9 @@ export class BoardComponent implements OnInit {
 
     dropTask(event: any, newState: string) {
         const task = JSON.parse(event.dataTransfer.getData('task'));
-        const index = this.changeTaskState(task, newState);
+        const changedTask = this.changeTaskState(task, newState);
         this.filterForAllStates();
-        this.prepareAndUploadTask(index);
+        this.prepareAndUploadTask(changedTask);
     }
 
     changeTaskState(task: any, newState: string) {
@@ -61,11 +61,10 @@ export class BoardComponent implements OnInit {
         this.data.splice(index, 1);
         this.data.push(task);
         console.log(this.data)
-        return index;
+        return task;
     }
 
-    async prepareAndUploadTask(index: string) {
-        const task = this.data[index];
+    async prepareAndUploadTask(task: any) {
         delete task.$databaseId;
         delete task.$collectionId;
         await this.appwriteService.updateTask(String(task.$id), task);
