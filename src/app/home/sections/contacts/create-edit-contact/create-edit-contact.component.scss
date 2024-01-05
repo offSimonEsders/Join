@@ -94,7 +94,7 @@
                 background-image: url(../../../../../assets/Icons/Closebtn/Close_Icon.svg);
                 background-position: center;
                 background-repeat: no-repeat;
-                
+
                 &:hover {
                     background-color: #EEEEEE;
                 }
@@ -126,6 +126,16 @@
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 32px;
+
+                input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+
+                input[type=number] {
+                    -moz-appearance: textfield;
+                  }
 
                 .input-container {
                     position: relative;
@@ -275,9 +285,7 @@
 }
 
 @keyframes slidein {
-    0% {
-
-    }
+    0% {}
 
     100% {
         transform: translateX(0%);
