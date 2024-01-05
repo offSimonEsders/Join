@@ -27,7 +27,7 @@
                             <path d="M0.5 1H352.5" stroke="#D1D1D1" stroke-linecap="round" />
                         </svg>
                     </div>
-                    <app-contacts-list-element *ngFor="let contact of this.contacts" [contact]="contact"
+                    <app-contacts-list-element (click)="this.setEditContact(contact)" *ngFor="let contact of this.contacts" [contact]="contact"
                         [letter]="letter"></app-contacts-list-element>
                 </section>
             </ng-container>
@@ -35,6 +35,7 @@
 
     </div>
 
-    <app-create-edit-contact *ngIf="this.showCreateEditContact" (valueChange)="this.changeCreateEditContact()"></app-create-edit-contact>
+    <app-create-edit-contact *ngIf="this.showCreateEditContact" (valueChange)="this.changeCreateEditContact()"
+        [editcontact]="this.editcontact"></app-create-edit-contact>
 
 </section>

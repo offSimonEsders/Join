@@ -13,6 +13,7 @@ import { CreateEditContactComponent } from "./create-edit-contact/create-edit-co
 })
 export class ContactsComponent implements OnInit {
     contacts: any;
+    editcontact: any;
 
     letters: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
@@ -29,6 +30,16 @@ export class ContactsComponent implements OnInit {
 
     changeCreateEditContact() {
         this.showCreateEditContact = !this.showCreateEditContact;
+        this.showCreateEditContact == false ? this.resetEditContact() : undefined;
+    }
+
+    setEditContact(contact: object) {
+        this.editcontact = contact;
+        this.changeCreateEditContact();
+    }
+
+    resetEditContact() {
+        this.editcontact = undefined;
     }
 
     returnIfNameWithLetterexist(letter: string) {

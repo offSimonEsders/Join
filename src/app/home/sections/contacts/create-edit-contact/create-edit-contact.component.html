@@ -1,5 +1,7 @@
 <section class="create-edit-contact-frame">
 
+    <div class="background" (click)="this.changeValue()"></div>
+
     <div class="create-edit-contact-content">
         <div class="decoration-container">
             <div class="img-container">
@@ -31,9 +33,10 @@
             </div>
         </div>
         <div class="form-container">
-            <button class="close-button" (click)="this.valueChange.emit('change')"></button>
-            <div class="user-icon-container">
-                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+            <button class="close-button" (click)="this.changeValue()"></button>
+            <div class="user-icon-container {{this.editcontact?.color}}">
+                {{this.editcontact?.initials}}
+                <svg *ngIf="this.editcontact == undefined" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
                     <mask id="mask0_71395_17941" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
                         width="64" height="64">
                         <rect width="64" height="64" fill="#D9D9D9" />
