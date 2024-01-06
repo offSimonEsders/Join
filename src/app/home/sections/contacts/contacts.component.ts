@@ -65,4 +65,18 @@ export class ContactsComponent implements OnInit {
         }, 1);
     }
 
+    getConactIndex(contact: Contact) {
+        return this.contacts.findIndex((c: Contact) => {
+            return c.$id == contact.$id ? true : false;
+        })
+    }
+
+    deleteConatct(contact: Contact) {
+        if (contact.$id) {
+            this.informationContact = undefined;
+            this.contacts.splice(this.getConactIndex(contact), 1);
+            this.appwriteService.deleteContact(contact.$id);
+        }
+    }
+
 }

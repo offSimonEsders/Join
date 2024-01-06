@@ -45,7 +45,7 @@
             <p>Better with a team</p>
         </header>
 
-        <app-contact-information (openEdit)="setEditContact(this.informationContact)" [ngStyle]="{'width.%': 100}" *ngIf="this.informationContact != undefined" [contact]="this.informationContact" ></app-contact-information>
+        <app-contact-information (openEdit)="this.setEditContact(this.informationContact)" (deleteContact)="this.deleteConatct(this.informationContact)" [ngStyle]="{'width.%': 100}" *ngIf="this.informationContact != undefined" [contact]="this.informationContact" ></app-contact-information>
 
     </div>
 

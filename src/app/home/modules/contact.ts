@@ -1,4 +1,8 @@
 export class Contact {
+    $collectionId?: string;
+    $createdAt?: string;
+    $databaseId?: string;
+    $id?: string;
     name: string;
     email: string;
     phone: string;

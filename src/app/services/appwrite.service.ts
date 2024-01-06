@@ -93,4 +93,8 @@ export class AppwriteService {
     await this.dataBase.createDocument(dataBaseID, contactsID, ID.unique(), data);
   }
 
+  deleteContact(contactID: string) {
+    this.dataBase.deleteDocument(dataBaseID, contactsID, contactID);
+  }
+
 }

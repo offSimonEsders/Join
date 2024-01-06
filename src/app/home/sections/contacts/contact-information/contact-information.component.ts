@@ -11,5 +11,5 @@ import { Contact } from '../../../modules/contact';
 export class ContactInformationComponent {
   @Input() contact?: Contact;
   @Output() openEdit = new EventEmitter();
-
+  @Output() deleteContact = new EventEmitter();
 }
