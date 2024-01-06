@@ -32,37 +32,37 @@ export class CreateEditContactComponent {
 
   checkInputs(name: string, email: string, phone: string, namecontainer: HTMLDivElement, emailcontainer: HTMLDivElement, phonecontainer: HTMLDivElement) {
     let stop = false;
-    stop = this.checkName(name, namecontainer);
-    stop = this.checkEmail(email, emailcontainer);
-    stop = this.checkPhone(phone, phonecontainer);
+    stop = this.checkName(name, namecontainer, stop);
+    stop = this.checkEmail(email, emailcontainer, stop);
+    stop = this.checkPhone(phone, phonecontainer, stop)
     if (stop) {
       return true;
     }
     return false;
   }
 
-  checkName(name: string, namecontainer: HTMLDivElement,) {
+  checkName(name: string, namecontainer: HTMLDivElement, stop: boolean) {
     if (name.length <= 0) {
       namecontainer.classList.add('name-wrong-input');
       return true;
     }
-    return false;
+    return stop;
   }
 
-  checkEmail(email: string, emailcontainer: HTMLDivElement) {
+  checkEmail(email: string, emailcontainer: HTMLDivElement, stop: boolean) {
     if (!this.mailregex.test(email)) {
       emailcontainer.classList.add('email-wrong-input');
       return true;
     }
-    return false;
+    return stop;
   }
 
-  checkPhone(phone: string, phonecontainer: HTMLDivElement) {
+  checkPhone(phone: string, phonecontainer: HTMLDivElement, stop: boolean) {
     if (phone.length <= 0) {
       phonecontainer.classList.add('phone-wrong-input');
       return true;
     }
-    return false;
+    return stop;
   }
 
   resetContainer(container: HTMLDivElement, classToRemove: string) {
