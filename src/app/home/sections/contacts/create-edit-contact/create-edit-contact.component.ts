@@ -26,7 +26,7 @@ export class CreateEditContactComponent {
   }
 
   replaceLetters(element: HTMLInputElement) {
-    element.value = element.value.replace(/[^+0-9]/g, "");
+    element.value = element.value.replace(/[^+0-9 ]/g, "");
   }
 
   async createNewContact(event: Event, name: string, mail: string, phone: string) {
