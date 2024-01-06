@@ -79,5 +79,17 @@ export class ContactsComponent implements OnInit {
             this.appwriteService.deleteContact(contact.$id);
         }
     }
-    
+
+    async addNewContact(contact: Contact) {
+        const save = this.contacts;
+        let getContacts = setInterval(async () => {
+            if(this.contacts == save) {
+                console.log("load")
+                this.contacts = (await this.appwriteService.getContacts());
+                return;
+            }
+            clearInterval(getContacts);
+        }, 50)
+    }
+
 }

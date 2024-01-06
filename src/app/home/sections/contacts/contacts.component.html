@@ -55,6 +55,6 @@
 
     <app-create-edit-contact *ngIf="this.showCreateEditContact" (closeWindowEvent)="this.changeCreateEditContact()"
         (deleteContactEvent)="this.deleteConatct(this.editcontact)"
-        [editcontact]="this.editcontact"></app-create-edit-contact>
+        [editcontact]="this.editcontact" (contactCreated)="this.addNewContact($event)"></app-create-edit-contact>
 
 </section>

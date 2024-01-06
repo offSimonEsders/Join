@@ -2,6 +2,7 @@ import { Component, ElementRef, EventEmitter, Input, Output } from '@angular/cor
 import { CommonModule } from '@angular/common';
 import { Contact } from '../../../modules/contact';
 import { AppwriteService } from '../../../../services/appwrite.service';
+import { ID } from 'appwrite';
 
 @Component({
   selector: 'app-create-edit-contact',
@@ -15,6 +16,7 @@ export class CreateEditContactComponent {
   @Output() closeWindowEvent = new EventEmitter<any>();
   @Output() contactEdited = new EventEmitter<Contact>();
   @Output() deleteContactEvent = new EventEmitter<string>();
+  @Output() contactCreated = new EventEmitter<Contact>();
   mailregex: RegExp = /[a-z0-9]+@[a-z]+\.[a-z]/;
 
   constructor(private appwriteService: AppwriteService) {
@@ -76,7 +78,8 @@ export class CreateEditContactComponent {
     }
     const newContact = new Contact(name, email, phone, this.getInitials(name), this.getVariant());
     this.closeCreateEditWindow(event);
-    await this.appwriteService.createContact(newContact);
+    this.contactCreated.emit(newContact);
+    this.appwriteService.createContact(newContact);
   }
 
   getInitials(name: string) {
@@ -92,10 +95,11 @@ export class CreateEditContactComponent {
 
   getVariant() {
     let randInt = Math.random();
-    while (randInt <= 0) {
-      randInt = Math.random();
+    let variantNumber = Math.round(randInt * 15);
+    while (variantNumber <= 0) {
+      this.getVariant();
     }
-    return 'variant' + Math.round(randInt * 15);
+    return 'variant' + variantNumber;
   }
 
   updateContact(event: Event, name: string, email: string, phone: string, namecontainer: HTMLDivElement, mailcontainer: HTMLDivElement, phonecontainer: HTMLDivElement) {
