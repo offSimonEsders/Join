@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Contact } from '../../../modules/contact';
 
 @Component({
@@ -10,5 +10,6 @@ import { Contact } from '../../../modules/contact';
 })
 export class ContactInformationComponent {
   @Input() contact?: Contact;
+  @Output() openEdit = new EventEmitter();
 
 }
