@@ -183,7 +183,7 @@
                         background-image: url(../../../../../assets/Icons/Person_Icon.svg);
                     }
 
-                    .icon-container-mail {
+                    .icon-container-email {
                         background-image: url(../../../../../assets/Icons/Mail_Icon.svg);
                     }
 
@@ -191,6 +191,61 @@
                         background-image: url(../../../../../assets/Icons/Phone_Icon.svg);
                     }
 
+                }
+
+                .name-wrong-input {
+                    &::after {
+                        content: "Enter a name!";
+                        position: absolute;
+                        height: 12px;
+                        align-self: stretch;
+                        color: #FF8190;
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 120%;
+                    }
+
+                    input {
+                        border: 1px solid #FF8190;
+                    }
+
+                }
+
+                .email-wrong-input {
+                    &::after {
+                        content: "Enter a valid email!";
+                        position: absolute;
+                        height: 12px;
+                        align-self: stretch;
+                        color: #FF8190;
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 120%;
+                    }
+
+                    input {
+                        border: 1px solid #FF8190;
+                    }
+                }
+
+                .phone-wrong-input {
+                    &::after {
+                        content: "Enter a valid phone number!";
+                        position: absolute;
+                        height: 12px;
+                        align-self: stretch;
+                        color: #FF8190;
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 120%;
+                    }
+
+                    input {
+                        border: 1px solid #FF8190;
+                    }
                 }
 
                 .button-container {

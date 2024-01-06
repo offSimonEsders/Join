@@ -37,7 +37,8 @@
             <button class="close-button" (click)="this.closeCreateEditWindow($event)"></button>
             <div class="user-icon-container {{this.editcontact?.color}}">
                 {{this.editcontact?.initials}}
-                <svg *ngIf="this.editcontact == undefined" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+                <svg *ngIf="this.editcontact == undefined" xmlns="http://www.w3.org/2000/svg" width="64" height="64"
+                    viewBox="0 0 64 64" fill="none">
                     <mask id="mask0_71395_17941" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
                         width="64" height="64">
                         <rect width="64" height="64" fill="#D9D9D9" />
@@ -50,33 +51,38 @@
                 </svg>
             </div>
             <form>
-                <div class="input-container">
-                    <input type="text" class="" placeholder="Name" [value]="this.editcontact?.name" #name>
+                <div class="input-container" #namecontainer>
+                    <input type="text" class="" placeholder="Name" (input)="this.resetContainer(namecontainer, 'name-wrong-input')" [value]="this.editcontact?.name" #name>
                     <div class="icon-container icon-container-name"></div>
                 </div>
-                <div class="input-container">
-                    <input type="text" class="" placeholder="Email" [value]="this.editcontact?.email" #mail>
-                    <div class="icon-container icon-container-mail"></div>
+                <div class="input-container" #emailcontainer>
+                    <input type="text" class="" placeholder="Email" (input)="this.resetContainer(emailcontainer, 'email-wrong-input')" [value]="this.editcontact?.email" #email>
+                    <div class="icon-container icon-container-email"></div>
                 </div>
-                <div class="input-container">
-                    <input type="text" [min]="0" class="" placeholder="Phone" (input)="this.replaceLetters(phone)" [value]="this.editcontact?.phone" #phone>
+                <div class="input-container" #phonecontainer>
+                    <input type="text" [min]="0" class="" (input)="this.resetContainer(phonecontainer, 'phone-wrong-input')" placeholder="Phone" (input)="this.replaceLetters(phone)"
+                        [value]="this.editcontact?.phone" #phone>
                     <div class="icon-container icon-container-phone"></div>
                 </div>
 
                 <div class="button-container">
-                    <button class="cancel-delete-button" *ngIf="this.editcontact == undefined" (click)="this.closeCreateEditWindow($event)">
+                    <button class="cancel-delete-button" *ngIf="this.editcontact == undefined"
+                        (click)="this.closeCreateEditWindow($event)">
                         Cancel
                         <div class="icon-container"></div>
                     </button>
-                    <button class="create-save-button" *ngIf="this.editcontact == undefined" (click)="this.createNewContact($event, name.value, mail.value, phone.value)">
+                    <button class="create-save-button" *ngIf="this.editcontact == undefined"
+                        (click)="this.createNewContact($event, name.value, email.value, phone.value, namecontainer, emailcontainer, phonecontainer)">
                         Create contact
                         <div class="icon-container"></div>
                     </button>
-                    <button class="cancel-delete-button" *ngIf="this.editcontact != undefined" (click)="this.deleteContact($event)">
+                    <button class="cancel-delete-button" *ngIf="this.editcontact != undefined"
+                        (click)="this.deleteContact($event)">
                         Delete
                         <div class="icon-container" [ngStyle]="{'display': 'none'}"></div>
                     </button>
-                    <button class="create-save-button" *ngIf="this.editcontact != undefined" (click)="this.updateContact($event, name.value, mail.value, phone.value)">
+                    <button class="create-save-button" *ngIf="this.editcontact != undefined"
+                        (click)="this.updateContact($event, name.value, email.value, phone.value, namecontainer, emailcontainer, phonecontainer)">
                         Save
                         <div class="icon-container"></div>
                     </button>
