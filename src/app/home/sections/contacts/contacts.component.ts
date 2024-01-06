@@ -3,17 +3,20 @@ import { CommonModule } from '@angular/common'
 import { AppwriteService } from '../../../services/appwrite.service';
 import { ContactsListElementComponent } from "./contacts-list-element/contacts-list-element.component";
 import { CreateEditContactComponent } from "./create-edit-contact/create-edit-contact.component";
+import { ContactInformationComponent } from "./contact-information/contact-information.component";
+import { Contact } from '../../modules/contact';
 
 @Component({
     selector: 'app-contacts',
     standalone: true,
     templateUrl: './contacts.component.html',
     styleUrl: './contacts.component.scss',
-    imports: [ContactsListElementComponent, CommonModule, CreateEditContactComponent]
+    imports: [ContactsListElementComponent, CommonModule, CreateEditContactComponent, ContactInformationComponent]
 })
 export class ContactsComponent implements OnInit {
     contacts: any;
     editcontact: any;
+    informationContact?: Contact;
 
     letters: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
@@ -25,7 +28,6 @@ export class ContactsComponent implements OnInit {
 
     async ngOnInit() {
         this.contacts = (await this.appwriteService.getContacts());
-        console.log(this.contacts)
     }
 
     changeCreateEditContact() {
@@ -54,6 +56,13 @@ export class ContactsComponent implements OnInit {
         catch {
             return;
         }
+    }
+
+    setInformationContact(contact: Contact) {
+        this.informationContact = undefined;
+        setTimeout(() => {
+            this.informationContact = contact;
+        }, 1);
     }
 
 }

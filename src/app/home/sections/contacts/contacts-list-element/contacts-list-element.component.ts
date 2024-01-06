@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,12 +8,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './contacts-list-element.component.html',
   styleUrls: ['./contacts-list-element.component.scss', '../../../extra-styles/contact-icon-color.scss']
 })
-export class ContactsListElementComponent implements OnInit {
+export class ContactsListElementComponent {
   @Input() contact: any;
   @Input() letter?: string;
-
-  ngOnInit(): void {
-    console.log(this.contact.name[0].toUpperCase())
-  }
-
 }

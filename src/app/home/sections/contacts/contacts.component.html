@@ -27,11 +27,25 @@
                             <path d="M0.5 1H352.5" stroke="#D1D1D1" stroke-linecap="round" />
                         </svg>
                     </div>
-                    <app-contacts-list-element (click)="this.setEditContact(contact)" *ngFor="let contact of this.contacts" [contact]="contact"
+                    <app-contacts-list-element (click)="this.setInformationContact(contact)" *ngFor="let contact of this.contacts" [contact]="contact"
                         [letter]="letter"></app-contacts-list-element>
                 </section>
             </ng-container>
         </ul>
+
+    </div>
+
+    <div class="contact-information-container">
+
+        <header>
+            <h1>Contacts</h1>
+            <svg xmlns="http://www.w3.org/2000/svg" width="4" height="63" viewBox="0 0 4 63" fill="none">
+                <path d="M2 2V61" stroke="#29ABE2" stroke-width="3" stroke-linecap="round" />
+            </svg>
+            <p>Better with a team</p>
+        </header>
+
+        <app-contact-information [ngStyle]="{'width.%': 100}" *ngIf="this.informationContact != undefined" [contact]="this.informationContact" ></app-contact-information>
 
     </div>
 

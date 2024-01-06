@@ -89,4 +89,8 @@ export class AppwriteService {
     return (await this.dataBase.listDocuments(dataBaseID, contactsID, [ Query.orderAsc('name') ])).documents;
   }
 
+  async createContact(data: object) {
+    await this.dataBase.createDocument(dataBaseID, contactsID, ID.unique(), data);
+  }
+
 }
