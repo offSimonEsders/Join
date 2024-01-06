@@ -1,7 +1,7 @@
 <section class="contacts-frame">
 
-    <div class="contacts-list-container">
-        <div class="add-contact-button-container">
+    <div class="contacts-list-container" #conactslistcontainer>
+        <div class="add-contact-button-container" #addbuttoncontainer>
             <button (click)="this.changeCreateEditContact()">
                 Add new contact
                 <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33" fill="none">
@@ -18,8 +18,9 @@
             </button>
         </div>
 
-        <ul class="contact-list">
+        <ul class="contact-list" (resize)="this.checkContainerHeight(contactlist, addbuttoncontainer, conactslistcontainer)" #contactlist>
             <ng-container *ngFor="let letter of letters">
+                {{this.checkContainerHeight(contactlist, addbuttoncontainer, conactslistcontainer)}}
                 <section class="contact-sorted" *ngIf="this.returnIfNameWithLetterexist(letter)">
                     <div class="devider">
                         <h2>{{letter}}</h2>

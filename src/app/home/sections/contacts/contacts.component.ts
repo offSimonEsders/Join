@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common'
 import { AppwriteService } from '../../../services/appwrite.service';
 import { ContactsListElementComponent } from "./contacts-list-element/contacts-list-element.component";
@@ -90,6 +90,14 @@ export class ContactsComponent implements OnInit {
             }
             clearInterval(getContacts);
         }, 50)
+    }
+
+    checkContainerHeight(conactlist: HTMLUListElement, addbuttoncontainer: HTMLDivElement, conactslistcontainer: HTMLDivElement) {
+        if(conactlist.offsetHeight + addbuttoncontainer.offsetHeight < conactslistcontainer.offsetHeight) {
+            conactlist.style.padding = '0 20px 25px 25px';
+            return;
+        }
+        conactlist.style.padding = '0 20px 25px 20px';
     }
 
 }
