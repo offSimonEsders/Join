@@ -1,6 +1,6 @@
 <section class="create-edit-contact-frame">
 
-    <div class="background" (click)="this.changeValue()"></div>
+    <div class="background" (click)="this.closeCreateEditWindow($event)"></div>
 
     <div class="create-edit-contact-content">
         <div class="decoration-container">
@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="form-container">
-            <button class="close-button" (click)="this.changeValue()"></button>
+            <button class="close-button" (click)="this.closeCreateEditWindow($event)"></button>
             <div class="user-icon-container {{this.editcontact?.color}}">
                 {{this.editcontact?.initials}}
                 <svg *ngIf="this.editcontact == undefined" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
@@ -59,12 +59,12 @@
                     <div class="icon-container icon-container-mail"></div>
                 </div>
                 <div class="input-container">
-                    <input type="text" [min]="0" class="" placeholder="Phone" [value]="this.editcontact?.phone" #phone>
+                    <input type="text" [min]="0" class="" placeholder="Phone" (input)="this.replaceLetters(phone)" [value]="this.editcontact?.phone" #phone>
                     <div class="icon-container icon-container-phone"></div>
                 </div>
 
                 <div class="button-container">
-                    <button class="cancel-delete-button" *ngIf="this.editcontact == undefined" (click)="this.changeValue()">
+                    <button class="cancel-delete-button" *ngIf="this.editcontact == undefined" (click)="this.closeCreateEditWindow($event)">
                         Cancel
                         <div class="icon-container"></div>
                     </button>
@@ -72,7 +72,7 @@
                         Create contact
                         <div class="icon-container"></div>
                     </button>
-                    <button class="cancel-delete-button" *ngIf="this.editcontact != undefined" (click)="this.deleteContact()">
+                    <button class="cancel-delete-button" *ngIf="this.editcontact != undefined" (click)="this.deleteContact($event)">
                         Delete
                         <div class="icon-container" [ngStyle]="{'display': 'none'}"></div>
                     </button>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Contact } from '../../../modules/contact';
 import { AppwriteService } from '../../../../services/appwrite.service';
@@ -12,7 +12,7 @@ import { AppwriteService } from '../../../../services/appwrite.service';
 })
 export class CreateEditContactComponent {
   @Input() editcontact: any;
-  @Output() valueChange = new EventEmitter<any>();
+  @Output() closeWindowEvent = new EventEmitter<any>();
   @Output() contactEdited = new EventEmitter<Contact>();
   @Output() deleteContactEvent = new EventEmitter<string>();
 
@@ -20,14 +20,19 @@ export class CreateEditContactComponent {
 
   }
 
-  changeValue() {
-    this.valueChange.emit('change');
+  closeCreateEditWindow(event: Event) {
+    event.preventDefault();
+    this.closeWindowEvent.emit('change');
+  }
+
+  replaceLetters(element: HTMLInputElement) {
+    element.value = element.value.replace(/[^+0-9]/g, "");
   }
 
   async createNewContact(event: Event, name: string, mail: string, phone: string) {
     event.preventDefault();
     const newContact = new Contact(name, mail, phone, this.getInitials(name), this.getVariant());
-    this.changeValue();
+    this.closeCreateEditWindow(event);
     await this.appwriteService.createContact(newContact);
   }
 
@@ -55,7 +60,7 @@ export class CreateEditContactComponent {
     this.changeConactData(name, email, phone);
     this.contactEdited.emit(this.editcontact);
     this.appwriteService.updateContact(this.editcontact);
-    this.changeValue();
+    this.closeCreateEditWindow(event);
   }
 
   changeConactData(name: string, email: string, phone: string) {
@@ -66,9 +71,9 @@ export class CreateEditContactComponent {
     delete this.editcontact.$collectionId;
   }
 
-  deleteContact() {
+  deleteContact(event: Event) {
     this.deleteContactEvent.emit('delete');
-    this.changeValue();
+    this.closeCreateEditWindow(event);
   }
 
 }

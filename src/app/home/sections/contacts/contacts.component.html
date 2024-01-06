@@ -49,7 +49,7 @@
 
     </div>
 
-    <app-create-edit-contact *ngIf="this.showCreateEditContact" (valueChange)="this.changeCreateEditContact()" (deleteContactEvent)="this.deleteConatct(this.editcontact)"
+    <app-create-edit-contact *ngIf="this.showCreateEditContact" (closeWindowEvent)="this.changeCreateEditContact()" (deleteContactEvent)="this.deleteConatct(this.editcontact)"
         [editcontact]="this.editcontact"></app-create-edit-contact>
 
 </section>
