@@ -64,16 +64,23 @@
                 </div>
 
                 <div class="button-container">
-                    <button (click)="this.changeValue()">
+                    <button class="cancel-delete-button" *ngIf="this.editcontact == undefined" (click)="this.changeValue()">
                         Cancel
                         <div class="icon-container"></div>
                     </button>
-                    <button (click)="this.createNewContact($event, name.value, mail.value, phone.value)">
+                    <button class="create-save-button" *ngIf="this.editcontact == undefined" (click)="this.createNewContact($event, name.value, mail.value, phone.value)">
                         Create contact
                         <div class="icon-container"></div>
                     </button>
+                    <button class="cancel-delete-button" *ngIf="this.editcontact != undefined" (click)="this.deleteContact()">
+                        Delete
+                        <div class="icon-container" [ngStyle]="{'display': 'none'}"></div>
+                    </button>
+                    <button class="create-save-button" *ngIf="this.editcontact != undefined" (click)="this.updateContact($event, name.value, mail.value, phone.value)">
+                        Save
+                        <div class="icon-container"></div>
+                    </button>
                 </div>
-
             </form>
         </div>
     </div>

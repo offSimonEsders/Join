@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Client, Account, ID, Databases, Query } from 'appwrite';
+import { Contact } from '../home/modules/contact';
 
 const dataBaseID = '6594cb434043ac3121d8';
 const tasksID = '6596e8b9f0bcc7400acc';
@@ -74,7 +75,7 @@ export class AppwriteService {
 
   async getTasks() {
     try {
-      return (await this.dataBase.listDocuments(dataBaseID, tasksID, [ Query.orderAsc('index') ])).documents;
+      return (await this.dataBase.listDocuments(dataBaseID, tasksID, [Query.orderAsc('index')])).documents;
     }
     catch {
       return false;
@@ -86,7 +87,7 @@ export class AppwriteService {
   }
 
   async getContacts() {
-    return (await this.dataBase.listDocuments(dataBaseID, contactsID, [ Query.orderAsc('name') ])).documents;
+    return (await this.dataBase.listDocuments(dataBaseID, contactsID, [Query.orderAsc('name')])).documents;
   }
 
   async createContact(data: object) {
@@ -95,6 +96,10 @@ export class AppwriteService {
 
   deleteContact(contactID: string) {
     this.dataBase.deleteDocument(dataBaseID, contactsID, contactID);
+  }
+
+  async updateContact(contact: Contact) {
+    if (contact.$id) { await (this.dataBase.updateDocument(dataBaseID, contactsID, contact.$id, contact)) }
   }
 
 }

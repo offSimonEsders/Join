@@ -13,6 +13,8 @@ import { AppwriteService } from '../../../../services/appwrite.service';
 export class CreateEditContactComponent {
   @Input() editcontact: any;
   @Output() valueChange = new EventEmitter<any>();
+  @Output() contactEdited = new EventEmitter<Contact>();
+  @Output() deleteContactEvent = new EventEmitter<string>();
 
   constructor(private appwriteService: AppwriteService) {
 
@@ -42,10 +44,31 @@ export class CreateEditContactComponent {
 
   getVariant() {
     let randInt = Math.random();
-    while(randInt <= 0) {
+    while (randInt <= 0) {
       randInt = Math.random();
     }
-    return 'variant' + Math.round(randInt * 17);
+    return 'variant' + Math.round(randInt * 15);
+  }
+
+  updateContact(event: Event, name: string, email: string, phone: string) {
+    event.preventDefault();
+    this.changeConactData(name, email, phone);
+    this.contactEdited.emit(this.editcontact);
+    this.appwriteService.updateContact(this.editcontact);
+    this.changeValue();
+  }
+
+  changeConactData(name: string, email: string, phone: string) {
+    this.editcontact.name = name;
+    this.editcontact.email = email;
+    this.editcontact.phone = phone;
+    delete this.editcontact.$databaseId;
+    delete this.editcontact.$collectionId;
+  }
+
+  deleteContact() {
+    this.deleteContactEvent.emit('delete');
+    this.changeValue();
   }
 
 }
