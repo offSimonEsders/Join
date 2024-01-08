@@ -13,6 +13,7 @@
     .name-icon-container {
         display: flex;
         align-items: center;
+        pointer-events: none;
         gap: 16px;
 
         .icon-container {
@@ -48,6 +49,7 @@
         align-items: center;
         justify-content: center;
         position: relative;
+        pointer-events: none;
 
         input {
             display: none;
