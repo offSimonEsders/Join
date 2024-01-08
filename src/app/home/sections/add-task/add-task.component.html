@@ -24,9 +24,9 @@
                         <div class="value-container">
                             <div>Assigned to</div>
                             <div class="input-container">
-                                <input id="contact" type="text" placeholder="Select contacts to assign" (click)="this.changeOpenState($event, contactsinput, 'openContacts')" #contactsinput>
-                                <button id="contact" (click)="this.changeOpenState($event, contactsinput, 'openContacts')" #contactsinput>
-                                    <svg id="contact" [ngClass]="{'rotate': this.openContacts}"
+                                <input class="contact" type="text" placeholder="Select contacts to assign" (click)="this.changeOpenState($event, contactsinput, 'openContacts')" #contactsinput>
+                                <button class="contact" (click)="this.changeOpenState($event, contactsinput, 'openContacts')" #contactsinput>
+                                    <svg class="contact" [ngClass]="{'rotate': this.openContacts}"
                                         xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24"
                                         fill="none">
                                         <mask id="mask0_122067_1896" style="mask-type:alpha" maskUnits="userSpaceOnUse"
@@ -121,11 +121,11 @@
                         <div class="value-container">
                             <div>Category <p>*</p>
                             </div>
-                            <div class="input-container" id="category">
-                                <input id="category" (click)="this.changeOpenState($event, categoryinput, 'openCategory')"
+                            <div class="input-container">
+                                <input class="category" (click)="this.changeOpenState($event, categoryinput, 'openCategory')"
                                     type="text" placeholder="Select task category" readonly #categoryinput>
-                                <button id="category" (click)="this.changeOpenState($event, categoryinput, 'openCategory')">
-                                    <svg id="category" [ngClass]="{'rotate': this.openCategory}"
+                                <button class="category" (click)="this.changeOpenState($event, categoryinput, 'openCategory')">
+                                    <svg class="category" [ngClass]="{'rotate': this.openCategory}"
                                         xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24"
                                         fill="none">
                                         <mask id="mask0_122067_1896" style="mask-type:alpha" maskUnits="userSpaceOnUse"
@@ -142,9 +142,9 @@
                             </div>
                         </div>
                         <ul *ngIf="this.openCategory" class="list" id="category">
-                            <li id="category" (click)="this.setCategoryValue('Technical Task', categoryinput)">Technical
+                            <li (click)="this.setCategoryValue('Technical Task', categoryinput)">Technical
                                 Task</li>
-                            <li id="category" (click)="this.setCategoryValue('User Story', categoryinput)">User Story
+                            <li (click)="this.setCategoryValue('User Story', categoryinput)">User Story
                             </li>
                         </ul>
                     </div>

@@ -34,10 +34,10 @@ export class AddTaskComponent implements OnInit {
 
   changeOpenCategoryStateOnId(event: Event, categoryinput: HTMLInputElement, contactsinput: HTMLInputElement) {
     const targetElement = event.target as HTMLElement;
-    if (targetElement.id != 'category') {
+    if (!targetElement.classList.contains('category')) {
       this.closeCategoryList(categoryinput);
     }
-    if (targetElement.id != 'contact') {
+    if (!targetElement.classList.contains('contact')) {
       this.closeContactList(contactsinput);
     }
 
