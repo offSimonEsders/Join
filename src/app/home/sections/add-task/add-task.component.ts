@@ -14,8 +14,9 @@ import { Contact } from '../../modules/contact';
 export class AddTaskComponent implements OnInit {
   contacts?: Contact[];
   openCategory: boolean = false;
-  openContacts: boolean = true;
+  openContacts: boolean = false;
   click = false;
+  [key: string]: any;
 
   constructor(private appwriteService: AppwriteService) {
 
@@ -25,22 +26,31 @@ export class AddTaskComponent implements OnInit {
     this.contacts = await this.appwriteService.getContacts() as unknown as Contact[];
   }
 
-  changeOpenCategoryState(event: Event, input: HTMLInputElement) {
+  changeOpenState(event: Event, input: HTMLInputElement, value: string) {
     event.preventDefault();
-    this.openCategory = !this.openCategory;
-    this.openCategory ? input.focus() : input.blur();
+    this[value] = !this[value];
+    this[value] ? input.focus() : input.blur();
   }
 
-  changeOpenCategoryStateOnId(event: Event, input: HTMLInputElement) {
+  changeOpenCategoryStateOnId(event: Event, categoryinput: HTMLInputElement, contactsinput: HTMLInputElement) {
     const targetElement = event.target as HTMLElement;
     if (targetElement.id != 'category') {
-      this.closeCategoryList(input);
+      this.closeCategoryList(categoryinput);
     }
+    if (targetElement.id != 'contact') {
+      this.closeContactList(contactsinput);
+    }
+
   }
 
   closeCategoryList(categoryinput: HTMLInputElement) {
     this.openCategory = false;
     categoryinput.blur();
+  }
+
+  closeContactList(contactsinput: HTMLInputElement) {
+    this.openContacts = false;
+    contactsinput.blur()
   }
 
   setCategoryValue(value: string, categoryinput: HTMLInputElement) {

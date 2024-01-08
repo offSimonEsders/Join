@@ -1,4 +1,4 @@
-<section class="contact-frame" [ngClass]="{'contact-selected': this.selected}" (click)="this.selectContact()">
+<section class="contact-frame contact" [ngClass]="{'contact-selected': this.selected}" (click)="this.selectContact()">
     <div class="name-icon-container">
         <div class="icon-container {{contact?.color}}">
             {{this.contact?.initials}}

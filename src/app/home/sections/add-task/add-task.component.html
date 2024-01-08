@@ -1,4 +1,4 @@
-<section class="add-task-frame" (click)="this.changeOpenCategoryStateOnId($event, categoryinput)">
+<section class="add-task-frame" (click)="this.changeOpenCategoryStateOnId($event, categoryinput, contactsinput)">
 
     <div class="add-task-content">
 
@@ -24,9 +24,9 @@
                         <div class="value-container">
                             <div>Assigned to</div>
                             <div class="input-container">
-                                <input type="text" placeholder="Select contacts to assign">
-                                <button>
-                                    <svg 
+                                <input id="contact" type="text" placeholder="Select contacts to assign" (click)="this.changeOpenState($event, contactsinput, 'openContacts')" #contactsinput>
+                                <button id="contact" (click)="this.changeOpenState($event, contactsinput, 'openContacts')" #contactsinput>
+                                    <svg id="contact" [ngClass]="{'rotate': this.openContacts}"
                                         xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24"
                                         fill="none">
                                         <mask id="mask0_122067_1896" style="mask-type:alpha" maskUnits="userSpaceOnUse"
@@ -122,9 +122,9 @@
                             <div>Category <p>*</p>
                             </div>
                             <div class="input-container" id="category">
-                                <input id="category" (click)="this.changeOpenCategoryState($event, categoryinput)"
+                                <input id="category" (click)="this.changeOpenState($event, categoryinput, 'openCategory')"
                                     type="text" placeholder="Select task category" readonly #categoryinput>
-                                <button id="category" (click)="this.changeOpenCategoryState($event, categoryinput)">
+                                <button id="category" (click)="this.changeOpenState($event, categoryinput, 'openCategory')">
                                     <svg id="category" [ngClass]="{'rotate': this.openCategory}"
                                         xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24"
                                         fill="none">
