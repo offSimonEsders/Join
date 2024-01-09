@@ -8,7 +8,7 @@ import { Contact } from '../../modules/contact';
     selector: 'app-add-task',
     standalone: true,
     templateUrl: './add-task.component.html',
-    styleUrl: './add-task.component.scss',
+    styleUrls: ['./add-task.component.scss', '../../extra-styles/contact-icon-color.scss'],
     imports: [CommonModule, SelectableContactComponent]
 })
 export class AddTaskComponent implements OnInit {

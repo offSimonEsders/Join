@@ -42,6 +42,11 @@
                                 </button>
                             </div>
                         </div>
+                        <section class="selectedContactsContainer">
+                            <div (click)="this.unselectContacts(contact)" *ngFor="let contact of selectedContacts" class="selected-contact {{contact.color}}">
+                                {{contact.initials}}
+                            </div>
+                        </section>
                         <ul *ngIf="this.openContacts" class="list">
                             <app-selectable-contact *ngFor="let contact of this.contacts" [contact]="contact" [selected]="this.checkIfContactIsSelected(contact)" (selectSignal)="this.selectContacts($event)" (unselectSignal)="this.unselectContacts($event)"></app-selectable-contact>
                         </ul>
