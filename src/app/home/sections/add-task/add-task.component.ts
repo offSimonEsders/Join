@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SelectableContactComponent } from "./selectable-contact/selectable-contact.component";
 import { AppwriteService } from '../../../services/appwrite.service';
@@ -13,6 +13,7 @@ import { Contact } from '../../modules/contact';
 })
 export class AddTaskComponent implements OnInit {
   contacts?: Contact[];
+  selectedContacts: Contact[] = [];
   openCategory: boolean = false;
   openContacts: boolean = false;
   click = false;
@@ -56,6 +57,23 @@ export class AddTaskComponent implements OnInit {
   setCategoryValue(value: string, categoryinput: HTMLInputElement) {
     categoryinput.value = value;
     this.closeCategoryList(categoryinput);
+  }
+
+  selectContacts(event: Contact) {
+    this.selectedContacts.push(event);
+    console.log(this.selectedContacts)
+  }
+
+  unselectContacts(event: Contact) {
+    const index = this.selectedContacts.findIndex((c) => {
+      return c == event;
+    });
+    this.selectedContacts.splice(index, 1);
+    console.log(this.selectedContacts)
+  }
+
+  checkIfContactIsSelected(contact: Contact) {
+    return this.selectedContacts.includes(contact);
   }
 
 }

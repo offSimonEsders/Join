@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <ul *ngIf="this.openContacts" class="list">
-                            <app-selectable-contact *ngFor="let contact of this.contacts" [contact]="contact"></app-selectable-contact>
+                            <app-selectable-contact *ngFor="let contact of this.contacts" [contact]="contact" [selected]="this.checkIfContactIsSelected(contact)" (selectSignal)="this.selectContacts($event)" (unselectSignal)="this.unselectContacts($event)"></app-selectable-contact>
                         </ul>
                     </div>
                 </div>

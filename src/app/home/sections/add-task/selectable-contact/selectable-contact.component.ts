@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common'
 import { Contact } from '../../../modules/contact';
 
@@ -11,10 +11,17 @@ import { Contact } from '../../../modules/contact';
 })
 export class SelectableContactComponent {
   @Input() contact?: Contact;
-  selected: boolean = false;
+  @Input() selected!: boolean;
+  @Output() selectSignal = new EventEmitter<Contact>();
+  @Output() unselectSignal = new EventEmitter<Contact>();
 
   selectContact() {
     this.selected = !this.selected;
+    if(this.selected) {
+      this.selectSignal.emit(this.contact);
+      return;
+    }
+    this.unselectSignal.emit(this.contact);
   }
 
 }
