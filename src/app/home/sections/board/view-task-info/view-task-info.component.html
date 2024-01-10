@@ -74,19 +74,19 @@
     <div class="list-container">
         <h2 class="list-label">Assigned To:</h2>
         <ul class="list">
-            <li class="contact">
-                <div class="icon">AM</div>
-                <p>name</p>
+            <li class="contact" *ngFor="let contact of this.contacts">
+                <div class="icon {{contact.color}}">{{contact.initials}}</div>
+                <p>{{contact.name}}</p>
             </li>
         </ul>
     </div>
     <div class="list-container">
         <h2 class="list-label">Subtasks</h2>
         <ul class="list">
-            <li class="subtask">
+            <li class="subtask" *ngFor="let subtask of this.subtasks">
                 <div class="custom-checkbox-container">
-                    <input type="checkbox" name="" id="custom" (change)="this.subtaskdone = !this.subtaskdone">
-                    <label class="custom-checkbox" for="custom">
+                    <input type="checkbox" name="" id="custom{{subtask.index}}"> <!-- (change)="this.subtaskdone = !this.subtaskdone" -->
+                    <label class="custom-checkbox" for="custom{{subtask.index}}">
                         <svg *ngIf="!this.subtaskdone" xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                             viewBox="0 0 25 25" fill="none">
                             <rect x="4.68213" y="4.39673" width="16" height="16" rx="3" stroke="#2A3647"
@@ -102,7 +102,7 @@
                         </svg>
                     </label>
                 </div>
-                <p>subtask text</p>
+                <p>{{subtask.subtask}}</p>
             </li>
         </ul>
     </div>

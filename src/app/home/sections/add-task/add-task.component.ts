@@ -114,10 +114,17 @@ export class AddTaskComponent implements OnInit {
     }
   }
 
+  getSubtaskIndex() {
+    if (this.subtasks.length == 0) {
+      return 0;
+    }
+    return this.subtasks[this.subtasks.length - 1].index + 1;
+  }
+
   addNewSubtask(event: Event, subtaskinput: HTMLInputElement) {
     event.preventDefault();
     if (subtaskinput.value != '') {
-      const newSubtask = new Subtask(subtaskinput.value, (this.subtasks.length + 1).toString())
+      const newSubtask = new Subtask(subtaskinput.value, this.getSubtaskIndex().toString())
       this.subtasks.push(newSubtask);
       subtaskinput.value = '';
       this.focusSubtaskInput = false;
@@ -177,11 +184,20 @@ export class AddTaskComponent implements OnInit {
     }
   }
 
+  getTaskIndex() {
+    if (this.tasks?.length == 0) {
+      return 0;
+    } else if (this.tasks) {
+      return Number(this.tasks[this.tasks.length - 1].index) + 1;
+    }
+    return 0;
+  }
+
   prepareDataForTask(): [string[], string[], Number] | void {
     if (this.tasks) {
       const selectedContacts: string[] = this.selectedContacts.map((c) => JSON.stringify(c));
       const subtasks: string[] = this.subtasks.map((s) => JSON.stringify(s));
-      const index: Number = Number(this.tasks[this.tasks.length - 1].index) + 1;
+      const index: Number = this.getTaskIndex();
       return [selectedContacts, subtasks, index];
     }
     return;
