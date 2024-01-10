@@ -1,0 +1,15 @@
+.subtask-frame {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(100% - 48px);
+    padding: 4px 16px 4px 32px;
+    border-radius: 10px;
+
+    &:hover {
+        background-color: #E7E7E7;;
+    }
+
+}

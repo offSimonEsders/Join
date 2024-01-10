@@ -3,17 +3,19 @@ import { CommonModule } from '@angular/common';
 import { SelectableContactComponent } from "./selectable-contact/selectable-contact.component";
 import { AppwriteService } from '../../../services/appwrite.service';
 import { Contact } from '../../modules/contact';
+import { SubtaskComponent } from "./subtask/subtask.component";
 
 @Component({
     selector: 'app-add-task',
     standalone: true,
     templateUrl: './add-task.component.html',
     styleUrls: ['./add-task.component.scss', '../../extra-styles/contact-icon-color.scss'],
-    imports: [CommonModule, SelectableContactComponent]
+    imports: [CommonModule, SelectableContactComponent, SubtaskComponent]
 })
 export class AddTaskComponent implements OnInit {
   contacts?: Contact[];
   selectedContacts: Contact[] = [];
+  subtasks: string[] = ['test'];
   openCategory: boolean = false;
   openContacts: boolean = false;
   click = false;
@@ -74,6 +76,13 @@ export class AddTaskComponent implements OnInit {
 
   checkIfContactIsSelected(contact: Contact) {
     return this.selectedContacts.includes(contact);
+  }
+
+  addNewSubtask(event: Event, subtaskinput: HTMLInputElement) {
+    event.preventDefault();
+    this.subtasks.push(subtaskinput.value);
+    subtaskinput.value = '';
+    console.log(this.subtasks)
   }
 
 }
