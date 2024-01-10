@@ -11,12 +11,12 @@
         </div>
         <p>{{this.getDoneTasks()}}/{{this.task?.subtasks?.length}} Subtasks done</p>
     </div>
-    <div class="user-prio-container">
-        <div class="users">
-            <div *ngFor="let contact of this.contacts | slice:0:3" class="user {{contact.color}}">
+    <div class="contacts-prio-container">
+        <div class="contacts">
+            <div *ngFor="let contact of this.contacts | slice:0:3" class="contact {{contact.color}}">
                 {{contact.initials}}
             </div>
-            <div class="user rest-user">
+            <div class="contact rest-contacts">
                 +{{this.getContactsLength() - 3}}
             </div>
         </div>

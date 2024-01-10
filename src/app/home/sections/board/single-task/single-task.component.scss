@@ -97,18 +97,18 @@
 
     }
 
-    .user-prio-container {
+    .contacts-prio-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
         align-self: stretch;
 
-        .users {
+        .contacts {
             display: flex;
             flex-direction: row;
             width: 100%;
 
-            .user {
+            .contact {
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -124,7 +124,7 @@
                 margin-right: -12px;
             }
 
-            .rest-user {
+            .rest-contacts {
                 background-color: #2A3647;
             }
 
