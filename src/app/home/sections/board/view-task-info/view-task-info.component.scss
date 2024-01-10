@@ -53,9 +53,6 @@
             border-radius: 90px;
             background-color: transparent;
             border: none;
-            background-image: url(../../../../../assets/Icons/Closebtn/Close_Icon.svg);
-            background-position: center;
-            background-repeat: no-repeat;
 
             &:hover {
                 background-color: #EEEEEE;
@@ -63,7 +60,13 @@
 
             &:active {
                 background-color: #29ABE2;
-                background-image: url(../../../../../assets/Icons/Closebtn/Close_Icon_clicked.svg);
+                
+                svg {
+                    path {
+                        fill: #FFF;
+                    }
+                }
+
             }
         }
 
