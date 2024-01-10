@@ -53,4 +53,18 @@ export class ViewTaskInfoComponent implements OnInit {
     }
   }
 
+  getContactsLength() {
+    if(this.contacts) {
+      return this.contacts.length;
+    }
+    return 0;
+  }
+
+  getSubtasksLength() {
+    if(this.subtasks) {
+      return this.subtasks.length;
+    }
+    return 0;
+  }
+
 }

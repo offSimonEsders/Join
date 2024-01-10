@@ -5,7 +5,7 @@
         <h1 class="task-title">{{this.task?.title}}</h1>
         <p class="task-describtion">{{this.task?.description}}</p>
     </div>
-    <div class="task-subtask-progress" *ngIf="this.checkSubtasks">
+    <div class="task-subtask-progress" *ngIf="this.checkSubtasks.length > 0">
         <div class="progress-bar">
             <div class="progress" [ngStyle]="{'width.%': this.getProgress()}"></div>
         </div>
@@ -16,7 +16,7 @@
             <div *ngFor="let contact of this.contacts | slice:0:3" class="contact {{contact.color}}">
                 {{contact.initials}}
             </div>
-            <div class="contact rest-contacts">
+            <div *ngIf="this.getContactsLength() > 3" class="contact rest-contacts">
                 +{{this.getContactsLength() - 3}}
             </div>
         </div>

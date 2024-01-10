@@ -71,7 +71,7 @@
             </svg>
         </p>
     </div>
-    <div class="list-container">
+    <div class="list-container" *ngIf="this.getContactsLength() > 0">
         <h2 class="list-label">Assigned To:</h2>
         <ul class="list">
             <li class="contact" *ngFor="let contact of this.contacts">
@@ -80,7 +80,7 @@
             </li>
         </ul>
     </div>
-    <div class="list-container">
+    <div class="list-container" *ngIf="this.getSubtasksLength() > 0">
         <h2 class="list-label">Subtasks</h2>
         <ul class="list">
             <li class="subtask" *ngFor="let subtask of this.subtasks">
