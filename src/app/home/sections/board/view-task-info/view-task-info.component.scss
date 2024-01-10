@@ -31,12 +31,19 @@
             align-items: flex-start;
             gap: 10px;
             border-radius: 8px;
-            background: #0038FF;
             color: #FFF;
             font-size: 23px;
             font-style: normal;
             font-weight: 400;
             line-height: 120%;
+        }
+
+        .userstory {
+            background: #0038FF;
+        }
+
+        .technicaltask {
+            background: #1FD7C1;
         }
 
         .close-button {

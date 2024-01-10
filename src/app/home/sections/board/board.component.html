@@ -53,7 +53,7 @@
                     </button>
                 </div>
                 <div class="tasks" dropzone="true" (dragover)="this.allowDropEvent($event)" (drop)="this.dropTask($event, 'ToDo')">
-                    <app-single-task *ngFor="let task of this.tasksToDO" [task]="task"></app-single-task>
+                    <app-single-task *ngFor="let task of this.tasksToDO" (click)="this.infoTask = task" [task]="task"></app-single-task>
                 </div>
             </div>
             <div class="task-section in-progress-sec">
@@ -75,7 +75,7 @@
                     </button>
                 </div>
                 <div class="tasks" dropzone="true" (dragover)="this.allowDropEvent($event)" (drop)="this.dropTask($event, 'InProgress')">
-                    <app-single-task *ngFor="let task of this.tasksInProgress" [task]="task"></app-single-task>
+                    <app-single-task *ngFor="let task of this.tasksInProgress" (click)="this.infoTask = task" [task]="task"></app-single-task>
                 </div>
             </div>
             <div class="task-section await-feedback-sec">
@@ -97,7 +97,7 @@
                     </button>
                 </div>
                 <div class="tasks" dropzone="true" (dragover)="this.allowDropEvent($event)" (drop)="this.dropTask($event, 'AwaitFeedback')">
-                    <app-single-task *ngFor="let task of this.tasksAwaitFeedback" [task]="task"></app-single-task>
+                    <app-single-task *ngFor="let task of this.tasksAwaitFeedback" (click)="this.infoTask = task" [task]="task"></app-single-task>
                 </div>
             </div>
             <div class="task-section done-sec">
@@ -105,13 +105,13 @@
                     Done
                 </div>
                 <div class="tasks" dropzone="true" (dragover)="this.allowDropEvent($event)" (drop)="this.dropTask($event, 'Done')">
-                    <app-single-task *ngFor="let task of this.tasksDone" [task]="task"></app-single-task>
+                    <app-single-task *ngFor="let task of this.tasksDone" (click)="this.infoTask = task" [task]="task"></app-single-task>
                 </div>
             </div>
         </div>
 
     </div>
 
-    <app-view-task-info></app-view-task-info>
+    <app-view-task-info *ngIf="this.infoTask != undefined" [task]="this.infoTask"></app-view-task-info>
 
 </section>

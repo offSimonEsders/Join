@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Task } from '../../../modules/task';
 
 @Component({
   selector: 'app-view-task-info',
@@ -8,7 +9,12 @@ import { CommonModule } from '@angular/common';
   templateUrl: './view-task-info.component.html',
   styleUrl: './view-task-info.component.scss'
 })
-export class ViewTaskInfoComponent {
+export class ViewTaskInfoComponent implements OnInit {
+  @Input() task?: Task;
   subtaskdone: boolean = false;
-  prio = 'Urgent';
+
+  ngOnInit(): void {
+    console.log(this.task?.category);
+  }
+
 }

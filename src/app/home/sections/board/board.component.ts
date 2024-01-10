@@ -19,6 +19,7 @@ export class BoardComponent implements OnInit {
     tasksInProgress?: Array<Task>;
     tasksAwaitFeedback?: Array<Task>;
     tasksDone?: Array<Task>;
+    infoTask: Task | undefined = undefined;
 
 
     constructor(public appwriteService: AppwriteService) {

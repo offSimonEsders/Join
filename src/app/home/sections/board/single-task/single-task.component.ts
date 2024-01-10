@@ -4,11 +4,11 @@ import { Task } from '../../../modules/task';
 import { Contact } from '../../../modules/contact';
 
 @Component({
-  selector: 'app-single-task',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './single-task.component.html',
-  styleUrls: ['./single-task.component.scss', '../../../extra-styles/contact-icon-color.scss']
+    selector: 'app-single-task',
+    standalone: true,
+    templateUrl: './single-task.component.html',
+    styleUrls: ['./single-task.component.scss', '../../../extra-styles/contact-icon-color.scss'],
+    imports: [CommonModule]
 })
 export class SingleTaskComponent implements OnInit {
   @Input() task?: Task;

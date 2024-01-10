@@ -1,6 +1,6 @@
 <section class="task-info">
     <header>
-        <div class="category">User Story</div>
+        <div class="category" [ngClass]="this.task?.category == 'User Story' ? 'userstory' : 'technicaltask'" >{{this.task?.category}}</div>
         <button class="close-button">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                 <mask id="mask0_123108_4153" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="25"
@@ -15,15 +15,15 @@
             </svg>
         </button>
     </header>
-    <h1 class="title">Das ist ein wunderschöner Titel</h1>
-    <p class="description">Das ist eine wunderschöne Beschreibung die deine Augen funkeln lässt</p>
+    <h1 class="title">{{task?.title}}</h1>
+    <p class="description">{{task?.description}}</p>
     <div class="info-container">
         <p class="label">Due date:</p>
-        <p class="text">10/05/2023</p>
+        <p class="text">{{task?.duedate}}</p>
     </div>
     <div class="info-container">
         <p class="label">Priority:</p>
-        <p class="text" *ngIf="prio == 'Low'">
+        <p class="text" *ngIf="this.task?.prio == 'Low'">
             Low
             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="16" viewBox="0 0 21 16" fill="none">
                 <path
@@ -34,7 +34,7 @@
                     fill="#7AE229" />
             </svg>
         </p>
-        <p class="text" *ngIf="prio == 'Medium'">
+        <p class="text" *ngIf="this.task?.prio == 'Medium'">
             Medium
             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="8" viewBox="0 0 21 8" fill="none">
                 <g clip-path="url(#clip0_156_972)">
@@ -52,7 +52,7 @@
                 </defs>
             </svg>
         </p>
-        <p class="text" *ngIf="prio == 'Urgent'">
+        <p class="text" *ngIf="this.task?.prio == 'Urgent'">
             Urgent
             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="16" viewBox="0 0 21 16" fill="none">
                 <g clip-path="url(#clip0_156_987)">
