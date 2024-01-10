@@ -18,7 +18,7 @@
                     <div class="description-container single-value-container">
                         <div>Description</div>
                         <textarea name="" id="" cols="30" rows="10" placeholder="Enter a Description"
-                            #decriptioninput></textarea>
+                            #descriptioninput></textarea>
                     </div>
                     <div class="assigned-container single-value-container">
                         <div class="value-container">
@@ -277,7 +277,7 @@
 
             <div class="info-button-container">
                 <div class="button-container">
-                    <button (click)="clearAddTask($event, titleinput, decriptioninput, dateinput, categoryinput)">
+                    <button (click)="clearAddTask($event, titleinput, descriptioninput, dateinput, categoryinput)">
                         Clear
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                             <path
@@ -297,7 +297,7 @@
                                 stroke="#091931" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </button>
-                    <button>
+                    <button (click)="createNewTask($event, titleinput, descriptioninput, dateinput, categoryinput)">
                         Create Task
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                             <mask id="mask0_121849_6098" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
