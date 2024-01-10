@@ -385,6 +385,36 @@
 
                             }
 
+                            .priourgent {
+                                color: white;
+                                background: #FF3D00;
+                                box-shadow: none;
+
+                                &:hover {
+                                    box-shadow: none;
+                                }
+                            }
+
+                            .priomedium {
+                                color: white;
+                                background: #FFA800;
+                                box-shadow: none;
+
+                                &:hover {
+                                    box-shadow: none;
+                                }
+                            }
+
+                            .priolow {
+                                color: white;
+                                background: #7AE229;
+                                box-shadow: none;
+
+                                &:hover {
+                                    box-shadow: none;
+                                }
+                            }
+
                         }
 
                     }

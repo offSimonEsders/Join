@@ -30,7 +30,11 @@ export class SubtaskComponent {
       this.editsubtaskevent.emit(this.subtask);
       return;
     }
-    subtaskframe.classList.add('wrong-input')
+    subtaskframe.classList.add('wrong-input');
+  }
+
+  removeWrongInput(subtaskframe: HTMLElement) {
+    subtaskframe.classList.remove('wrong-input');
   }
 
 }

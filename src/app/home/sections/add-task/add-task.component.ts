@@ -17,6 +17,7 @@ export class AddTaskComponent implements OnInit {
   contacts?: Contact[];
   selectedContacts: Contact[] = [];
   subtasks: Subtask[] = [];
+  prio: string = 'Medium';
   openCategory: boolean = false;
   openContacts: boolean = false;
   click = false;
@@ -100,6 +101,11 @@ export class AddTaskComponent implements OnInit {
     });
     this.subtasks[index] = newsubtask;
     console.log(this.subtasks)
+  }
+
+  changePrio(event: Event, newPrio: string) {
+    event.preventDefault();
+    this.prio = newPrio;
   }
 
 }

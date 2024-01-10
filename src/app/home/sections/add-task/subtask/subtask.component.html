@@ -1,6 +1,6 @@
 <section class="subtask-frame" [ngClass]="{'edit-mode': this.editmode}" #subtaskframe>
     <li *ngIf="!this.editmode">{{this.subtask?.subtask}}</li>
-    <input [hidden]="!this.editmode" type="text" [value]="this.subtask?.subtask" #subtaskinput>
+    <input [hidden]="!this.editmode" (input)="this.removeWrongInput(subtaskframe)" type="text" [value]="this.subtask?.subtask" #subtaskinput>
     <div class="action-buttons">
         <div *ngIf="!this.editmode" class="hover-buttons">
             <svg (click)="this.editSubtask()" xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
