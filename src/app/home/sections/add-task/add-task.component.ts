@@ -85,4 +85,11 @@ export class AddTaskComponent implements OnInit {
     console.log(this.subtasks)
   }
 
+  deleteSubtask(subtask: string) {
+    const index = this.subtasks.findIndex((s) => {
+      return s == subtask;
+    });
+    this.subtasks.splice(index, 1);
+  }
+
 }

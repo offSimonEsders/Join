@@ -11,6 +11,11 @@ import { CommonModule } from '@angular/common';
 export class SubtaskComponent {
   @Input() subtask?: string;
   @Output() editsubtask = new EventEmitter<string>();
-  @Output() deletesubtask = new EventEmitter<boolean>();
+  @Output() deletesubtaskevent = new EventEmitter<boolean>();
   editmode: boolean = false;
+
+  deleteSubtask() {
+    this.deletesubtaskevent.emit(true);
+  }
+
 }
