@@ -436,9 +436,34 @@
                         .subtask-list {
                             display: flex;
                             flex-direction: column;
+                            position: absolute;
+                            overflow-y: auto;
+                            max-height: 68px;
+                            bottom: 0;
+                            gap: 4px;
+                            transform: translateY(calc(100% + 8px));
                             width: 100%;
                             padding: 0;
                             margin: 0;
+
+                            &::-webkit-scrollbar {
+                                width: 5px;
+                            }
+
+                            &::-webkit-scrollbar-track {
+                                border-radius: 8px;
+                                background: #d1d1d1;
+                            }
+
+                            &::-webkit-scrollbar-thumb {
+                                border-radius: 8px;
+                                background: #2A3647;
+                            }
+
+                            &::-webkit-scrollbar-thumb:hover {
+                                background: #29ABE2;
+                            }
+
                         }
                     }
 
