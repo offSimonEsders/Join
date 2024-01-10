@@ -1,7 +1,7 @@
 <section class="task-info">
     <header>
         <div class="category" [ngClass]="this.task?.category == 'User Story' ? 'userstory' : 'technicaltask'" >{{this.task?.category}}</div>
-        <button class="close-button">
+        <button class="close-button" (click)="this.closeViewInfo.emit(undefined)">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                 <mask id="mask0_123108_4153" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="25"
                     height="25">
@@ -85,7 +85,7 @@
         <ul class="list">
             <li class="subtask" *ngFor="let subtask of this.subtasks">
                 <div class="custom-checkbox-container">
-                    <input type="checkbox" name="" id="custom{{subtask.index}}" (change)="this.changeSubtaskIsDone(subtask)"> <!-- (change)="this.subtaskdone = !this.subtaskdone" -->
+                    <input type="checkbox" name="" id="custom{{subtask.index}}" (change)="this.changeSubtaskIsDone(subtask)">
                     <label class="custom-checkbox" for="custom{{subtask.index}}">
                         <svg *ngIf="!this.getIfSubtaskIsDone(subtask)" xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                             viewBox="0 0 25 25" fill="none">
@@ -107,7 +107,7 @@
         </ul>
     </div>
     <div class="action-buttons">
-        <button>
+        <button (click)="this.deleteTask.emit(true)">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                 <mask id="mask0_123108_4199" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="25"
                     height="25">

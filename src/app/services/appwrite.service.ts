@@ -91,6 +91,10 @@ export class AppwriteService {
     await this.dataBase.updateDocument(dataBaseID, tasksID, taskID, task);
   }
 
+  deleteTask(taskID: string) {
+    this.dataBase.deleteDocument(dataBaseID, tasksID, taskID);
+  }
+
   async getContacts() {
     return (await this.dataBase.listDocuments(dataBaseID, contactsID, [Query.orderAsc('name')])).documents;
   }

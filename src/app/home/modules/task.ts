@@ -1,4 +1,8 @@
 export class Task {
+    $collectionId?: string;
+    $createdAt?: string;
+    $databaseId?: string;
+    $id?: string;
     title: string;
     description?: string;
     assignedContacts?: string[];

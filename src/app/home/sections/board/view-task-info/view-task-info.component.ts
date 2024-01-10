@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Task } from '../../../modules/task';
 import { Contact } from '../../../modules/contact';
@@ -13,6 +13,8 @@ import { Subtask } from '../../../modules/subtask';
 })
 export class ViewTaskInfoComponent implements OnInit {
   @Input() task?: Task;
+  @Output() closeViewInfo = new EventEmitter<undefined>();
+  @Output() deleteTask = new EventEmitter<boolean>();
   contacts?: Contact[];
   subtasks?: Subtask[];
   subtaskdone?: boolean[];

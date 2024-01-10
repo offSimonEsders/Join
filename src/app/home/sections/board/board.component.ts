@@ -14,7 +14,7 @@ import { ViewTaskInfoComponent } from "./view-task-info/view-task-info.component
 })
 export class BoardComponent implements OnInit {
 
-    data: any;
+    tasks: any;
     tasksToDO?: Array<Task>;
     tasksInProgress?: Array<Task>;
     tasksAwaitFeedback?: Array<Task>;
@@ -27,7 +27,7 @@ export class BoardComponent implements OnInit {
     }
 
     async ngOnInit() {
-        this.data = await this.appwriteService.getTasks();
+        this.tasks = await this.appwriteService.getTasks();
         this.filterForAllStates();
     }
 
@@ -39,7 +39,7 @@ export class BoardComponent implements OnInit {
     }
 
     filterForState(statefilter: string) {
-        return this.data.filter((task: any) => {
+        return this.tasks.filter((task: any) => {
             if (task.state == statefilter) {
                 return Object.values(task);
             }
@@ -58,24 +58,37 @@ export class BoardComponent implements OnInit {
         this.changeTasksorder();
     }
 
-    changeTaskState(task: any, newState: string) {
-        const index = this.data.findIndex((t: any) => { if (t.$id === task.$id) { return t.$id } });
+    getTaskIndex(task: Task) {
+        return this.tasks.findIndex((t: Task) => { return t === task });
+    }
+
+    changeTaskState(task: Task, newState: string) {
+        const index = this.getTaskIndex(task);
         task.state = newState;
-        this.data.splice(index, 1);
-        this.data.push(task);
+        this.tasks.splice(index, 1);
+        this.tasks.push(task);
         return task;
     }
 
-    async prepareAndUploadTask(task: any) {
+    async prepareAndUploadTask(task: Task) {
         delete task.$databaseId;
         delete task.$collectionId;
         await this.appwriteService.updateTask(String(task.$id), task);
     }
 
     async changeTasksorder() {
-        for (let i = 0; i < this.data.length; i++) {
-            this.data[i].index = i;
-            await this.prepareAndUploadTask(this.data[i]);
+        for (let i = 0; i < this.tasks.length; i++) {
+            this.tasks[i].index = i;
+            await this.prepareAndUploadTask(this.tasks[i]);
+        }
+    }
+
+    deleteTask(task: Task) {
+        this.tasks.splice(this.getTaskIndex(task), 1);
+        this.infoTask = undefined;
+        this.filterForAllStates();
+        if (task.$id) {
+            this.appwriteService.deleteTask(task.$id);
         }
     }
 
