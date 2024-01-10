@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { SingleTaskComponent } from "./single-task/single-task.component";
 import { AppwriteService } from '../../../services/appwrite.service';
 import { Task } from '../../modules/task';
+import { ViewTaskInfoComponent } from "./view-task-info/view-task-info.component";
 
 @Component({
     selector: 'app-board',
     standalone: true,
     templateUrl: './board.component.html',
     styleUrl: './board.component.scss',
-    imports: [CommonModule, SingleTaskComponent]
+    imports: [CommonModule, SingleTaskComponent, ViewTaskInfoComponent]
 })
 export class BoardComponent implements OnInit {
 
