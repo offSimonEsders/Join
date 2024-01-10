@@ -85,14 +85,14 @@
         <ul class="list">
             <li class="subtask" *ngFor="let subtask of this.subtasks">
                 <div class="custom-checkbox-container">
-                    <input type="checkbox" name="" id="custom{{subtask.index}}"> <!-- (change)="this.subtaskdone = !this.subtaskdone" -->
+                    <input type="checkbox" name="" id="custom{{subtask.index}}" (change)="this.changeSubtaskIsDone(subtask)"> <!-- (change)="this.subtaskdone = !this.subtaskdone" -->
                     <label class="custom-checkbox" for="custom{{subtask.index}}">
-                        <svg *ngIf="!this.subtaskdone" xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                        <svg *ngIf="!this.getIfSubtaskIsDone(subtask)" xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                             viewBox="0 0 25 25" fill="none">
                             <rect x="4.68213" y="4.39673" width="16" height="16" rx="3" stroke="#2A3647"
                                 stroke-width="2" />
                         </svg>
-                        <svg *ngIf="this.subtaskdone" xmlns="http://www.w3.org/2000/svg" width="19" height="19"
+                        <svg *ngIf="this.getIfSubtaskIsDone(subtask)" xmlns="http://www.w3.org/2000/svg" width="19" height="19"
                             viewBox="0 0 19 19" fill="none">
                             <path
                                 d="M17.6821 8.39673V14.3967C17.6821 16.0536 16.339 17.3967 14.6821 17.3967H4.68213C3.02527 17.3967 1.68213 16.0536 1.68213 14.3967V4.39673C1.68213 2.73987 3.02527 1.39673 4.68213 1.39673H12.6821"
