@@ -5,11 +5,47 @@
     align-items: center;
     justify-content: space-between;
     width: calc(100% - 48px);
+    height: 24px;
     padding: 4px 16px 4px 32px;
     border-radius: 10px;
 
     &:hover {
-        background-color: #E7E7E7;;
+        background-color: #E7E7E7;
+
+        .action-buttons {
+
+            .hover-buttons {
+                display: flex;
+            }
+
+        }
+
+    }
+
+    .action-buttons {
+
+        svg {
+            height: 24px;
+            width: 24px;
+
+            &:nth-child(1),
+            &:nth-child(3) {
+                &:hover {
+                    scale: 1.2;
+                }                
+            }
+
+            &:nth-child(2) {
+                height: 24px;
+                width: 8px;
+            }
+
+        }
+
+        .hover-buttons {
+            display: none;
+        }
+
     }
 
 }
