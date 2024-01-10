@@ -20,6 +20,7 @@ export class AddTaskComponent implements OnInit {
   @ViewChild('categorycontainer') categorycontainer?: ElementRef<HTMLInputElement>;
 
   contacts?: Contact[];
+  tasks?: Task[];
   selectedContacts: Contact[] = [];
   subtasks: Subtask[] = [];
   prio: string = 'Medium';
@@ -38,6 +39,7 @@ export class AddTaskComponent implements OnInit {
 
   async ngOnInit() {
     this.contacts = await this.appwriteService.getContacts() as unknown as Contact[];
+    this.tasks = await this.appwriteService.getTasks() as unknown as Task[];
   }
 
   getMinDate() {
@@ -161,19 +163,32 @@ export class AddTaskComponent implements OnInit {
     this.subtasks = [];
   }
 
-  createNewTask(event: Event, titleinput: HTMLInputElement, descriptioninput: HTMLTextAreaElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement) {
+  async createNewTask(event: Event, titleinput: HTMLInputElement, descriptioninput: HTMLTextAreaElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement) {
     event.preventDefault();
     if (this.addWrongInputClass(titleinput, dateinput, categoryinput)) {
       return;
     }
-    const selectedContacts = this.selectedContacts.map((c) => JSON.stringify(c));
-    const subtasks = this.subtasks.map((s) => JSON.stringify(s));
-    const task = new Task(titleinput.value, descriptioninput.value, selectedContacts, dateinput.value, this.prio, categoryinput.value, subtasks, this.taskState);
-    console.log(task);
+    const preparedData = this.prepareDataForTask();
+    if (this.tasks && preparedData) {
+      const [selectedContacts, subtasks, index] = preparedData;
+      const task = new Task(titleinput.value, descriptioninput.value, selectedContacts, dateinput.value, this.prio, categoryinput.value, subtasks, this.taskState, index);
+      this.clearAddTask(event, titleinput, descriptioninput, dateinput, categoryinput);
+      await this.appwriteService.createTask(task);
+    }
+  }
+
+  prepareDataForTask(): [string[], string[], Number] | void {
+    if (this.tasks) {
+      const selectedContacts: string[] = this.selectedContacts.map((c) => JSON.stringify(c));
+      const subtasks: string[] = this.subtasks.map((s) => JSON.stringify(s));
+      const index: Number = Number(this.tasks[this.tasks.length - 1].index) + 1;
+      return [selectedContacts, subtasks, index];
+    }
+    return;
   }
 
   addWrongInputClass(titleinput: HTMLInputElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement) {
-    let okay:boolean = false;
+    let okay: boolean = false;
     if (titleinput.value.length <= 0) {
       this.titlecontainer?.nativeElement.classList.add('wrong-input');
       okay = true;

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Client, Account, ID, Databases, Query } from 'appwrite';
 import { Contact } from '../home/modules/contact';
+import { Task } from '../home/modules/task';
 
 const dataBaseID = '6594cb434043ac3121d8';
 const tasksID = '6596e8b9f0bcc7400acc';
@@ -71,6 +72,10 @@ export class AppwriteService {
     catch (error) {
 
     }
+  }
+
+  async createTask(data: Task) {
+    await this.dataBase.createDocument(dataBaseID, tasksID, ID.unique(), data);
   }
 
   async getTasks() {
