@@ -185,7 +185,7 @@
                             </div>
                         </div>
                         <ul class="subtask-list">
-                            <app-subtask *ngFor="let subtask of this.subtasks" [subtask]="subtask" (deletesubtaskevent)="deleteSubtask(subtask)"></app-subtask>
+                            <app-subtask *ngFor="let subtask of this.subtasks" [subtask]="subtask" (deletesubtaskevent)="deleteSubtask(subtask)" (editsubtaskevent)="this.editSubtask($event, subtask)"></app-subtask>
                         </ul>
                     </div>
                 </div>

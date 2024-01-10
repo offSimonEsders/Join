@@ -4,6 +4,7 @@ import { SelectableContactComponent } from "./selectable-contact/selectable-cont
 import { AppwriteService } from '../../../services/appwrite.service';
 import { Contact } from '../../modules/contact';
 import { SubtaskComponent } from "./subtask/subtask.component";
+import { Subtask } from '../../modules/subtask';
 
 @Component({
     selector: 'app-add-task',
@@ -15,7 +16,7 @@ import { SubtaskComponent } from "./subtask/subtask.component";
 export class AddTaskComponent implements OnInit {
   contacts?: Contact[];
   selectedContacts: Contact[] = [];
-  subtasks: string[] = ['test'];
+  subtasks: Subtask[] = [];
   openCategory: boolean = false;
   openContacts: boolean = false;
   click = false;
@@ -80,16 +81,25 @@ export class AddTaskComponent implements OnInit {
 
   addNewSubtask(event: Event, subtaskinput: HTMLInputElement) {
     event.preventDefault();
-    this.subtasks.push(subtaskinput.value);
+    const newSubtask = new Subtask(subtaskinput.value, (this.subtasks.length + 1).toString())
+    this.subtasks.push(newSubtask);
     subtaskinput.value = '';
     console.log(this.subtasks)
   }
 
-  deleteSubtask(subtask: string) {
+  deleteSubtask(subtask: Subtask) {
     const index = this.subtasks.findIndex((s) => {
       return s == subtask;
     });
     this.subtasks.splice(index, 1);
+  }
+
+  editSubtask(newsubtask: Subtask, subtask: Subtask) {
+    const index = this.subtasks.findIndex((s) => {
+      return s == subtask;
+    });
+    this.subtasks[index] = newsubtask;
+    console.log(this.subtasks)
   }
 
 }
