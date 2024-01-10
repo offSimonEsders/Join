@@ -10,10 +10,10 @@
 
             <div class="task-set-value-container">
                 <div class="title-description-assigned-container">
-                    <div class="title-container single-value-container wrong-input">
+                    <div class="title-container single-value-container" #titlecontainer>
                         <div>Title <p>*</p>
                         </div>
-                        <input type="text" placeholder="Enter a title" #titleinput>
+                        <input (input)="this.removeWrongInputClass(titleinput, dateinput, categoryinput)" type="text" placeholder="Enter a title" #titleinput>
                     </div>
                     <div class="description-container single-value-container">
                         <div>Description</div>
@@ -68,10 +68,10 @@
                 </div>
 
                 <div class="date-prio-category-subtask-container">
-                    <div class="date-container single-value-container wrong-input">
+                    <div class="date-container single-value-container" #datecontainer>
                         <div>Due date <p>*</p>
                         </div>
-                        <input type="date" #dateinput>
+                        <input type="date" [min]="this.minDate" (input)="this.removeWrongInputClass(titleinput, dateinput, categoryinput)" #dateinput>
                     </div>
                     <div class="prio-container single-value-container">
                         <div>Prio</div>
@@ -176,7 +176,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="category-container single-value-container wrong-input">
+                    <div class="category-container single-value-container" #categorycontainer>
                         <div class="value-container">
                             <div>Category <p>*</p>
                             </div>
@@ -203,9 +203,9 @@
                             </div>
                         </div>
                         <ul *ngIf="this.openCategory" class="list" id="category">
-                            <li (click)="this.setCategoryValue('Technical Task', categoryinput)">Technical
+                            <li (click)="this.setCategoryValue('Technical Task', categoryinput); this.removeWrongInputClass(titleinput, dateinput, categoryinput)">Technical
                                 Task</li>
-                            <li (click)="this.setCategoryValue('User Story', categoryinput)">User Story
+                            <li (click)="this.setCategoryValue('User Story', categoryinput); this.removeWrongInputClass(titleinput, dateinput, categoryinput)">User Story
                             </li>
                         </ul>
                     </div>

@@ -1,10 +1,11 @@
-import { Component, ElementRef, EventEmitter, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SelectableContactComponent } from "./selectable-contact/selectable-contact.component";
 import { AppwriteService } from '../../../services/appwrite.service';
 import { Contact } from '../../modules/contact';
 import { SubtaskComponent } from "./subtask/subtask.component";
 import { Subtask } from '../../modules/subtask';
+import { Task } from '../../modules/task';
 
 @Component({
   selector: 'app-add-task',
@@ -14,6 +15,10 @@ import { Subtask } from '../../modules/subtask';
   imports: [CommonModule, SelectableContactComponent, SubtaskComponent]
 })
 export class AddTaskComponent implements OnInit {
+  @ViewChild('titlecontainer') titlecontainer?: ElementRef<HTMLInputElement>;
+  @ViewChild('datecontainer') datecontainer?: ElementRef<HTMLInputElement>;
+  @ViewChild('categorycontainer') categorycontainer?: ElementRef<HTMLInputElement>;
+
   contacts?: Contact[];
   selectedContacts: Contact[] = [];
   subtasks: Subtask[] = [];
@@ -22,16 +27,26 @@ export class AddTaskComponent implements OnInit {
   openContacts: boolean = false;
   click = false;
   taskState: string = 'ToDo';
+  minDate?: string;
   [key: string]: any;
 
   focusSubtaskInput: boolean = false;
 
   constructor(private appwriteService: AppwriteService) {
-
+    this.getMinDate();
   }
 
   async ngOnInit() {
     this.contacts = await this.appwriteService.getContacts() as unknown as Contact[];
+  }
+
+  getMinDate() {
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0');
+    let yyyy = today.getFullYear();
+
+    this.minDate = yyyy + '-' + mm + '-' + dd;
   }
 
   changeOpenState(event: Event, input: HTMLInputElement, value: string) {
@@ -144,6 +159,35 @@ export class AddTaskComponent implements OnInit {
     this.prio = 'Medium';
     this.selectedContacts = [];
     this.subtasks = [];
+    this.addWrongInputClass(titleinput, dateinput, categoryinput)
+  }
+
+  createNewTask() {
+
+  }
+
+  addWrongInputClass(titleinput: HTMLInputElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement) {
+    if (titleinput.value.length <= 0) {
+      this.titlecontainer?.nativeElement.classList.add('wrong-input');
+    }
+    if (dateinput.value.length <= 0) {
+      this.datecontainer?.nativeElement.classList.add('wrong-input');
+    }
+    if (categoryinput.value.length <= 0) {
+      this.categorycontainer?.nativeElement.classList.add('wrong-input');
+    }
+  }
+
+  removeWrongInputClass(titleinput: HTMLInputElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement) {
+    if (titleinput.value.length > 0) {
+      this.titlecontainer?.nativeElement.classList.remove('wrong-input');
+    }
+    if (dateinput.value.length > 0) {
+      this.datecontainer?.nativeElement.classList.remove('wrong-input');
+    }
+    if (categoryinput.value.length > 0) {
+      this.categorycontainer?.nativeElement.classList.remove('wrong-input');
+    }
   }
 
 }
