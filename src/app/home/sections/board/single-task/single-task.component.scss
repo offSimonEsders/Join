@@ -104,7 +104,30 @@
         align-self: stretch;
 
         .users {
+            display: flex;
+            flex-direction: row;
             width: 100%;
+
+            .user {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 32px;
+                width: 32px;
+                border-radius: 90px;
+                border: 2px solid #FFF;
+                color: #FFF;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 120%;
+                margin-right: -12px;
+            }
+
+            .rest-user {
+                background-color: #2A3647;
+            }
+
         }
 
         .prio {

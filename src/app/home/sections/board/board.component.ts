@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SingleTaskComponent } from "./single-task/single-task.component";
 import { AppwriteService } from '../../../services/appwrite.service';
+import { Task } from '../../modules/task';
 
 @Component({
     selector: 'app-board',
@@ -13,10 +14,10 @@ import { AppwriteService } from '../../../services/appwrite.service';
 export class BoardComponent implements OnInit {
 
     data: any;
-    tasksToDO?: Array<string>;
-    tasksInProgress?: Array<string>;
-    tasksAwaitFeedback?: Array<string>;
-    tasksDone?: Array<string>;
+    tasksToDO?: Array<Task>;
+    tasksInProgress?: Array<Task>;
+    tasksAwaitFeedback?: Array<Task>;
+    tasksDone?: Array<Task>;
 
 
     constructor(public appwriteService: AppwriteService) {
