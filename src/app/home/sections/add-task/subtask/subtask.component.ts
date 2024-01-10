@@ -18,4 +18,8 @@ export class SubtaskComponent {
     this.deletesubtaskevent.emit(true);
   }
 
+  editSubtask() {
+    this.editmode = true;
+  }
+
 }
