@@ -71,7 +71,7 @@
                     <div class="date-container single-value-container wrong-input">
                         <div>Due date <p>*</p>
                         </div>
-                        <input type="date" placeholder="dd/mm/yyyy">
+                        <input type="date" #dateinput>
                     </div>
                     <div class="prio-container single-value-container">
                         <div>Prio</div>
@@ -277,7 +277,7 @@
 
             <div class="info-button-container">
                 <div class="button-container">
-                    <button>
+                    <button (click)="clearAddTask($event, titleinput, decriptioninput, dateinput, categoryinput)">
                         Clear
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                             <path

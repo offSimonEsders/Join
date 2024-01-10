@@ -135,4 +135,15 @@ export class AddTaskComponent implements OnInit {
     this.prio = newPrio;
   }
 
+  clearAddTask(event: Event, titleinput: HTMLInputElement, descriptioninput: HTMLTextAreaElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement) {
+    event.preventDefault();
+    titleinput.value = '';
+    descriptioninput.value = '';
+    dateinput.value = '';
+    categoryinput.value = '';
+    this.prio = 'Medium';
+    this.selectedContacts = [];
+    this.subtasks = [];
+  }
+
 }
