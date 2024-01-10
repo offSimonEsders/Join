@@ -64,7 +64,10 @@
     }
 
 }
+
 .edit-mode {
+    width: calc(100% - 32px);
+    padding: 4px 16px 4px 16px;
     border-radius: 0;
     border-bottom: 1px solid var(--Ligth-blue, #29ABE2);
     background-color: #FFF;
