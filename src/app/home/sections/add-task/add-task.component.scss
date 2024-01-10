@@ -423,12 +423,43 @@
 
                         .value-container {
 
+                            button {
+                                svg {
+                                    pointer-events: none !important;
+                                }
+                            }
+
                             .input-container {
                                 input {
                                     &::placeholder {
                                         color: var(--Style, #D1D1D1);
                                     }
                                 }
+
+                                .no-input {
+                                    border-color: #FF8190;
+                                }
+
+                            }
+
+                            .actionButtons {
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: center;
+                                align-items: center;
+                                position: absolute;
+                                right: 16px;
+                                top: 50%;
+                                transform: translateY(-50%);
+                                gap: 4px;
+
+                                button {
+                                    position: static;
+                                    transform: none;
+                                    height: 24px;
+                                    width: 24px;
+                                }
+
                             }
 
                         }

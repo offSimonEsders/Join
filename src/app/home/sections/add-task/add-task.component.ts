@@ -7,11 +7,11 @@ import { SubtaskComponent } from "./subtask/subtask.component";
 import { Subtask } from '../../modules/subtask';
 
 @Component({
-    selector: 'app-add-task',
-    standalone: true,
-    templateUrl: './add-task.component.html',
-    styleUrls: ['./add-task.component.scss', '../../extra-styles/contact-icon-color.scss'],
-    imports: [CommonModule, SelectableContactComponent, SubtaskComponent]
+  selector: 'app-add-task',
+  standalone: true,
+  templateUrl: './add-task.component.html',
+  styleUrls: ['./add-task.component.scss', '../../extra-styles/contact-icon-color.scss'],
+  imports: [CommonModule, SelectableContactComponent, SubtaskComponent]
 })
 export class AddTaskComponent implements OnInit {
   contacts?: Contact[];
@@ -23,6 +23,8 @@ export class AddTaskComponent implements OnInit {
   click = false;
   taskState: string = 'ToDo';
   [key: string]: any;
+
+  focusSubtaskInput: boolean = false;
 
   constructor(private appwriteService: AppwriteService) {
 
@@ -81,12 +83,36 @@ export class AddTaskComponent implements OnInit {
     return this.selectedContacts.includes(contact);
   }
 
+  focusInput(event: Event, input: HTMLInputElement) {
+    event.preventDefault();
+    input.focus();
+    this.focusSubtaskInput = true;
+  }
+
+  unfocusSubtaskInput(event: Event, subtaskinput: HTMLInputElement) {
+    const targetElement = event.target as HTMLElement;
+    if (!targetElement.classList.contains('subtaskelement')) {
+      this.focusSubtaskInput = false;
+      subtaskinput.classList.remove('no-input');
+    }
+  }
+
   addNewSubtask(event: Event, subtaskinput: HTMLInputElement) {
     event.preventDefault();
-    const newSubtask = new Subtask(subtaskinput.value, (this.subtasks.length + 1).toString())
-    this.subtasks.push(newSubtask);
+    if (subtaskinput.value != '') {
+      const newSubtask = new Subtask(subtaskinput.value, (this.subtasks.length + 1).toString())
+      this.subtasks.push(newSubtask);
+      subtaskinput.value = '';
+      this.focusSubtaskInput = false;
+      return;
+    }
+    subtaskinput.classList.add('no-input');
+  }
+
+  clearSubtaskinput(event: Event, subtaskinput: HTMLInputElement) {
+    event.preventDefault();
+    subtaskinput.focus();
     subtaskinput.value = '';
-    console.log(this.subtasks)
   }
 
   deleteSubtask(subtask: Subtask) {
