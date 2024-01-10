@@ -21,6 +21,7 @@ export class AddTaskComponent implements OnInit {
   openCategory: boolean = false;
   openContacts: boolean = false;
   click = false;
+  taskState: string = 'ToDo';
   [key: string]: any;
 
   constructor(private appwriteService: AppwriteService) {
