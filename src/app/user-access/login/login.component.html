@@ -17,7 +17,7 @@
                 <div class="icon-container icon-container-password"></div>
             </div>
             <div class="rememberme-container">
-                <input type="checkbox" name="" id="remembermecheckbox">
+                <input type="checkbox" name="" id="remembermecheckbox" [checked]="this.getRememberMe()" (change)="this.setRememberMe(checkbox)" #checkbox>
                 <label for="remembermecheckbox"></label>
                 <p>Remember me</p>
             </div>

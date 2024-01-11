@@ -13,7 +13,7 @@ export class LoginComponent {
   @ViewChild('loginform') loginform?: any;
 
   constructor(public router: Router, private appwriteService: AppwriteService) {
-
+    
   }
 
   async loginEmailPassword(email: string, password: string) {
@@ -31,6 +31,18 @@ export class LoginComponent {
 
   removeWrongInput() {
     this.loginform?.nativeElement.classList.remove('wrong-input');
+  }
+
+  getRememberMe(): boolean {
+    return localStorage.getItem('remember') == 'true' ? true : false;
+  }
+
+  setRememberMe(checkbox: HTMLInputElement) {
+    if(checkbox.checked) {
+      localStorage.setItem('remember', 'true');
+    } else {
+      localStorage.setItem('remember', 'false');
+    }
   }
 
 }

@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   }
 
   async autoLogIn() {
-    if (await this.appwriteService.account.getSession('current')) {
+    if (await this.appwriteService.account.getSession('current') && localStorage.getItem('remember') == 'true') {
       if (this.router.url == '/' || this.router.url == '/registration') {
         this.router.navigate(['home/summary']);
       }
