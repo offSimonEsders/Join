@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppwriteService } from '../../services/appwrite.service';
 
@@ -9,15 +9,11 @@ import { AppwriteService } from '../../services/appwrite.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   @ViewChild('loginform') loginform?: any;
 
   constructor(public router: Router, private appwriteService: AppwriteService) {
 
-  }
-
-  async ngOnInit() {
-    this.autoLogOut();
   }
 
   async loginEmailPassword(email: string, password: string) {
@@ -31,14 +27,6 @@ export class LoginComponent implements OnInit {
   async guestLogin() {
     await this.appwriteService.appwriteSignInAnonymsly();
     this.router.navigate(['home/summary']);
-  }
-
-  async autoLogOut() {
-    if (localStorage.getItem('rememberme') == 'false' || localStorage.getItem('rememberme') == undefined) {
-      if (localStorage.getItem('cookieFallback') != '[]') {
-        await this.appwriteService.appwriteLogOut();
-      }
-    }
   }
 
   removeWrongInput() {
