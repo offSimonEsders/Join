@@ -1,7 +1,6 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterOutlet } from '@angular/router';
-import { AppwriteService } from './services/appwrite.service';
 
 @Component({
   selector: 'app-root',
@@ -13,16 +12,16 @@ import { AppwriteService } from './services/appwrite.service';
 export class AppComponent implements OnInit {
   title = 'Join';
 
-  constructor(private appwriteService: AppwriteService, private router: Router) {
+  constructor(private router: Router) {
 
   }
 
-  async ngOnInit() {
-    await this.autoLogIn();
+  ngOnInit() {
+    this.autoLogIn();
   }
 
-  async autoLogIn() {
-    if (await this.appwriteService.account.getSession('current') && localStorage.getItem('remember') == 'true') {
+  autoLogIn() {
+    if (localStorage.getItem('remember') == 'true') {
       if (this.router.url == '/' || this.router.url == '/registration') {
         this.router.navigate(['home/summary']);
       }
