@@ -61,15 +61,26 @@ export class SummaryComponent implements OnInit {
   }
 
   getNearestUrgentTask() {
-    let dates = this.tasks?.map(task => parseInt(task.duedate.replace("-", "").replace("-", "")));
-    if (dates) {
+    let dates: number[] = [];
+    this.tasks?.forEach(task => {
+      if (task.prio == 'Urgent') {
+        dates.push(parseInt(task.duedate.replace("-", "").replace("-", "")));
+      }
+    });
+    return this.dateToString(dates);
+  }
+
+  dateToString (dates: number[]) {
+    if (dates.length > 0) {
       let nearestDate = Math.min(...dates).toString();
       let year = parseInt(nearestDate.substr(0, 4));
       let month = parseInt(nearestDate.substr(4, 2)) - 1;
       let day = parseInt(nearestDate.substr(6, 2));
+      if (year == undefined || day == undefined || month == undefined) {
+        return 'MM,DD,YYYY';
+      }
       return `${this.monthNames[month]} ${day}, ${year}`;
     }
-    console.log(dates)
     return 'MM,DD,YYYY';
   }
 
