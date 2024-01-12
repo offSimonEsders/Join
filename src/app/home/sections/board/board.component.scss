@@ -230,19 +230,50 @@
 
 @media (max-width: 1500px) {
     .board-frame {
-        justify-content: flex-start !important;
 
         .board-header {
             padding-right: 20px !important;
+            max-width: 860px;
         }
     
         .board-task-content {
             justify-content: center !important;
             flex-wrap: wrap !important;
             padding-right: 20px !important;
+            max-width: 860px;
         }
 
     }
 }
 
-@media (max-width: 1350px) {}
+@media (max-width: 1222px) {
+    .board-frame {
+
+        .board-header {
+            flex-direction: column;
+            align-items: flex-start !important;
+            max-width: 565px;
+            gap: 40px;
+        }
+
+        .board-task-content {
+            max-width: 565px;
+
+            .task-section {
+                
+                .tasks {
+                    height: fit-content !important;
+                    flex-direction: row !important;
+                    overflow-x: auto !important;
+                    overflow-y: hidden !important;
+                    max-width: 270px;
+                    min-height: 270px;
+                    gap: 0 !important;
+                }
+
+            }
+
+        }
+
+    }
+}
