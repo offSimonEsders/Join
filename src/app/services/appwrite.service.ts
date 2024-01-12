@@ -113,4 +113,12 @@ export class AppwriteService {
     if (contact.$id) { await (this.dataBase.updateDocument(dataBaseID, contactsID, contact.$id, contact)) }
   }
 
+  async getUserName() {
+    let user = await this.appwriteGetCurrentUser();
+    if(user.name == '') {
+      return 'Guest';
+    }
+    return user.name;
+}
+
 }

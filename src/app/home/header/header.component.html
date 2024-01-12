@@ -3,7 +3,7 @@
 
     <div class="container">
         <div class="help-container"></div>
-        <div (click)="this.changeShowPopup()" class="user-profile popup">SM</div>
+        <div (click)="this.changeShowPopup()" class="user-profile popup">{{this.initials}}</div>
     </div>
 
     <ul *ngIf="this.showPopup" class="profile-popup popup">
