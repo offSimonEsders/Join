@@ -111,6 +111,47 @@
 
             }
 
+            .wrong-input {
+                input {
+                    border-color: #FF8190;
+                }
+
+                &::after {
+                    display: flex !important;
+                    color: #FF8190;
+                    position: absolute;
+                    font-size: 13px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 120%;
+                }
+
+            }
+
+            .name-after {
+                &::after {
+                    display: none;
+                    content: "This field is required!";
+                    margin-top: 4px;
+                }
+            }
+
+            .email-after {
+                &::after {
+                    display: none;
+                    content: "Enter a valid email!";
+                    margin-top: 4px;
+                }
+            }
+
+            .password-after {
+                &::after {
+                    display: none;
+                    content: "Password must be at least 8 characters long!";
+                    margin-top: 4px;
+                }
+            }
+
             .rememberme-container {
                 display: flex;
                 flex-direction: row;

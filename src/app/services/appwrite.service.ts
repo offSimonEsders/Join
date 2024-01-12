@@ -31,12 +31,14 @@ export class AppwriteService {
    * @param {string} newUserPassword - Password for email of new user
    * @param {string} newUserName - Name of new user
    */
-  appwriteSignUp(newUserEmail: string, newUserPassword: string, newUserName: string): void {
-    this.account.create(ID.unique(), newUserEmail, newUserPassword, newUserName)
-      .then((response) => {
-      })
-      .catch((error) => {
-      });
+  async appwriteSignUp(newUserEmail: string, newUserPassword: string, newUserName: string) {
+    try {
+      await this.account.create(ID.unique(), newUserEmail, newUserPassword, newUserName);
+      return true;
+    }
+    catch {
+      return false;
+    }
   }
 
   async appwriteLoginEmailPassword(email: string, password: string) {
