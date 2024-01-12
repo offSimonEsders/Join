@@ -53,34 +53,36 @@ export class BoardComponent implements OnInit {
 
     dropTask(event: any, newState: string) {
         const task = JSON.parse(event.dataTransfer.getData('task'));
-        const changedTask = this.changeTaskState(task, newState);
+        const taskWithNewState = this.changeTaskState(task, newState);
+        this.changeTasksIndex(taskWithNewState);
         this.filterForAllStates();
-        this.changeTasksorder();
+        this.prepareAndUploadTasks();
     }
 
     getTaskIndex(task: Task) {
-        return this.tasks.findIndex((t: Task) => { return t === task });
+        return this.tasks.findIndex((t: Task) => { return t.$id === task.$id });
     }
 
     changeTaskState(task: Task, newState: string) {
-        const index = this.getTaskIndex(task);
         task.state = newState;
-        this.tasks.splice(index, 1);
-        this.tasks.push(task);
         return task;
     }
 
-    async prepareAndUploadTask(task: Task) {
-        delete task.$databaseId;
-        delete task.$collectionId;
-        await this.appwriteService.updateTask(String(task.$id), task);
-    }
-
-    async changeTasksorder() {
+    changeTasksIndex(task: Task) {
+        const index = this.getTaskIndex(task);
+        this.tasks.splice(index, 1);
+        this.tasks.push(task);
         for (let i = 0; i < this.tasks.length; i++) {
             this.tasks[i].index = i;
-            await this.prepareAndUploadTask(this.tasks[i]);
         }
+    }
+
+    prepareAndUploadTasks() {
+        this.tasks.forEach((t: Task) => {
+            delete t.$databaseId;
+            delete t.$collectionId;
+            this.appwriteService.updateTask(String(t.$id), t);
+        });
     }
 
     deleteTask(task: Task) {
