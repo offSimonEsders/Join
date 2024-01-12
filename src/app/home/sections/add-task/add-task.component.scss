@@ -663,14 +663,17 @@
 
 @media (max-width: 1350px) {
     .task-set-value-container {
+        flex-direction: column !important;
+        padding-bottom: 200px;
+
         .single-value-container {
-            width: 400px !important;
+            width: 500px !important;
 
             .value-container {
                 flex-direction: column !important;
 
                 .input-container {
-                    width: 400px !important;
+                    width: 500px !important;
                 }
 
             }
@@ -679,8 +682,23 @@
         .prio-container {
 
             .select-container {
-                width: 400px !important;
+                width: 500px !important;
             }
         }
+
+        .partingline-container {
+            display: none;
+        }
+
+    }
+
+    .info-button-container {
+        position: fixed;
+        flex-direction: row-reverse !important;
+        align-items: center;
+        justify-content: space-between !important;
+        bottom: 0;
+        width: 500px;
+        background-color: #FFF;
     }
 }
