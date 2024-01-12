@@ -65,7 +65,7 @@
                         </svg>
                     </div>
                     <div class="todo-done-text-container">
-                        <h2>0</h2>
+                        <h2>{{this.getTasksInState('Done')}}</h2>
                         <p>Done</p>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
                             </svg>
                         </div>
                         <div class="amount-text">
-                            <h2>0</h2>
+                            <h2>{{this.getUrgentTasks()}}</h2>
                             <p>Urgent</p>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                         </svg>
                     </div>
                     <div class="date-container">
-                        <h2>October 16, 2022</h2>
+                        <h2>{{this.getNearestUrgentTask()}}</h2>
                         <p>Upcoming Deadline</p>
                     </div>
                 </div>
@@ -118,15 +118,15 @@
 
             <div class="board-progress-feedback-container">
                 <div (click)="this.goToBoard()">
-                    <h1>1</h1>
+                    <h1>{{this.tasks?.length}}</h1>
                     <p>Tasks in <br> Board</p>
                 </div>
                 <div (click)="this.goToBoard()">
-                    <h1>1</h1>
+                    <h1>{{this.getTasksInState('InProgress')}}</h1>
                     <p>Tasks In <br> Progress</p>
                 </div>
                 <div (click)="this.goToBoard()">
-                    <h1>1</h1>
+                    <h1>{{this.getTasksInState('AwaitFeedback')}}</h1>
                     <p>Awaiting <br> Feedback</p>
                 </div>
             </div>
