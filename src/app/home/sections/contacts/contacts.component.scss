@@ -73,17 +73,17 @@
             &::-webkit-scrollbar {
                 width: 5px;
             }
-        
+
             &::-webkit-scrollbar-track {
                 border-radius: 8px;
                 background: #d1d1d1;
             }
-        
+
             &::-webkit-scrollbar-thumb {
                 border-radius: 8px;
                 background: #2A3647;
             }
-        
+
             &::-webkit-scrollbar-thumb:hover {
                 background: #29ABE2;
             }
@@ -161,5 +161,32 @@
 @media (max-height: 920px) {
     .contact-information-container {
         padding-top: 48px !important;
+    }
+}
+
+@media (max-width: 1350px) {
+
+    .contacts-frame {
+        justify-content: center;
+
+        .contacts-list-container {
+            width: 500px !important;
+
+            .add-contact-button-container {
+                button {
+                    width: 500px;
+                }
+            }
+
+            .contact-list {
+                
+            }
+
+        }
+
+        .contact-information-container {
+            display: none !important;
+        }
+
     }
 }
