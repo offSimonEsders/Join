@@ -151,3 +151,15 @@
     }
 
 }
+
+@media (max-height: 960px) {
+    .contact-information-container {
+        padding-top: 80px !important;
+    }
+}
+
+@media (max-height: 920px) {
+    .contact-information-container {
+        padding-top: 48px !important;
+    }
+}

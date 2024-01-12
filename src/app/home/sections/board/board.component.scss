@@ -213,3 +213,17 @@
 
     }
 }
+
+@media (max-height: 960px) {
+    .board-frame {
+        padding-top: 80px;
+        max-height: calc(100vh - 176px);
+    }
+}
+
+@media (max-height: 920px) {
+    .board-frame {
+        padding-top: 48px;
+        max-height: calc(100vh - 144px);
+    }
+}

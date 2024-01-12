@@ -6,7 +6,7 @@
     padding-top: 110px;
     padding-left: 96px;
     max-height: calc(100vh - 206px);
-    height: calc(100% - 206px);
+    height: 100%;
     background: #F6F7F8;
     overflow: auto;
 
@@ -455,4 +455,18 @@
 
     }
 
+}
+
+@media (max-height: 960px) {
+    .summary-frame {
+        padding-top: 80px;
+        max-height: calc(100vh - 176px);
+    }
+}
+
+@media (max-height: 920px) {
+    .summary-frame {
+        padding-top: 48px;
+        max-height: calc(100vh - 144px);
+    }
 }
