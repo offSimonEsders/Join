@@ -227,3 +227,22 @@
         max-height: calc(100vh - 144px);
     }
 }
+
+@media (max-width: 1500px) {
+    .board-frame {
+        justify-content: flex-start !important;
+
+        .board-header {
+            padding-right: 20px !important;
+        }
+    
+        .board-task-content {
+            justify-content: center !important;
+            flex-wrap: wrap !important;
+            padding-right: 20px !important;
+        }
+
+    }
+}
+
+@media (max-width: 1350px) {}

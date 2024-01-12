@@ -470,3 +470,37 @@
         max-height: calc(100vh - 144px);
     }
 }
+
+@media (max-width: 1500px) {
+    .summary-frame {
+        justify-content: flex-start;
+
+        .middle-container {
+            .greeting-container {
+                h2 {
+
+                    &:nth-child(1) {
+                        font-size: 30px !important;
+                    }
+
+                    &:nth-child(2) {
+                        font-size: 47px !important;
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1350px) {
+    .summary-frame {
+        justify-content: center;
+
+        .middle-container {
+            .greeting-container {
+                display: none !important;
+            }
+        }
+    }
+}

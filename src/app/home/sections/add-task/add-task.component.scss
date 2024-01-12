@@ -221,7 +221,6 @@
 
                 .title-description-assigned-container {
                     display: flex;
-                    width: 440px;
                     flex-direction: column;
                     justify-content: flex-start;
                     gap: 32px;
@@ -325,7 +324,6 @@
 
                 .date-prio-category-subtask-container {
                     display: flex;
-                    width: 440px;
                     flex-direction: column;
                     justify-content: center;
                     align-items: flex-start;
@@ -652,5 +650,37 @@
     .add-task-frame {
         padding-top: 48px;
         max-height: calc(100vh - 144px);
+    }
+}
+
+@media (max-width: 1500px) {
+    .add-task-form {
+        .task-set-value-container {
+            gap: 50px !important;
+        }
+    }
+}
+
+@media (max-width: 1350px) {
+    .task-set-value-container {
+        .single-value-container {
+            width: 400px !important;
+
+            .value-container {
+                flex-direction: column !important;
+
+                .input-container {
+                    width: 400px !important;
+                }
+
+            }
+        }
+
+        .prio-container {
+
+            .select-container {
+                width: 400px !important;
+            }
+        }
     }
 }
