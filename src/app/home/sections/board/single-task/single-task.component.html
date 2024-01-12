@@ -5,7 +5,7 @@
         <h1 class="task-title">{{this.task?.title}}</h1>
         <p class="task-describtion">{{this.task?.description}}</p>
     </div>
-    <div class="task-subtask-progress" *ngIf="this.checkSubtasks.length > 0">
+    <div class="task-subtask-progress" *ngIf="this.checkSubtasks()">
         <div class="progress-bar">
             <div class="progress" [ngStyle]="{'width.%': this.getProgress()}"></div>
         </div>
