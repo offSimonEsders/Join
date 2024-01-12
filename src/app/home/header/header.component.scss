@@ -60,6 +60,7 @@
     .profile-popup {
         position: fixed;
         list-style: none;
+        z-index: 1;
         padding: 10px;
         top: 80px;
         right: 0;
