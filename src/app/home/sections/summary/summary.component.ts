@@ -65,12 +65,12 @@ export class SummaryComponent implements OnInit {
     if (dates) {
       let nearestDate = Math.min(...dates).toString();
       let year = parseInt(nearestDate.substr(0, 4));
-      let month = parseInt(nearestDate.substr(4, 2)) - 1; // Months are 0-indexed in JavaScript
+      let month = parseInt(nearestDate.substr(4, 2)) - 1;
       let day = parseInt(nearestDate.substr(6, 2));
-      return `${this.monthNames[month]} ${day}, ${year}`
+      return `${this.monthNames[month]} ${day}, ${year}`;
     }
     console.log(dates)
-    return 'MM,DD,YYYY'
+    return 'MM,DD,YYYY';
   }
 
 }
