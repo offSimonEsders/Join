@@ -85,12 +85,37 @@ export class BoardComponent implements OnInit {
         });
     }
 
+    prepareAndUploadSingleTask(task: Task) {
+        delete task.$databaseId;
+        delete task.$collectionId;
+        this.appwriteService.updateTask(String(task.$id), task);
+    }
+
     deleteTask(task: Task) {
         this.tasks.splice(this.getTaskIndex(task), 1);
         this.infoTask = undefined;
         this.filterForAllStates();
         if (task.$id) {
             this.appwriteService.deleteTask(task.$id);
+        }
+    }
+
+    closeViewTaskInfo() {
+        this.saveSubtaskDone();
+        this.infoTask = undefined;
+    }
+
+    getSubtaskDone(data: boolean[]) {
+        if (this.infoTask) {
+            const index = this.getTaskIndex(this.infoTask);
+            this.tasks[index].subtasksdone = data;
+        }
+    }
+
+    saveSubtaskDone() {
+        if (this.infoTask) {
+            const index = this.getTaskIndex(this.infoTask);
+            this.prepareAndUploadSingleTask(this.tasks[index]);
         }
     }
 

@@ -16,6 +16,7 @@ export class ViewTaskInfoComponent implements OnInit {
   @Input() task?: Task;
   @Output() closeViewInfo = new EventEmitter<undefined>();
   @Output() deleteTask = new EventEmitter<boolean>();
+  @Output() subtaskDone = new EventEmitter<boolean[]>();
   contacts?: Contact[];
   subtasks?: Subtask[];
   subtaskdone?: boolean[];
@@ -57,6 +58,7 @@ export class ViewTaskInfoComponent implements OnInit {
       const index = this.getIndexOfSubtask(subtask)
       this.subtaskdone[index] = !this.subtaskdone[index];
     }
+    this.subtaskDone.emit(this.subtaskdone);
   }
 
   getContactsLength() {

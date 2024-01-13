@@ -22,7 +22,7 @@ export class SingleTaskComponent implements OnInit {
 
   getDoneTasks() {
     if(this.task?.subtasksdone) {
-      return this.task.subtasksdone.filter((value: any) => { if (value == 'true') { return value; } }).length;
+      return this.task.subtasksdone.filter((value: any) => { if (value == true) { return value; } }).length;
     }
     return 0;
   }
