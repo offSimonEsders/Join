@@ -512,5 +512,12 @@
         max-height: calc(100vh - 216px) !important;
         height: 100vh;
         padding: 50px 0 0 0 !important;
+
+        .summary-content {
+            .information-container {
+                align-items: center;
+            }
+        }
+
     }
 }
