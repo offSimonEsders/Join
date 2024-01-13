@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 })
 export class AddTaskComponent implements OnInit {
   @Input() taskToEdit: Task | undefined;
+  @Input() isPopUp: boolean = false;
   @ViewChild('titlecontainer') titlecontainer?: ElementRef<HTMLInputElement>;
   @ViewChild('datecontainer') datecontainer?: ElementRef<HTMLInputElement>;
   @ViewChild('categorycontainer') categorycontainer?: ElementRef<HTMLInputElement>;

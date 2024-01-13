@@ -1,4 +1,4 @@
-<section class="add-task-frame"
+<section class="add-task-frame" [ngClass]="{'as-popup': this.isPopUp}"
     (click)="this.changeOpenCategoryStateOnId($event, categoryinput, contactsinput); this.unfocusSubtaskInput($event, subtaskinput)">
 
     <div class="add-task-content">

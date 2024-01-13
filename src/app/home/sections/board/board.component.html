@@ -52,8 +52,10 @@
                         </svg>
                     </button>
                 </div>
-                <div class="tasks" dropzone="true" (dragover)="this.allowDropEvent($event)" (drop)="this.dropTask($event, 'ToDo')">
-                    <app-single-task *ngFor="let task of this.tasksToDO" (click)="this.infoTask = task" [task]="task"></app-single-task>
+                <div class="tasks" dropzone="true" (dragover)="this.allowDropEvent($event)"
+                    (drop)="this.dropTask($event, 'ToDo')">
+                    <app-single-task *ngFor="let task of this.tasksToDO" (click)="this.infoTask = task"
+                        [task]="task"></app-single-task>
                 </div>
             </div>
             <div class="task-section in-progress-sec">
@@ -74,8 +76,10 @@
                         </svg>
                     </button>
                 </div>
-                <div class="tasks" dropzone="true" (dragover)="this.allowDropEvent($event)" (drop)="this.dropTask($event, 'InProgress')">
-                    <app-single-task *ngFor="let task of this.tasksInProgress" (click)="this.infoTask = task" [task]="task"></app-single-task>
+                <div class="tasks" dropzone="true" (dragover)="this.allowDropEvent($event)"
+                    (drop)="this.dropTask($event, 'InProgress')">
+                    <app-single-task *ngFor="let task of this.tasksInProgress" (click)="this.infoTask = task"
+                        [task]="task"></app-single-task>
                 </div>
             </div>
             <div class="task-section await-feedback-sec">
@@ -96,26 +100,35 @@
                         </svg>
                     </button>
                 </div>
-                <div class="tasks" dropzone="true" (dragover)="this.allowDropEvent($event)" (drop)="this.dropTask($event, 'AwaitFeedback')">
-                    <app-single-task *ngFor="let task of this.tasksAwaitFeedback" (click)="this.infoTask = task" [task]="task"></app-single-task>
+                <div class="tasks" dropzone="true" (dragover)="this.allowDropEvent($event)"
+                    (drop)="this.dropTask($event, 'AwaitFeedback')">
+                    <app-single-task *ngFor="let task of this.tasksAwaitFeedback" (click)="this.infoTask = task"
+                        [task]="task"></app-single-task>
                 </div>
             </div>
             <div class="task-section done-sec">
                 <div class="task-head">
                     Done
                 </div>
-                <div class="tasks" dropzone="true" (dragover)="this.allowDropEvent($event)" (drop)="this.dropTask($event, 'Done')">
-                    <app-single-task *ngFor="let task of this.tasksDone" (click)="this.infoTask = task" [task]="task"></app-single-task>
+                <div class="tasks" dropzone="true" (dragover)="this.allowDropEvent($event)"
+                    (drop)="this.dropTask($event, 'Done')">
+                    <app-single-task *ngFor="let task of this.tasksDone" (click)="this.infoTask = task"
+                        [task]="task"></app-single-task>
                 </div>
             </div>
         </div>
 
     </div>
 
-    <app-view-task-info *ngIf="this.infoTask != undefined" [task]="this.infoTask" (closeViewInfo)="this.closeViewTaskInfo()" (deleteTask)="this.deleteTask(this.infoTask)" (subtaskDone)="this.getSubtaskDone($event)"></app-view-task-info>
+    <app-view-task-info *ngIf="this.infoTask != undefined" [task]="this.infoTask"
+        (closeViewInfo)="this.closeViewTaskInfo()" (deleteTask)="this.deleteTask(this.infoTask)"
+        (subtaskDone)="this.getSubtaskDone($event)"></app-view-task-info>
 
     <section class="edit-task-frame">
-        <app-add-task class="add-task" [taskToEdit]="this.infoTask" ></app-add-task>
+        <div class="background"></div>
+        <div class="popup">
+            <app-add-task class="add-task" [isPopUp]="true" [taskToEdit]="this.infoTask"></app-add-task>
+        </div>
     </section>
 
 </section>

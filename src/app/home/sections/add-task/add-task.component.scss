@@ -662,6 +662,11 @@
 
 }
 
+.as-popup {
+    padding: 0 !important;
+    width: fit-content;
+}
+
 @keyframes userfeedback {
     100% {
         top: 50%;
