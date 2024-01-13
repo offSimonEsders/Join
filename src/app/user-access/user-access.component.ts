@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { LoginComponent } from "./login/login.component";
 
@@ -9,7 +9,7 @@ import { LoginComponent } from "./login/login.component";
     styleUrl: './user-access.component.scss',
     imports: [RouterOutlet, LoginComponent]
 })
-export class UserAccessComponent implements AfterViewInit {
+export class UserAccessComponent implements AfterViewInit, OnInit {
     @ViewChild('bigLogo') bigLogo?: ElementRef;
     @ViewChild('logoContainer') logoContainer?: ElementRef
     @ViewChild('disappearingcontainer') disappearingcontainer?: ElementRef;
@@ -17,6 +17,17 @@ export class UserAccessComponent implements AfterViewInit {
     constructor(private router: Router) {
 
     }
+
+    ngOnInit(): void {
+        this.autoLogIn();
+    }
+
+    autoLogIn() {
+        if (localStorage.getItem('remember') == 'true') {
+            this.router.navigate(['home/summary']);
+        }
+    }
+
     ngAfterViewInit(): void {
         const bigLogoElement = this.bigLogo?.nativeElement;
         const logoContainer = this.logoContainer?.nativeElement;
@@ -36,7 +47,7 @@ export class UserAccessComponent implements AfterViewInit {
         });
     }
 
-    changeLogoStyleOnAnimationEnd(bigLogoElement: any, logoContainer: any, disappearingcontainer:any) {
+    changeLogoStyleOnAnimationEnd(bigLogoElement: any, logoContainer: any, disappearingcontainer: any) {
         bigLogoElement.addEventListener('animationend', () => {
             if (bigLogoElement && window.innerWidth <= 1000) {
                 bigLogoElement.style.left = ((window.innerWidth - logoContainer.offsetWidth) / 2) + 'px';
@@ -48,7 +59,7 @@ export class UserAccessComponent implements AfterViewInit {
         });
     }
 
-    changeLogoAnimationOnRoute(bigLogoElement: any, disappearingcontainer:any) {
+    changeLogoAnimationOnRoute(bigLogoElement: any, disappearingcontainer: any) {
         if (this.router.url === '/registration') {
             bigLogoElement.classList.remove('animate-join-logo');
             disappearingcontainer.style.display = 'none';
@@ -56,7 +67,7 @@ export class UserAccessComponent implements AfterViewInit {
         }
     }
 
-    changeLogoAnimationOnWindowWidth(bigLogoElement: any, logoContainer: any, disappearingcontainer:any) {
+    changeLogoAnimationOnWindowWidth(bigLogoElement: any, logoContainer: any, disappearingcontainer: any) {
         if (bigLogoElement && window.innerWidth <= 1000) {
             bigLogoElement.style.left = ((window.innerWidth - logoContainer.offsetWidth) / 2) + 'px';
             bigLogoElement.style.top = '37px';
