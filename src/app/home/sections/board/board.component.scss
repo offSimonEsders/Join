@@ -343,3 +343,68 @@
     }
 
 }
+
+@media (max-width: 650px) {
+    .board-frame {
+        max-width: 100vw;
+        width: 100%;
+        max-height: calc(100vh - 216px) !important;
+        height: 100vh;
+        padding: 50px 0 0 0 !important;
+
+        .board-content {
+            gap: 24px;
+
+            .board-header {
+                flex-direction: column;
+                align-items: flex-start !important;
+                max-width: 400px;
+                width: 400px;
+                gap: 40px;
+                padding: 0 !important;
+
+                h1 {
+                    font-size: 47px !important;
+                }
+
+                .search-addtask-container {
+
+                    input {
+                        width: 366px !important; //236
+                    }
+
+                    button {
+                        display: none !important;
+                    }
+                }
+
+            }
+
+            .board-task-content {
+                padding-right: 0 !important;
+                width: 400px !important;
+
+                .task-section {
+                    .task-head {
+                        width: 400px !important;
+                    }
+
+                    .tasks {
+                        height: fit-content !important;
+                        flex-direction: row !important;
+                        overflow-x: auto !important;
+                        overflow-y: hidden !important;
+                        max-width: 400px !important;
+                        width: 400px !important;
+                        min-height: 250px;
+                        gap: 0 !important;
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+}
