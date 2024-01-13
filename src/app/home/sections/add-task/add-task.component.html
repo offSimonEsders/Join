@@ -74,7 +74,8 @@
                         <div>Due date <p>*</p>
                         </div>
                         <input type="date" [min]="this.minDate"
-                            (input)="this.removeWrongInputClass(titleinput, dateinput, categoryinput)" [value]="this.taskToEdit?.duedate" #dateinput>
+                            (input)="this.removeWrongInputClass(titleinput, dateinput, categoryinput)"
+                            [value]="this.taskToEdit?.duedate" #dateinput>
                     </div>
                     <div class="prio-container single-value-container">
                         <div>Prio</div>
@@ -186,7 +187,8 @@
                             <div class="input-container">
                                 <input class="category"
                                     (click)="this.changeOpenState($event, categoryinput, 'openCategory')" type="text"
-                                    placeholder="Select task category" readonly [value]="this.taskToEdit?.category" #categoryinput>
+                                    placeholder="Select task category" readonly [value]="this.taskToEdit?.category"
+                                    #categoryinput>
                                 <button class="category"
                                     (click)="this.changeOpenState($event, categoryinput, 'openCategory')">
                                     <svg class="category" [ngClass]="{'rotate': this.openCategory}"
@@ -289,7 +291,7 @@
 
             <div class="info-button-container">
                 <div class="button-container">
-                    <button (click)="clearAddTask($event, titleinput, descriptioninput, dateinput, categoryinput)">
+                    <button *ngIf="this.editMode()" class="clear-button" (click)="clearAddTask($event, titleinput, descriptioninput, dateinput, categoryinput)">
                         Clear
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                             <path
@@ -309,7 +311,21 @@
                                 stroke="#091931" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </button>
-                    <button (click)="createNewTask($event, titleinput, descriptioninput, dateinput, categoryinput)">
+                    <button *ngIf="!this.editMode()" class="save-button">
+                        Ok
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                            <mask id="mask0_124305_3985" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
+                                width="24" height="25">
+                                <rect y="0.5" width="24" height="24" fill="#D9D9D9" />
+                            </mask>
+                            <g mask="url(#mask0_124305_3985)">
+                                <path
+                                    d="M9.55057 15.65L18.0256 7.175C18.2256 6.975 18.4631 6.875 18.7381 6.875C19.0131 6.875 19.2506 6.975 19.4506 7.175C19.6506 7.375 19.7506 7.6125 19.7506 7.8875C19.7506 8.1625 19.6506 8.4 19.4506 8.6L10.2506 17.8C10.0506 18 9.81724 18.1 9.55057 18.1C9.28391 18.1 9.05057 18 8.85057 17.8L4.55057 13.5C4.35057 13.3 4.25474 13.0625 4.26307 12.7875C4.27141 12.5125 4.37557 12.275 4.57557 12.075C4.77557 11.875 5.01307 11.775 5.28807 11.775C5.56307 11.775 5.80057 11.875 6.00057 12.075L9.55057 15.65Z"
+                                    fill="white" />
+                            </g>
+                        </svg>
+                    </button>
+                    <button *ngIf="this.editMode()" class="save-button" (click)="createNewTask($event, titleinput, descriptioninput, dateinput, categoryinput)">
                         Create Task
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                             <mask id="mask0_121849_6098" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
