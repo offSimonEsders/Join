@@ -1,4 +1,4 @@
-<section class="subtask-frame" [ngClass]="{'edit-mode': this.editmode}" #subtaskframe>
+<section class="subtask-frame" (dblclick)="this.editSubtask()" [ngClass]="{'edit-mode': this.editmode}" #subtaskframe>
     <li *ngIf="!this.editmode">{{this.subtask?.subtask}}</li>
     <input [hidden]="!this.editmode" (input)="this.removeWrongInput(subtaskframe)" type="text" [value]="this.subtask?.subtask" #subtaskinput>
     <div class="action-buttons">
