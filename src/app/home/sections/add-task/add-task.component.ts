@@ -199,6 +199,7 @@ export class AddTaskComponent implements OnInit {
     this.prio = 'Medium';
     this.selectedContacts = [];
     this.subtasks = [];
+    this.removeWrongInputClass(titleinput, dateinput, categoryinput, true);
   }
 
   async createNewTask(event: Event, titleinput: HTMLInputElement, descriptioninput: HTMLTextAreaElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement) {
@@ -265,14 +266,14 @@ export class AddTaskComponent implements OnInit {
     return okay;
   }
 
-  removeWrongInputClass(titleinput: HTMLInputElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement) {
-    if (titleinput.value.length > 0) {
+  removeWrongInputClass(titleinput: HTMLInputElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement, clear: boolean | undefined = undefined) {
+    if (titleinput.value.length > 0 || clear) {
       this.titlecontainer?.nativeElement.classList.remove('wrong-input');
     }
-    if (dateinput.value.length > 0) {
+    if (dateinput.value.length > 0 || clear) {
       this.datecontainer?.nativeElement.classList.remove('wrong-input');
     }
-    if (categoryinput.value.length > 0) {
+    if (categoryinput.value.length > 0 || clear) {
       this.categorycontainer?.nativeElement.classList.remove('wrong-input');
     }
   }
