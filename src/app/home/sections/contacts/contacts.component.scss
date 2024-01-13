@@ -178,13 +178,30 @@
                 }
             }
 
-            .contact-list {
-                
-            }
+            .contact-list {}
 
         }
 
         .contact-information-container {
+            display: none !important;
+        }
+
+    }
+}
+
+@media (max-width: 1000px) {
+    .contacts-frame {
+        max-width: 100vw;
+        width: 100%;
+        max-height: calc(100vh - 190px) !important;
+        height: 100vh;
+        padding: 24px 0 0 0 !important;
+
+        .contacts-list-container {
+            height: auto !important;
+        }
+
+        .add-contact-button-container {
             display: none !important;
         }
 
