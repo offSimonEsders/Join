@@ -1,11 +1,11 @@
 <section class="task-info-frame">
 
-    <div class="background" (click)="this.closeViewInfo.emit(undefined)"></div>
+    <div class="background" (click)="this.closeTaskInfo()"></div>
     <section class="task-info">
         <header>
             <div class="category" [ngClass]="this.task?.category == 'User Story' ? 'userstory' : 'technicaltask'">
                 {{this.task?.category}}</div>
-            <button class="close-button" (click)="this.closeViewInfo.emit(undefined)">
+            <button class="close-button" (click)="this.closeTaskInfo()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                     <mask id="mask0_123108_4153" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
                         width="25" height="25">
