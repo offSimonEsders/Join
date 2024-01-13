@@ -228,6 +228,50 @@
         }
 
         .popup {
+
+            .close-button {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                display: flex;
+                border-radius: 90px;
+                right: 40px;
+                top: 68px;
+                height: 32px;
+                width: 32px;
+                border: none;
+                background-color: transparent;
+
+                &:hover {
+                    background-color: #EEEEEE;
+                }
+
+                &:active {
+                    background-color: #29ABE2;
+
+                    svg {
+                        &:nth-child(1) {
+                            display: none;
+                        }
+                        &:nth-child(2) {
+                            display: flex;
+                        }
+                    }
+                }
+
+                svg {
+                    width: 30px;
+                    height: 30px;
+
+                    &:nth-child(2) {
+                        display: none;
+                    }
+                }
+
+            }
+
             position: fixed;
             top: 50%;
             left: 50%;

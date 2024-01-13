@@ -17,6 +17,7 @@ export class ViewTaskInfoComponent implements OnInit {
   @Output() closeViewInfo = new EventEmitter<undefined>();
   @Output() deleteTask = new EventEmitter<boolean>();
   @Output() subtaskDone = new EventEmitter<boolean[]>();
+  @Output() editTaskInPopup = new EventEmitter<boolean>();
   contacts?: Contact[];
   subtasks?: Subtask[];
   subtaskdone?: boolean[];

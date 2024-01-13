@@ -22,6 +22,8 @@ export class BoardComponent implements OnInit {
     tasksDone?: Array<Task>;
     infoTask?: Task = undefined;
     editTask?: Task;
+    openAddTaskPopup: boolean = false;
+    createTaskWithState: string = 'ToDo';
 
     constructor(public appwriteService: AppwriteService) {
 
@@ -118,6 +120,10 @@ export class BoardComponent implements OnInit {
             const index = this.getTaskIndex(this.infoTask);
             this.prepareAndUploadSingleTask(this.tasks[index]);
         }
+    }
+
+    openCloseAddTaskPopup() {
+        this.openAddTaskPopup = !this.openAddTaskPopup;
     }
 
 }

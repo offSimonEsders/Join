@@ -18,6 +18,7 @@ import { Router } from '@angular/router';
 export class AddTaskComponent implements OnInit {
   @Input() taskToEdit: Task | undefined;
   @Input() isPopUp: boolean = false;
+  @Input() taskState: string = 'ToDo';
   @ViewChild('titlecontainer') titlecontainer?: ElementRef<HTMLInputElement>;
   @ViewChild('datecontainer') datecontainer?: ElementRef<HTMLInputElement>;
   @ViewChild('categorycontainer') categorycontainer?: ElementRef<HTMLInputElement>;
@@ -31,7 +32,6 @@ export class AddTaskComponent implements OnInit {
   openCategory: boolean = false;
   openContacts: boolean = false;
   click = false;
-  taskState: string = 'ToDo';
   minDate?: string;
   [key: string]: any;
 
