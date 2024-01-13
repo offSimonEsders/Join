@@ -178,8 +178,6 @@
                 }
             }
 
-            .contact-list {}
-
         }
 
         .contact-information-container {
@@ -202,6 +200,25 @@
         }
 
         .add-contact-button-container {
+            display: none !important;
+        }
+
+    }
+}
+
+@media (max-width: 650px) {
+    .contacts-frame {
+
+        .contacts-list-container {
+            width: 400px !important;
+
+            .contact-list {
+                width: 400px !important;
+            }
+
+        }
+
+        .contact-information-container {
             display: none !important;
         }
 
