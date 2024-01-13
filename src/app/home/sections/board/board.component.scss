@@ -6,7 +6,7 @@
     padding-top: 110px;
     padding-left: 96px;
     max-height: calc(100vh - 206px);
-    height: calc(100% - 206px);
+    height: 100%;
     background: #F6F7F8;
     overflow: auto;
 
@@ -228,6 +228,13 @@
     }
 }
 
+@media (max-height: 800px) {
+    .tasks {
+        height: 100% !important;
+        min-height: 250px !important;
+    }
+}
+
 @media (max-width: 1500px) {
     .board-frame {
 
@@ -282,17 +289,24 @@
 @media (max-width: 1000px) {
 
     .board-frame {
+        max-width: 100vw;
+        width: 100%;
+        max-height: calc(100vh - 216px) !important;
+        height: 100vh;
+        padding: 50px 0 0 0 !important;
 
         .board-header {
             flex-direction: column;
             align-items: flex-start !important;
-            max-width: 270px;
+            max-width: 500px;
+            width: 500px;
             gap: 40px;
+            padding: 0 !important;
 
             .search-addtask-container {
 
                 input {
-                    width: 236px !important;
+                    width: 466px !important; //236
                 }
 
                 button {
@@ -303,17 +317,22 @@
         }
 
         .board-task-content {
-            max-width: 270px;
+            padding-right: 0 !important;
+            width: 500px;
 
             .task-section {
+                .task-head {
+                    width: 500px !important;
+                }
 
                 .tasks {
                     height: fit-content !important;
                     flex-direction: row !important;
                     overflow-x: auto !important;
                     overflow-y: hidden !important;
-                    max-width: 270px;
-                    min-height: 270px;
+                    max-width: 500px !important;
+                    width: 500px !important;
+                    min-height: 250px;
                     gap: 0 !important;
                 }
 

@@ -504,3 +504,13 @@
         }
     }
 }
+
+@media (max-width: 1000px) {
+    .summary-frame {
+        max-width: 100vw;
+        width: 100%;
+        max-height: calc(100vh - 216px) !important;
+        height: 100vh;
+        padding: 50px 0 0 0 !important;
+    }
+}
