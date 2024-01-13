@@ -717,3 +717,54 @@
         bottom: 86px;
     }
 }
+
+@media (max-width: 650px) {
+
+    header {
+        h1 {
+            font-size: 47px !important;
+        }
+    }
+
+    .task-set-value-container {
+        flex-direction: column !important;
+        padding-bottom: 200px;
+
+        .single-value-container {
+            width: 400px !important;
+
+            .value-container {
+                flex-direction: column !important;
+
+                .input-container {
+                    width: 400px !important;
+                }
+
+            }
+        }
+
+        .prio-container {
+
+            .select-container {
+                width: 400px !important;
+            }
+        }
+
+        .partingline-container {
+            display: none;
+        }
+
+    }
+
+    .info-button-container {
+        width: 400px;
+
+        button {
+            &:nth-child(1) {
+                display: none !important;
+            }
+        }
+
+    }
+
+}
