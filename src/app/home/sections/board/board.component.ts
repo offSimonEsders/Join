@@ -4,13 +4,14 @@ import { SingleTaskComponent } from "./single-task/single-task.component";
 import { AppwriteService } from '../../../services/appwrite.service';
 import { Task } from '../../modules/task';
 import { ViewTaskInfoComponent } from "./view-task-info/view-task-info.component";
+import { AddTaskComponent } from "../add-task/add-task.component";
 
 @Component({
     selector: 'app-board',
     standalone: true,
     templateUrl: './board.component.html',
     styleUrl: './board.component.scss',
-    imports: [CommonModule, SingleTaskComponent, ViewTaskInfoComponent]
+    imports: [CommonModule, SingleTaskComponent, ViewTaskInfoComponent, AddTaskComponent]
 })
 export class BoardComponent implements OnInit {
 
@@ -19,8 +20,8 @@ export class BoardComponent implements OnInit {
     tasksInProgress?: Array<Task>;
     tasksAwaitFeedback?: Array<Task>;
     tasksDone?: Array<Task>;
-    infoTask: Task | undefined = undefined;
-
+    infoTask?: Task = undefined;
+    editTask?: Task;
 
     constructor(public appwriteService: AppwriteService) {
 

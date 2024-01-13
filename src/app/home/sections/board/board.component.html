@@ -114,4 +114,8 @@
 
     <app-view-task-info *ngIf="this.infoTask != undefined" [task]="this.infoTask" (closeViewInfo)="this.closeViewTaskInfo()" (deleteTask)="this.deleteTask(this.infoTask)" (subtaskDone)="this.getSubtaskDone($event)"></app-view-task-info>
 
+    <section class="edit-task-frame">
+        <app-add-task class="add-task" [taskToEdit]="this.infoTask" ></app-add-task>
+    </section>
+
 </section>

@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SelectableContactComponent } from "./selectable-contact/selectable-contact.component";
 import { AppwriteService } from '../../../services/appwrite.service';
@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
   imports: [CommonModule, SelectableContactComponent, SubtaskComponent]
 })
 export class AddTaskComponent implements OnInit {
+  @Input() taskToEdit: Task | undefined;
   @ViewChild('titlecontainer') titlecontainer?: ElementRef<HTMLInputElement>;
   @ViewChild('datecontainer') datecontainer?: ElementRef<HTMLInputElement>;
   @ViewChild('categorycontainer') categorycontainer?: ElementRef<HTMLInputElement>;
@@ -39,9 +40,36 @@ export class AddTaskComponent implements OnInit {
     this.getMinDate();
   }
 
+  /**
+   * 
+   * @returns {boolean} - editMode is active when this.taskToEdit === Task;
+   */
+  editMode(): boolean {
+    return this.taskToEdit === undefined;
+  }
+
   async ngOnInit() {
     this.contacts = await this.appwriteService.getContacts() as unknown as Contact[];
     this.tasks = await this.appwriteService.getTasks() as unknown as Task[];
+    this.loadDataEditMode();
+  }
+
+  loadDataEditMode() {
+    if (!this.editMode() && this.taskToEdit) {
+      if(this.taskToEdit?.assignedContacts) {
+        this.selectedContacts = this.getDataAsObject(this.taskToEdit?.assignedContacts);
+      }
+      if (this.taskToEdit?.subtasks) {
+        this.subtasks = this.getDataAsObject(this.taskToEdit.subtasks);
+      }
+      this.prio = this.taskToEdit?.prio;
+    }
+  }
+
+  getDataAsObject(data: string[]) {
+    return data.map((d: string) => {
+      return JSON.parse(d);
+    })
   }
 
   getMinDate() {

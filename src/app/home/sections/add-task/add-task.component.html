@@ -3,7 +3,7 @@
 
     <div class="add-task-content">
 
-        <header>
+        <header *ngIf="this.editMode()">
             <h1>Add Task</h1>
         </header>
 
@@ -12,15 +12,15 @@
             <div class="task-set-value-container">
                 <div class="title-description-assigned-container">
                     <div class="title-container single-value-container" #titlecontainer>
-                        <div>Title <p>*</p>
+                        <div>Title<p>*</p>
                         </div>
                         <input (input)="this.removeWrongInputClass(titleinput, dateinput, categoryinput)" type="text"
-                            placeholder="Enter a title" #titleinput>
+                            placeholder="Enter a title" [value]="this.taskToEdit?.title" #titleinput>
                     </div>
                     <div class="description-container single-value-container">
                         <div>Description</div>
                         <textarea name="" id="" cols="30" rows="10" placeholder="Enter a Description"
-                            #descriptioninput></textarea>
+                            [value]="this.taskToEdit?.description" #descriptioninput></textarea>
                     </div>
                     <div class="assigned-container single-value-container">
                         <div class="value-container">
@@ -74,7 +74,7 @@
                         <div>Due date <p>*</p>
                         </div>
                         <input type="date" [min]="this.minDate"
-                            (input)="this.removeWrongInputClass(titleinput, dateinput, categoryinput)" #dateinput>
+                            (input)="this.removeWrongInputClass(titleinput, dateinput, categoryinput)" [value]="this.taskToEdit?.duedate" #dateinput>
                     </div>
                     <div class="prio-container single-value-container">
                         <div>Prio</div>
@@ -186,7 +186,7 @@
                             <div class="input-container">
                                 <input class="category"
                                     (click)="this.changeOpenState($event, categoryinput, 'openCategory')" type="text"
-                                    placeholder="Select task category" readonly #categoryinput>
+                                    placeholder="Select task category" readonly [value]="this.taskToEdit?.category" #categoryinput>
                                 <button class="category"
                                     (click)="this.changeOpenState($event, categoryinput, 'openCategory')">
                                     <svg class="category" [ngClass]="{'rotate': this.openCategory}"
