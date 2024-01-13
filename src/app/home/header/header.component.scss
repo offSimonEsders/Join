@@ -16,6 +16,10 @@
         line-height: 120%;
     }
 
+    .handy-logo-container {
+        display: none;
+    }
+
     .container {
         display: flex;
         align-items: center;
@@ -91,4 +95,32 @@
 
     }
 
+}
+
+@media (max-width: 1000px) {
+    .header-frame {
+        padding: 20px 16px;
+
+        .header-text {
+            display: none;
+        }
+
+        .container {
+            
+            .help-container {
+                display: none;
+            }
+
+        }
+
+        .handy-logo-container {
+            display: flex;
+        }
+
+        .user-profile {
+            height: 34px !important;
+            width: 34px !important;
+        }
+
+    }
 }
