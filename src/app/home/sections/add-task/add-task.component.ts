@@ -6,6 +6,7 @@ import { Contact } from '../../modules/contact';
 import { SubtaskComponent } from "./subtask/subtask.component";
 import { Subtask } from '../../modules/subtask';
 import { Task } from '../../modules/task';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-task',
@@ -18,6 +19,7 @@ export class AddTaskComponent implements OnInit {
   @ViewChild('titlecontainer') titlecontainer?: ElementRef<HTMLInputElement>;
   @ViewChild('datecontainer') datecontainer?: ElementRef<HTMLInputElement>;
   @ViewChild('categorycontainer') categorycontainer?: ElementRef<HTMLInputElement>;
+  @ViewChild('userfeedback') userfeedback?: ElementRef<HTMLDivElement>;
 
   contacts?: Contact[];
   tasks?: Task[];
@@ -33,7 +35,7 @@ export class AddTaskComponent implements OnInit {
 
   focusSubtaskInput: boolean = false;
 
-  constructor(private appwriteService: AppwriteService) {
+  constructor(private appwriteService: AppwriteService, private router: Router) {
     this.getMinDate();
   }
 
@@ -180,8 +182,22 @@ export class AddTaskComponent implements OnInit {
       const [selectedContacts, subtasks, index] = preparedData;
       const task = new Task(titleinput.value, descriptioninput.value, selectedContacts, dateinput.value, this.prio, categoryinput.value, subtasks, this.taskState, index);
       this.clearAddTask(event, titleinput, descriptioninput, dateinput, categoryinput);
+      this.activateUserFeedback();
       await this.appwriteService.createTask(task);
+      this.urlToBoard();
     }
+  }
+
+  activateUserFeedback() {
+    if (this.userfeedback) {
+      this.userfeedback.nativeElement.style.display = 'flex';
+    }
+  }
+
+  urlToBoard() {
+    setTimeout(() => {
+      this.router.navigate(['home/board'])
+    }, 1000);
   }
 
   getTaskIndex() {

@@ -635,8 +635,37 @@
 
         }
 
+        .user-Feedback {
+            display: none;
+            position: fixed;
+            height: 74px;
+            padding: 0px 25px;
+            border-radius: 20px;
+            gap: 8px;
+            top: 200%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: fit-content;
+            justify-content: center;
+            align-items: center;
+            background-color: #2A3647;
+            animation: userfeedback 1s forwards;
+
+            p {
+                font-size: 20px;
+                color: #FFF;
+            }
+
+        }
+
     }
 
+}
+
+@keyframes userfeedback {
+    100% {
+        top: 50%;
+    }
 }
 
 @media (max-height: 960px) {
