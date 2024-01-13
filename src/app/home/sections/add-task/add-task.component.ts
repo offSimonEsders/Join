@@ -196,7 +196,7 @@ export class AddTaskComponent implements OnInit {
 
   urlToBoard() {
     setTimeout(() => {
-      this.router.navigate(['home/board'])
+      this.router.navigate(['home/board']);
     }, 1000);
   }
 

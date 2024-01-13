@@ -49,7 +49,8 @@ export class ViewTaskInfoComponent implements OnInit {
 
   changeSubtaskIsDone(subtask: Subtask) {
     if(this.subtaskdone) {
-      this.subtaskdone[this.getIndexOfSubtask(subtask)] = !this.subtaskdone[this.getIndexOfSubtask(subtask)];
+      const index = this.getIndexOfSubtask(subtask)
+      this.subtaskdone[index] = !this.subtaskdone[index];
     }
   }
 
