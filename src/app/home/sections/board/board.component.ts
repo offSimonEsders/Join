@@ -30,6 +30,10 @@ export class BoardComponent implements OnInit {
     }
 
     async ngOnInit() {
+        this.init();
+    }
+
+    async init() {
         this.tasks = await this.appwriteService.getTasks();
         this.filterForAllStates();
     }
@@ -127,6 +131,20 @@ export class BoardComponent implements OnInit {
         if (!this.openAddTaskPopup) {
             this.infoTask = undefined;
         }
+    }
+
+    closePopupAndUpdateData(task: Task) {
+        const index: number = this.getTaskIndex(task);
+        if(index == -1) {
+            setTimeout(() => {
+                this.init();
+            }, 500);
+        } else {
+            this.tasks[index] = task;
+            this.filterForAllStates();        }
+        setTimeout(() => {
+            this.openCloseAddTaskPopup();
+        }, 1000);
     }
 
 }

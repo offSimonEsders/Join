@@ -152,7 +152,7 @@
                     </g>
                 </svg>
             </button>
-            <app-add-task class="add-task" [taskState]="this.createTaskWithState" [isPopUp]="true" [taskToEdit]="this.infoTask"></app-add-task>
+            <app-add-task class="add-task" (closePopup)="this.closePopupAndUpdateData($event)" [taskState]="this.createTaskWithState" [isPopUp]="true" [taskToEdit]="this.infoTask"></app-add-task>
         </div>
     </section>
 

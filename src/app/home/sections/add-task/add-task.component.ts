@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SelectableContactComponent } from "./selectable-contact/selectable-contact.component";
 import { AppwriteService } from '../../../services/appwrite.service';
@@ -19,6 +19,7 @@ export class AddTaskComponent implements OnInit {
   @Input() taskToEdit: Task | undefined;
   @Input() isPopUp: boolean = false;
   @Input() taskState: string = 'ToDo';
+  @Output() closePopup = new EventEmitter<Task>();
   @ViewChild('titlecontainer') titlecontainer?: ElementRef<HTMLInputElement>;
   @ViewChild('datecontainer') datecontainer?: ElementRef<HTMLInputElement>;
   @ViewChild('categorycontainer') categorycontainer?: ElementRef<HTMLInputElement>;
@@ -208,6 +209,7 @@ export class AddTaskComponent implements OnInit {
     if (task) {
       this.clearAddTask(event, titleinput, descriptioninput, dateinput, categoryinput);
       this.activateUserFeedback();
+      this.closePopup.emit(task);
       await this.appwriteService.createTask(task);
       this.urlToBoard();
     }
@@ -229,11 +231,14 @@ export class AddTaskComponent implements OnInit {
     if (this.addWrongInputClass(titleinput, dateinput, categoryinput)) {
       return;
     }
-    const task: Task | undefined = this.createTask(event, titleinput, descriptioninput, dateinput, categoryinput);
+    let task: Task | undefined = this.createTask(event, titleinput, descriptioninput, dateinput, categoryinput);
     if (task && this.taskToEdit?.$id) {
+      task.$id = this.taskToEdit.$id;
+      task.state = this.taskToEdit.state;
       this.clearAddTask(event, titleinput, descriptioninput, dateinput, categoryinput);
       this.activateUserFeedback();
-      this.appwriteService.updateTask(this.taskToEdit.$id, task);
+      this.closePopup.emit(task);
+      this.appwriteService.updateTask(task.$id, task);
     }
   }
 
