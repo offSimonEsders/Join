@@ -50,9 +50,9 @@ export class AddTaskComponent implements OnInit {
   }
 
   async ngOnInit() {
+    this.loadDataEditMode();
     this.contacts = await this.appwriteService.getContacts() as unknown as Contact[];
     this.tasks = await this.appwriteService.getTasks() as unknown as Task[];
-    this.loadDataEditMode();
   }
 
   loadDataEditMode() {
@@ -121,14 +121,14 @@ export class AddTaskComponent implements OnInit {
 
   unselectContacts(event: Contact) {
     const index = this.selectedContacts.findIndex((c) => {
-      return c == event;
+      return c.$id == event.$id;
     });
     this.selectedContacts.splice(index, 1);
     console.log(this.selectedContacts)
   }
 
-  checkIfContactIsSelected(contact: Contact) {
-    return this.selectedContacts.includes(contact);
+  checkIfContactIsSelected(contact: Contact): boolean {
+    return this.selectedContacts.some(selectedContact => selectedContact.$id === contact.$id);
   }
 
   focusInput(event: Event, input: HTMLInputElement) {
