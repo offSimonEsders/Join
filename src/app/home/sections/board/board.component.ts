@@ -124,6 +124,9 @@ export class BoardComponent implements OnInit {
 
     openCloseAddTaskPopup() {
         this.openAddTaskPopup = !this.openAddTaskPopup;
+        if (!this.openAddTaskPopup) {
+            this.infoTask = undefined;
+        }
     }
 
 }
