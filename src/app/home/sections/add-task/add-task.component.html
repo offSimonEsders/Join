@@ -325,7 +325,7 @@
                             </g>
                         </svg>
                     </button>
-                    <button *ngIf="this.editMode()" class="save-button" (click)="createNewTask($event, titleinput, descriptioninput, dateinput, categoryinput)">
+                    <button *ngIf="this.editMode()" class="save-button" (click)="this.createAndUploadNewTask($event, titleinput, descriptioninput, dateinput, categoryinput)">
                         Create Task
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                             <mask id="mask0_121849_6098" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"

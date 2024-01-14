@@ -57,7 +57,7 @@ export class AddTaskComponent implements OnInit {
 
   loadDataEditMode() {
     if (!this.editMode() && this.taskToEdit) {
-      if(this.taskToEdit?.assignedContacts) {
+      if (this.taskToEdit?.assignedContacts) {
         this.selectedContacts = this.getDataAsObject(this.taskToEdit?.assignedContacts);
       }
       if (this.taskToEdit?.subtasks) {
@@ -202,20 +202,29 @@ export class AddTaskComponent implements OnInit {
     this.removeWrongInputClass(titleinput, dateinput, categoryinput, true);
   }
 
-  async createNewTask(event: Event, titleinput: HTMLInputElement, descriptioninput: HTMLTextAreaElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement) {
+  async createAndUploadNewTask(event: Event, titleinput: HTMLInputElement, descriptioninput: HTMLTextAreaElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement) {
     event.preventDefault();
     if (this.addWrongInputClass(titleinput, dateinput, categoryinput)) {
       return;
     }
-    const preparedData = this.prepareDataForTask();
-    if (this.tasks && preparedData) {
-      const [selectedContacts, subtasks, index] = preparedData;
-      const task = new Task(titleinput.value, descriptioninput.value, selectedContacts, dateinput.value, this.prio, categoryinput.value, subtasks, this.taskState, index);
+    const task = this.createTask(event, titleinput, descriptioninput, dateinput, categoryinput);
+    if (task) {
       this.clearAddTask(event, titleinput, descriptioninput, dateinput, categoryinput);
       this.activateUserFeedback();
       await this.appwriteService.createTask(task);
       this.urlToBoard();
     }
+
+  }
+
+  createTask(event: Event, titleinput: HTMLInputElement, descriptioninput: HTMLTextAreaElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement) {
+    const preparedData = this.prepareDataForTask();
+    if (this.tasks && preparedData) {
+      const [selectedContacts, subtasks, index] = preparedData;
+      const task = new Task(titleinput.value, descriptioninput.value, selectedContacts, dateinput.value, this.prio, categoryinput.value, subtasks, this.taskState, index);
+      return task;
+    }
+    return;
   }
 
   activateUserFeedback() {
