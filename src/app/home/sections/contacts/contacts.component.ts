@@ -84,7 +84,6 @@ export class ContactsComponent implements OnInit {
         const save = this.contacts;
         let getContacts = setInterval(async () => {
             if(this.contacts == save) {
-                console.log("load")
                 this.contacts = (await this.appwriteService.getContacts());
                 return;
             }

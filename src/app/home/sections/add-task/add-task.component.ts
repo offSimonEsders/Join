@@ -116,7 +116,6 @@ export class AddTaskComponent implements OnInit {
 
   selectContacts(event: Contact) {
     this.selectedContacts.push(event);
-    console.log(this.selectedContacts)
   }
 
   unselectContacts(event: Contact) {
@@ -124,7 +123,6 @@ export class AddTaskComponent implements OnInit {
       return c.$id == event.$id;
     });
     this.selectedContacts.splice(index, 1);
-    console.log(this.selectedContacts)
   }
 
   checkIfContactIsSelected(contact: Contact): boolean {
@@ -182,7 +180,6 @@ export class AddTaskComponent implements OnInit {
       return s == subtask;
     });
     this.subtasks[index] = newsubtask;
-    console.log(this.subtasks)
   }
 
   changePrio(event: Event, newPrio: string) {

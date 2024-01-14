@@ -22,7 +22,6 @@ export class SummaryComponent implements OnInit {
   async ngOnInit() {
     this.tasks = await this.appwriteService.getTasks() as unknown as Task[];
     this.userName = await this.appwriteService.getUserName();
-    console.log(this.tasks)
   }
 
   goToBoard() {
