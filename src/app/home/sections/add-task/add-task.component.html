@@ -311,7 +311,7 @@
                                 stroke="#091931" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </button>
-                    <button *ngIf="!this.editMode()" class="save-button">
+                    <button *ngIf="!this.editMode()" (click)="this.updateTask($event, titleinput, descriptioninput, dateinput, categoryinput)" class="save-button">
                         Ok
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
                             <mask id="mask0_124305_3985" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"

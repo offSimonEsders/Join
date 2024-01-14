@@ -224,7 +224,20 @@ export class AddTaskComponent implements OnInit {
       const task = new Task(titleinput.value, descriptioninput.value, selectedContacts, dateinput.value, this.prio, categoryinput.value, subtasks, this.taskState, index);
       return task;
     }
-    return;
+    return undefined;
+  }
+
+  updateTask(event: Event, titleinput: HTMLInputElement, descriptioninput: HTMLTextAreaElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement) {
+    event.preventDefault();
+    if (this.addWrongInputClass(titleinput, dateinput, categoryinput)) {
+      return;
+    }
+    const task: Task | undefined = this.createTask(event, titleinput, descriptioninput, dateinput, categoryinput);
+    if (task && this.taskToEdit?.$id) {
+      this.clearAddTask(event, titleinput, descriptioninput, dateinput, categoryinput);
+      this.activateUserFeedback();
+      this.appwriteService.updateTask(this.taskToEdit.$id, task);
+    }
   }
 
   activateUserFeedback() {
