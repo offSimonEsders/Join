@@ -26,12 +26,48 @@
             justify-content: space-between;
             align-items: center;
 
-            h1 {
-                color: #000;
-                font-size: 61px;
-                font-style: normal;
-                font-weight: 700;
-                line-height: 120%;
+            .head-text-container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+
+                h1 {
+                    color: #000;
+                    font-size: 61px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 120%;
+                }
+
+                button {
+                    cursor: pointer;
+                    display: none;
+                    width: 40px;
+                    height: 40px;
+                    padding: 3px;
+                    justify-content: center;
+                    align-items: center;
+                    border: none;
+                    gap: 10px;
+                    flex-shrink: 0;
+                    border-radius: 10px;
+                    background: var(--Version-2-main-color, #2A3647);
+
+                    &:hover {
+                        background: #29ABE2;
+                        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                        border-color: #29ABE2;
+                    }
+
+                    &:active {
+                        background: #091931;
+                        border-color: #091931;
+                        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                    }
+
+                }
+
             }
 
             .search-addtask-container {
@@ -39,6 +75,7 @@
                 justify-content: flex-end;
                 align-items: center;
                 gap: 32px;
+                width: 100%;
 
                 .search-container {
                     position: relative;
@@ -72,6 +109,7 @@
                 }
 
                 .add-task {
+                    white-space: nowrap;
                     cursor: pointer;
                     display: flex;
                     justify-content: center;
@@ -355,6 +393,11 @@
             align-items: flex-start !important;
             max-width: 565px;
             gap: 40px;
+
+            .search-addtask-container {
+                justify-content: space-between !important;
+            }
+
         }
 
         .board-task-content {
@@ -396,10 +439,16 @@
             gap: 40px;
             padding: 0 !important;
 
+            .head-text-container {
+                button {
+                    display: flex !important;
+                }
+            }
+
             .search-addtask-container {
 
                 input {
-                    width: 466px !important; //236
+                    width: 456px !important; //236
                 }
 
                 button {
@@ -468,7 +517,7 @@
                 .search-addtask-container {
 
                     input {
-                        width: 366px !important; //236
+                        width: 356px !important; //236
                     }
 
                     button {
