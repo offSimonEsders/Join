@@ -26,6 +26,7 @@ export class AddTaskComponent implements OnInit {
   @ViewChild('userfeedback') userfeedback?: ElementRef<HTMLDivElement>;
 
   contacts?: Contact[];
+  contactsForList?: Contact[];
   tasks?: Task[];
   selectedContacts: Contact[] = [];
   subtasks: Subtask[] = [];
@@ -53,6 +54,7 @@ export class AddTaskComponent implements OnInit {
   async ngOnInit() {
     this.loadDataEditMode();
     this.contacts = await this.appwriteService.getContacts() as unknown as Contact[];
+    this.contactsForList = this.contacts;
     this.tasks = await this.appwriteService.getTasks() as unknown as Task[];
   }
 
@@ -300,6 +302,10 @@ export class AddTaskComponent implements OnInit {
     if (categoryinput.value.length > 0 || clear) {
       this.categorycontainer?.nativeElement.classList.remove('wrong-input');
     }
+  }
+
+  searchContact(name: string) {
+    this.contactsForList = this.contacts?.filter((c: Contact) => { return c.name.toLocaleLowerCase().includes(name.toLocaleLowerCase()) });
   }
 
 }

@@ -27,6 +27,7 @@
                             <div>Assigned to</div>
                             <div class="input-container">
                                 <input class="contact" type="text" placeholder="Select contacts to assign"
+                                    (input)="this.searchContact(contactsinput.value)"
                                     (click)="this.changeOpenState($event, contactsinput, 'openContacts')"
                                     #contactsinput>
                                 <button class="contact"
@@ -55,7 +56,7 @@
                             </div>
                         </section>
                         <ul *ngIf="this.openContacts" class="list">
-                            <app-selectable-contact *ngFor="let contact of this.contacts" [contact]="contact"
+                            <app-selectable-contact *ngFor="let contact of this.contactsForList" [contact]="contact"
                                 [selected]="this.checkIfContactIsSelected(contact)"
                                 (selectSignal)="this.selectContacts($event)"
                                 (unselectSignal)="this.unselectContacts($event)"></app-selectable-contact>
@@ -291,7 +292,8 @@
 
             <div class="info-button-container">
                 <div class="button-container">
-                    <button *ngIf="this.editMode()" class="clear-button" (click)="clearAddTask($event, titleinput, descriptioninput, dateinput, categoryinput)">
+                    <button *ngIf="this.editMode()" class="clear-button"
+                        (click)="clearAddTask($event, titleinput, descriptioninput, dateinput, categoryinput)">
                         Clear
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                             <path
@@ -311,7 +313,9 @@
                                 stroke="#091931" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </button>
-                    <button *ngIf="!this.editMode()" (click)="this.updateTask($event, titleinput, descriptioninput, dateinput, categoryinput)" class="save-button">
+                    <button *ngIf="!this.editMode()"
+                        (click)="this.updateTask($event, titleinput, descriptioninput, dateinput, categoryinput)"
+                        class="save-button">
                         Ok
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
                             <mask id="mask0_124305_3985" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
@@ -325,7 +329,8 @@
                             </g>
                         </svg>
                     </button>
-                    <button *ngIf="this.editMode()" class="save-button" (click)="this.createAndUploadNewTask($event, titleinput, descriptioninput, dateinput, categoryinput)">
+                    <button *ngIf="this.editMode()" class="save-button"
+                        (click)="this.createAndUploadNewTask($event, titleinput, descriptioninput, dateinput, categoryinput)">
                         Create Task
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                             <mask id="mask0_121849_6098" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
