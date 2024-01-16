@@ -45,13 +45,14 @@
 
                     input {
                         display: flex;
-                        width: 312px;
-                        height: 30px;
-                        padding: 8px 16px;
+                        padding: 12px 21px;
                         align-items: center;
+                        outline: none;
                         gap: 10px;
+                        align-self: stretch;
                         border-radius: 10px;
-                        border: 1px solid var(--icon, #A8A8A8);
+                        flex: 1 0 0;
+                        border: 1px solid var(--Style, #D1D1D1);
                         background: #FFF;
                         font-size: 20px;
                         font-style: normal;
@@ -60,6 +61,10 @@
 
                         &::placeholder {
                             color: var(--Style, #D1D1D1);
+                        }
+
+                        &:focus {
+                            border: 1px solid var(--Ligth-blue, #29ABE2);
                         }
 
                     }
