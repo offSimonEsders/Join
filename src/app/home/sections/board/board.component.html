@@ -9,7 +9,7 @@
             <div class="search-addtask-container">
 
                 <div class="search-container">
-                    <input type="text" placeholder="Find Task">
+                    <input type="text" placeholder="Find Task" (input)="this.searchTaskInBoard(searchinput.value)" #searchinput>
                 </div>
 
                 <button class="add-task" (click)="this.openCloseAddTaskPopup()">
