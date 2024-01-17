@@ -574,3 +574,42 @@
 
   }
 }
+
+@media (max-width: 430px) {
+  .board-frame {
+
+    .board-content {
+
+      .board-header {
+        max-width: 300px;
+        width: 300px;
+
+        .search-addtask-container {
+          input {
+            width: 266px !important; //236
+          }
+        }
+
+      }
+
+      .board-task-content {
+        width: 300px !important;
+
+        .task-section {
+          .task-head {
+            width: 300px !important;
+          }
+
+          .tasks {
+            max-width: 300px !important;
+            width: 300px !important;
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+}
