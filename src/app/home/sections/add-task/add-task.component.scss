@@ -666,6 +666,10 @@
   width: fit-content;
   background: #FFF;
 
+  .info-button-container {
+    background: #FFF !important;
+  }
+
   &::-webkit-scrollbar {
     width: 5px;
   }
@@ -830,6 +834,13 @@
 
   }
 
+}
+
+@media (max-width: 550px) {
+  .info-button-container {
+    background: black !important;
+    border-radius: 0 0 30px 30px;
+  }
 }
 
 @media (max-width: 430px) {
