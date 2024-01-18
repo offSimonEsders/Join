@@ -1,7 +1,7 @@
-<section class="task-info-frame">
+<section class="task-info-frame" #taskinfoframe>
 
     <div class="background" (click)="this.closeTaskInfo()"></div>
-    <section class="task-info">
+    <section class="task-info" #taskinfo>
         <header>
             <div class="category" [ngClass]="this.task?.category == 'User Story' ? 'userstory' : 'technicaltask'">
                 {{this.task?.category}}</div>
