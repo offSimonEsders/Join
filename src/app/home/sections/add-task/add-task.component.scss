@@ -837,8 +837,10 @@
 }
 
 @media (max-width: 550px) {
-  .info-button-container {
-    border-radius: 0 0 30px 30px;
+  .as-popup {
+    .info-button-container {
+      border-radius: 0 0 30px 30px;
+    }
   }
 }
 
