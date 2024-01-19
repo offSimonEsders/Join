@@ -1,33 +1,43 @@
 <div class="contact-information-frame">
-    <div class="contact-information-content">
-        <header>
-            <div class="user-icon {{this.contact?.color}}">
-                {{this.contact?.initials}}
-            </div>
-            <div class="name-action-container">
-                <h1>{{this.contact?.name}}</h1>
-                <div class="action-container">
-                    <button (click)="this.openEdit.emit('change')">
-                        <div class="icon-container"></div>
-                        Edit
-                    </button>
-                    <button (click)="this.deleteContact.emit('delete')">
-                        <div class="icon-container"></div>
-                        Delete
-                    </button>
-                </div>
-            </div>
-        </header>
-        <h2 class="information-header">Contact Information</h2>
-        <div class="information-container">
-            <div>
-                <h2>Email</h2>
-                <a href="mailto:antom@gmail.com">{{this.contact?.email}}</a>
-            </div>
-            <div>
-                <h2>Phone</h2>
-                <a href="tel:{{this.contact?.phone}}">{{this.contact?.phone}}</a>
-            </div>
+  <div class="contact-information-content">
+    <header>
+      <div class="user-icon {{this.contact?.color}}">
+        {{ this.contact?.initials }}
+      </div>
+      <div class="name-action-container">
+        <h1>{{ this.contact?.name }}</h1>
+        <div class="action-container">
+          <button (click)="this.openEdit.emit('change')">
+            <div class="icon-container"></div>
+            Edit
+          </button>
+          <button (click)="this.deleteContact.emit('delete')">
+            <div class="icon-container"></div>
+            Delete
+          </button>
         </div>
+      </div>
+    </header>
+    <h2 class="information-header">Contact Information</h2>
+    <div class="information-container">
+      <div>
+        <h2>Email</h2>
+        <a href="mailto:antom@gmail.com">{{ this.contact?.email }}</a>
+      </div>
+      <div>
+        <h2>Phone</h2>
+        <a href="tel:{{this.contact?.phone}}">{{ this.contact?.phone }}</a>
+      </div>
     </div>
+  </div>
+  <div class="responsive-action">
+    <button (click)="this.openEdit.emit('change')">
+      <div class="icon-container"></div>
+      Edit
+    </button>
+    <button (click)="this.deleteContact.emit('delete')">
+      <div class="icon-container"></div>
+      Delete
+    </button>
+  </div>
 </div>
