@@ -38,7 +38,7 @@ export class ContactsComponent implements OnInit {
   }
 
   checkWindowWidth() {
-    if(window.innerWidth > 1350) {
+    if (window.innerWidth > 1350) {
       this.showInfoResp = true;
       this.changed = false;
     } else if (!this.changed) {
@@ -115,7 +115,9 @@ export class ContactsComponent implements OnInit {
   }
 
   showContactInfoResponsive() {
-    this.showInfoResp = !this.showInfoResp;
+    if (window.innerWidth <= 1350) {
+      this.showInfoResp = !this.showInfoResp;
+    }
   }
 
   protected readonly window = window;
