@@ -172,8 +172,13 @@
         line-height: 120%;
       }
 
-      svg {
+      .svg-normal {
+        display: flex !important;
         height: 59px !important;
+      }
+
+      .svg-responsive {
+        display: none !important;
       }
 
       p {
@@ -249,6 +254,10 @@
       display: flex !important;
     }
 
+    .contact-information-container {
+      width: 604px;
+    }
+
   }
 }
 
@@ -268,11 +277,45 @@
       }
 
     }
+
+    .contact-information-container {
+      width: 464px;
+    }
+
   }
 }
 
 @media (max-width: 500px) {
   .contacts-frame {
+
+    .contact-information-container {
+      width: 315px;
+
+      header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+        position: relative;
+
+        h1 {
+          font-size: 47px !important;
+        }
+
+        p {
+          font-size: 20px !important;
+        }
+
+        .svg-normal {
+          display: none !important;
+        }
+
+        .svg-responsive {
+          display: flex !important;
+        }
+
+      }
+
+    }
 
     .contacts-list-container {
       padding: 0 !important;
