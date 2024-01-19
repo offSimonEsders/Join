@@ -93,8 +93,10 @@
     .contact-list {
       display: flex;
       flex-direction: column;
-      overflow: auto;
+      overflow-y: auto;
+      overflow-x: hidden;
       position: relative;
+      width: fit-content;
       margin: 0;
       padding: 0;
 
@@ -117,6 +119,8 @@
       }
 
       .devider {
+        overflow-x: hidden;
+
         h2 {
           display: flex;
           padding: 17px 36px;
@@ -131,6 +135,12 @@
           font-weight: 400;
           line-height: 120%;
         }
+      }
+
+      .contact-sorted {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
       }
 
     }
@@ -250,6 +260,32 @@
 
       .contact-list {
         width: 360px !important;
+
+        .devider {
+          overflow-x: hidden;
+        }
+
+      }
+
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .contacts-frame {
+
+    .contacts-list-container {
+      padding: 0 !important;
+      width: 315px !important;
+
+      .contact-list {
+        padding: 0 0 0 0!important;
+        width: 315px !important;
+
+        .devider {
+          width: 310px;
+        }
+
       }
 
     }

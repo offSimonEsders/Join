@@ -36,7 +36,7 @@
         #contactlist>
       <ng-container *ngFor="let letter of letters">
         {{ this.checkContainerHeight(contactlist, addbuttoncontainer, conactslistcontainer) }}
-        <section class="contact-sorted" *ngIf="this.returnIfNameWithLetterexist(letter)">
+        <section style="width: fit-content" class="contact-sorted" *ngIf="this.returnIfNameWithLetterexist(letter)">
           <div class="devider">
             <h2>{{ letter }}</h2>
             <svg xmlns="http://www.w3.org/2000/svg" width="353" height="2" viewBox="0 0 353 2" fill="none">
