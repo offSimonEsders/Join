@@ -124,5 +124,12 @@ export class ContactsComponent implements OnInit {
     }
   }
 
+  showContactInfoResp() {
+    if(window.innerWidth < 1350) {
+      return this.showInfoResp;
+    }
+    return true;
+  }
+
   protected readonly window = window;
 }
