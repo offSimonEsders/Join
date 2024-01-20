@@ -164,14 +164,16 @@
     align-items: flex-start;
     gap: 27px;
     padding: 105px 0 25px 50px;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     min-height: calc(100vh - 231px);
     width: calc(100% - 55px);
 
     header {
       display: inline-flex;
-      justify-content: flex-end;
+      justify-content: flex-start;
       align-items: center;
+      width: 100%;
       gap: 30px;
       padding: 5px 0 0 5px;
 
@@ -198,6 +200,43 @@
         font-style: normal;
         font-weight: 400;
         line-height: 120%;
+      }
+
+      .back-to-list {
+        cursor: pointer;
+        display: flex;
+        position: absolute;
+        right: 0;
+        border-radius: 90px;
+        border: none;
+        width: 37px;
+        height: 37px;
+        background: transparent;
+
+        &:hover {
+          svg {
+            &:nth-child(1) {
+              display: none;
+            }
+
+            &:nth-child(2) {
+              display: flex;
+            }
+
+          }
+        }
+
+        svg {
+          &:nth-child(1) {
+            display: flex;
+          }
+
+          &:nth-child(2) {
+            display: none;
+          }
+
+        }
+
       }
 
     }
