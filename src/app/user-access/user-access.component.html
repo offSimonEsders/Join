@@ -1,17 +1,17 @@
 <section class="user-access-frame">
 
-    <div class="disappearing-container" #disappearingcontainer></div>
+  <div class="disappearing-container" #disappearingcontainer></div>
 
-    <div class="user-access-content">
-        <div class="logo-container" #logoContainer>
-            <div class="join-logo-big animate-join-logo" #bigLogo></div>
-            <div class="logo-placeholder"></div>
-        </div>
-        <router-outlet></router-outlet>
-        <div class="legal-container">
-            <a href="/privacypolicy" target="_blank">Privacy Policy</a>
-            <a href="/legalnotice" target="_blank">Legal notice</a>
-        </div>
+  <div class="user-access-content">
+    <div class="logo-container" #logoContainer>
+      <div class="join-logo-big animate-join-logo" #bigLogo></div>
+      <div class="logo-placeholder"></div>
     </div>
+    <router-outlet></router-outlet>
+    <div class="legal-container">
+      <a href="/legal/privacypolicy" target="_blank">Privacy Policy</a>
+      <a href="/legal/legalnotice" target="_blank">Legal notice</a>
+    </div>
+  </div>
 
 </section>

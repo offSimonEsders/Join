@@ -1,42 +1,45 @@
 <section class="registration-frame">
 
-    <div class="registration-content">
+  <div class="registration-content">
 
-        <button class="back-to-login" (click)="this.router.navigate([''])"></button>
+    <button class="back-to-login" (click)="this.router.navigate([''])"></button>
 
-        <header class="header">
-            <h1>Sign up</h1>
-            <svg xmlns="http://www.w3.org/2000/svg" width="154" height="3" viewBox="0 0 154 3" fill="none">
-                <path d="M152 1.5L2 1.5" stroke="#29ABE2" stroke-width="3" stroke-linecap="round" />
-            </svg>
-        </header>
+    <header class="header">
+      <h1>Sign up</h1>
+      <svg xmlns="http://www.w3.org/2000/svg" width="154" height="3" viewBox="0 0 154 3" fill="none">
+        <path d="M152 1.5L2 1.5" stroke="#29ABE2" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+    </header>
 
-        <form class="registration-form">
-            <div class="input-container name-after" #nameinputcontainer>
-                <input (input)="this.removeWrongInputClass(nameinputcontainer)" type="text" placeholder="Name" #nameinput>
-                <div class="icon-container icon-container-name"></div>
-            </div>
-            <div class="input-container email-after" #emailinputcontainer>
-                <input (input)="this.removeWrongInputClass(emailinputcontainer)" type="text" placeholder="Email" #emailinput>
-                <div class="icon-container icon-container-email"></div>
-            </div>
-            <div class="input-container" #passwordinputcontainer>
-                <input type="password" placeholder="Password" #passwordinput1>
-                <div class="icon-container icon-container-password"></div>
-            </div>
-            <div class="input-container password-after" #passwordinputcontainer>
-                <input (input)="this.removeWrongInputClassPassword()" type="password" placeholder="Password" #passwordinput2>
-                <div class="icon-container icon-container-password"></div>
-            </div>
-            <div class="rememberme-container">
-                <input type="checkbox" name="" id="remembermecheckbox" #checkbox>
-                <label for="remembermecheckbox"></label>
-                <p>I accept the</p>
-                <a href="/privacypolicy">Privacy policy</a>
-            </div>
-            <button (click)="this.register($event, nameinput.value, emailinput.value, passwordinput1.value, passwordinput2.value, checkbox.checked)">Sign up</button>
-        </form>
+    <form class="registration-form">
+      <div class="input-container name-after" #nameinputcontainer>
+        <input (input)="this.removeWrongInputClass(nameinputcontainer)" type="text" placeholder="Name" #nameinput>
+        <div class="icon-container icon-container-name"></div>
+      </div>
+      <div class="input-container email-after" #emailinputcontainer>
+        <input (input)="this.removeWrongInputClass(emailinputcontainer)" type="text" placeholder="Email" #emailinput>
+        <div class="icon-container icon-container-email"></div>
+      </div>
+      <div class="input-container" #passwordinputcontainer>
+        <input type="password" placeholder="Password" #passwordinput1>
+        <div class="icon-container icon-container-password"></div>
+      </div>
+      <div class="input-container password-after" #passwordinputcontainer>
+        <input (input)="this.removeWrongInputClassPassword()" type="password" placeholder="Password" #passwordinput2>
+        <div class="icon-container icon-container-password"></div>
+      </div>
+      <div class="rememberme-container">
+        <input type="checkbox" name="" id="remembermecheckbox" #checkbox>
+        <label for="remembermecheckbox"></label>
+        <p>I accept the</p>
+        <a href="/legal/privacypolicy" target="_blank">Privacy policy</a>
+      </div>
+      <button
+        (click)="this.register($event, nameinput.value, emailinput.value, passwordinput1.value, passwordinput2.value, checkbox.checked)">
+        Sign up
+      </button>
+    </form>
 
-    </div>
+  </div>
 
 </section>
