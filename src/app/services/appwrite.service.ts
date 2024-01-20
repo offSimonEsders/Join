@@ -52,6 +52,11 @@ export class AppwriteService {
   }
 
   async appwriteSignInAnonymsly() {
+    try {
+      await this.appwriteLogOut();
+    } catch {
+
+    }
     this.loggedInUser = await this.account.createAnonymousSession();
   }
 
