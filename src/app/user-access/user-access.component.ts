@@ -14,7 +14,7 @@ export class UserAccessComponent implements AfterViewInit, OnInit {
     @ViewChild('logoContainer') logoContainer?: ElementRef
     @ViewChild('disappearingcontainer') disappearingcontainer?: ElementRef;
 
-    constructor(private router: Router) {
+    constructor(public router: Router) {
 
     }
 

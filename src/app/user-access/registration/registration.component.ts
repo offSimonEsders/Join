@@ -1,6 +1,6 @@
-import { Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { Router } from '@angular/router';
-import { AppwriteService } from '../../services/appwrite.service';
+import {Component, ElementRef, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {Router} from '@angular/router';
+import {AppwriteService} from '../../services/appwrite.service';
 
 @Component({
   selector: 'app-registration',
@@ -16,7 +16,7 @@ export class RegistrationComponent {
   mailregex: RegExp = /[a-z0-9]+@[a-z]+\.[a-z]/;
 
   constructor(public router: Router, private appwriteService: AppwriteService) {
-    
+
   }
 
   removeWrongInputClass(inputcontainer: HTMLDivElement) {
@@ -30,7 +30,7 @@ export class RegistrationComponent {
   }
 
   validateName(name: string) {
-    if(name.length <= 0) {
+    if (name.length <= 0) {
       this.nameinputcontainer?.nativeElement.classList.add('wrong-input');
       return true;
     }
@@ -38,7 +38,7 @@ export class RegistrationComponent {
   }
 
   validateEmail(email: string) {
-    if(!this.mailregex.test(email)) {
+    if (!this.mailregex.test(email)) {
       this.emailinputcontainer?.nativeElement.classList.add('wrong-input');
       return true;
     }
@@ -46,7 +46,7 @@ export class RegistrationComponent {
   }
 
   validatePassword(password1: string, password2: string) {
-    if(password1.length < 8 || password1 !== password2) {
+    if (password1.length < 8 || password1 !== password2) {
       this.passwordinputcontainer?.forEach((element) => {
         element.nativeElement.classList.add('wrong-input');
       });
@@ -57,13 +57,13 @@ export class RegistrationComponent {
 
   validateData(name: string, email: string, password1: string, password2: string) {
     let stop: boolean = false;
-    if(this.validateName(name)) {
+    if (this.validateName(name)) {
       stop = true;
     }
-    if(this.validateEmail(email)) {
+    if (this.validateEmail(email)) {
       stop = true;
     }
-    if(this.validatePassword(password1, password2)) {
+    if (this.validatePassword(password1, password2)) {
       stop = true;
     }
     return stop;
@@ -71,10 +71,10 @@ export class RegistrationComponent {
 
   async register(event: Event, name: string, email: string, password1: string, password2: string, accpp: boolean) {
     event.preventDefault();
-    if(this.validateData(name, email, password1, password2) || !accpp) {
+    if (this.validateData(name, email, password1, password2) || !accpp) {
       return;
     }
-    if(await this.appwriteService.appwriteSignUp(email, password1, name)) {
+    if (await this.appwriteService.appwriteSignUp(email, password1, name)) {
       await this.logIn(email, password1);
     }
   }

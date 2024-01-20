@@ -9,8 +9,8 @@
     </div>
     <router-outlet></router-outlet>
     <div class="legal-container">
-      <a href="/legal/privacypolicy" target="_blank">Privacy Policy</a>
-      <a href="/legal/legalnotice" target="_blank">Legal notice</a>
+      <a (click)="router.navigate(['/legal/privacypolicy'])" target="_blank">Privacy Policy</a>
+      <a (click)="router.navigate(['/legal/legalnotice'])" target="_blank">Legal notice</a>
     </div>
   </div>
 

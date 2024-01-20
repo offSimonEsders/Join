@@ -32,7 +32,7 @@
         <input type="checkbox" name="" id="remembermecheckbox" #checkbox>
         <label for="remembermecheckbox"></label>
         <p>I accept the</p>
-        <a href="/legal/privacypolicy" target="_blank">Privacy policy</a>
+        <a (click)="router.navigate(['/legal/privacypolicy'])" target="_blank">Privacy policy</a>
       </div>
       <button
         (click)="this.register($event, nameinput.value, emailinput.value, passwordinput1.value, passwordinput2.value, checkbox.checked)">
