@@ -356,10 +356,7 @@ form {
 
 @media (max-width: 1250px) {
   .create-edit-contact-content {
-    width: auto;
-    height: 90vh;
-    max-height: 90vh;
-    overflow: auto;
+    width: 996px;
   }
 
   .form-container {
@@ -384,8 +381,11 @@ form {
 
 @media (max-width: 1000px) {
   .create-edit-contact-content {
+    width: auto;
     flex-direction: column;
-    height: auto;
+    overflow-y: auto;
+    height: 90vh;
+    max-height: 90vh;
   }
 
   .close-button {
@@ -415,6 +415,7 @@ form {
   }
 
   .form-container {
+    justify-content: center;
     height: fit-content;
     position: static;
     width: 396px;
@@ -443,6 +444,37 @@ form {
   .input-container {
     input {
       width: 322px;
+      height: 15px;
+      padding: 13px 21px;
+      align-items: center;
+      gap: 10px;
+      align-self: stretch;
+    }
+  }
+
+  .button-container {
+    .cancel-delete-button {
+      display: none;
+    }
+  }
+
+}
+
+
+@media (max-width: 450px) {
+  .decoration-container {
+    width: 304px;
+    padding: 66px 5px;
+  }
+
+  .form-container {
+    width: 304px;
+    padding: 96px 5px 24px 5px;
+  }
+
+  .input-container {
+    input {
+      width: 260px;
       height: 15px;
       padding: 13px 21px;
       align-items: center;
