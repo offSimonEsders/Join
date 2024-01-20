@@ -330,16 +330,6 @@
 
     .contact-information-container {
       width: 464px;
-    }
-
-  }
-}
-
-@media (max-width: 500px) {
-  .contacts-frame {
-
-    .contact-information-container {
-      width: 315px;
 
       header {
         flex-direction: column !important;
@@ -365,6 +355,16 @@
 
       }
 
+    }
+
+  }
+}
+
+@media (max-width: 500px) {
+  .contacts-frame {
+
+    .contact-information-container {
+      width: 315px;
     }
 
     .contacts-list-container {
