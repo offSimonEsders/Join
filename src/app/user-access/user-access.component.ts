@@ -43,6 +43,9 @@ export class UserAccessComponent implements AfterViewInit, OnInit {
             if (bigLogoElement && window.innerWidth <= 1000) {
                 bigLogoElement.style.left = ((window.innerWidth - logoContainer.offsetWidth) / 2) + 'px';
                 bigLogoElement.style.top = '37px';
+            } else {
+              bigLogoElement.style.left = '77px';
+              bigLogoElement.style.top = '80px';
             }
         });
     }
