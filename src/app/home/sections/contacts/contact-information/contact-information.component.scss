@@ -272,12 +272,6 @@
   }
 }
 
-@media (max-width: 1350px) {
-  .togglebutton {
-    display: flex !important;
-  }
-}
-
 @media (max-width: 1000px) {
   header {
     .name-action-container {
@@ -286,6 +280,10 @@
       }
 
     }
+  }
+
+  .togglebutton {
+    display: flex !important;
   }
 }
 
