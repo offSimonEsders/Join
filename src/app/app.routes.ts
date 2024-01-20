@@ -11,6 +11,7 @@ import {SummaryComponent} from './home/sections/summary/summary.component';
 import {AddTaskComponent} from './home/sections/add-task/add-task.component';
 import {BoardComponent} from './home/sections/board/board.component';
 import {ContactsComponent} from './home/sections/contacts/contacts.component';
+import { HelpComponent } from "./legalhelp/help/help.component";
 
 export const routes: Routes = [
   {
@@ -33,6 +34,7 @@ export const routes: Routes = [
       {path: 'contacts', component: ContactsComponent, canActivate: [AuthGuardService]},
       {path: 'privacypolicy', component: PrivacyPolicyComponent, canActivate: [AuthGuardService]},
       {path: 'legalnotice', component: LegalNoticeComponent, canActivate: [AuthGuardService]},
+      {path: 'help', component: HelpComponent, canActivate: [AuthGuardService]},
     ]
   }
 ];

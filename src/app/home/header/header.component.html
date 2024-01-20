@@ -19,7 +19,7 @@
     </div>
 
     <div class="container">
-        <div class="help-container"></div>
+        <div (click)="router.navigate(['home/help'])" class="help-container"></div>
         <div (click)="this.changeShowPopup()" class="user-profile popup">{{this.initials}}</div>
     </div>
 
