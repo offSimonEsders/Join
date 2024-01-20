@@ -388,6 +388,18 @@ form {
     height: auto;
   }
 
+  .close-button {
+    top: 24px;
+    right: 16px;
+
+    svg {
+      path {
+        fill: #D9D9D9;
+      }
+    }
+
+  }
+
   .decoration-container {
     width: 396px;
     height: 219px;
