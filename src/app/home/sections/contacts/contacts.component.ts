@@ -117,6 +117,9 @@ export class ContactsComponent implements OnInit {
   showContactInfoResponsive() {
     if (window.innerWidth <= 1350) {
       this.showInfoResp = !this.showInfoResp;
+      if(!this.showInfoResp) {
+        this.informationContact = undefined;
+      }
     }
   }
 
