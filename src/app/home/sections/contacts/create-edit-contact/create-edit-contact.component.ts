@@ -1,8 +1,7 @@
-import { Component, ElementRef, EventEmitter, Input, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Contact } from '../../../modules/contact';
-import { AppwriteService } from '../../../../services/appwrite.service';
-import { ID } from 'appwrite';
+import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {Contact} from '../../../modules/contact';
+import {AppwriteService} from '../../../../services/appwrite.service';
 
 @Component({
   selector: 'app-create-edit-contact',
@@ -17,6 +16,7 @@ export class CreateEditContactComponent {
   @Output() contactEdited = new EventEmitter<Contact>();
   @Output() deleteContactEvent = new EventEmitter<string>();
   @Output() contactCreated = new EventEmitter<Contact>();
+  @ViewChild('userfeedback') userfeedback?: ElementRef;
   mailregex: RegExp = /[a-z0-9]+@[a-z]+\.[a-z]/;
 
   constructor(private appwriteService: AppwriteService) {
@@ -77,9 +77,18 @@ export class CreateEditContactComponent {
       return;
     }
     const newContact = new Contact(name, email, phone, this.getInitials(name), this.getVariant());
-    this.closeCreateEditWindow(event);
-    this.contactCreated.emit(newContact);
     this.appwriteService.createContact(newContact);
+    this.showUserFeedback();
+    setTimeout(() => {
+      this.closeCreateEditWindow(event);
+      this.contactCreated.emit(newContact);
+    }, 1000);
+  }
+
+  showUserFeedback() {
+    if(this.userfeedback) {
+      this.userfeedback.nativeElement.style.display = 'flex';
+    }
   }
 
   getInitials(name: string) {
