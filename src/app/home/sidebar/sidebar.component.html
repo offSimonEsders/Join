@@ -73,7 +73,7 @@
         </li>
     </nav>
     <nav class="sidebar-legal">
-        <li>Privacy Policy</li>
-        <li>Legal notice</li>
+        <li (click)="this.router.navigate(['home/privacypolicy'])">Privacy Policy</li>
+        <li (click)="this.router.navigate(['home/legalnotice'])">Legal notice</li>
     </nav>
 </section>

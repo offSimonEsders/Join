@@ -24,8 +24,8 @@
     </div>
 
     <ul *ngIf="this.showPopup" class="profile-popup popup">
-        <li class="popup">Legal Notice</li>
-        <li class="popup">Privacy Policy</li>
+        <li class="popup" (click)="this.router.navigate(['home/legalnotice'])">Legal Notice</li>
+        <li class="popup" (click)="this.router.navigate(['home/privacypolicy'])">Privacy Policy</li>
         <li class="popup" (click)="this.logOut()">Log out</li>
     </ul>
 

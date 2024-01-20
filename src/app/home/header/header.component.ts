@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { AppwriteService } from '../../services/appwrite.service';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {AppwriteService} from '../../services/appwrite.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   showPopup: boolean = false;
   initials?: string;
 
-  constructor(private appwriteService: AppwriteService, private router: Router) {
+  constructor(private appwriteService: AppwriteService, public router: Router) {
     window.addEventListener('click', (event) => {
       this.closePopup(event);
     });
@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit {
   async getInitials() {
     let userName: string = await this.appwriteService.getUserName();
     let userNameSplit = userName.split(' ');
-    if(userNameSplit.length == 1) {
+    if (userNameSplit.length == 1) {
       this.initials = userNameSplit[0][0];
     } else {
       this.initials = userNameSplit[0][0] + userNameSplit[1][0];

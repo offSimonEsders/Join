@@ -31,6 +31,8 @@ export const routes: Routes = [
       {path: 'addtask', component: AddTaskComponent, canActivate: [AuthGuardService]},
       {path: 'board', component: BoardComponent, canActivate: [AuthGuardService]},
       {path: 'contacts', component: ContactsComponent, canActivate: [AuthGuardService]},
+      {path: 'privacypolicy', component: PrivacyPolicyComponent, canActivate: [AuthGuardService]},
+      {path: 'legalnotice', component: LegalNoticeComponent, canActivate: [AuthGuardService]},
     ]
   }
 ];

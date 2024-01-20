@@ -5,6 +5,10 @@
   align-items: center;
   gap: 24px;
   font-family: 'Inter', sans-serif;
+  width: calc(100vw - 232px);
+  padding-top: 110px;
+  height: calc(100vh - 206px);
+  overflow-y: auto;
 }
 
 section {
@@ -49,5 +53,14 @@ h2 {
 
   h1 {
     font-size: 30px !important;
+  }
+}
+
+@media (max-width: 1000px) {
+  .legal-frame {
+    width: 100%;
+    padding-top: 50px;
+    height: calc(100vh - 216px);
+    overflow-y: auto;
   }
 }
