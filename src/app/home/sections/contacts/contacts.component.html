@@ -82,15 +82,15 @@
 
     <app-contact-information
       (openEdit)="this.setEditContact(this.informationContact)"
-      (deleteContact)="this.deleteConatct(this.informationContact)" [ngStyle]="{'width.%': 100}"
-      *ngIf="this.informationContact != undefined" [contact]="this.informationContact">
+      (deleteContact)="this.deleteContact(this.informationContact)" [ngStyle]="{'width.%': 100}"
+      *ngIf="this.informationContact != undefined" [contact]="this.informationContact" [showtogglebtn]="!showCreateEditContact">
     </app-contact-information>
 
   </div>
 
   <app-create-edit-contact
     *ngIf="this.showCreateEditContact" (closeWindowEvent)="this.changeCreateEditContact()"
-    (deleteContactEvent)="this.deleteConatct(this.editcontact)"
+    (deleteContactEvent)="this.deleteContact(this.editcontact)"
     [editcontact]="this.editcontact"
     (contactCreated)="this.addNewContact($event)">
   </app-create-edit-contact>

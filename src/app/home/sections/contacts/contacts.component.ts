@@ -87,11 +87,12 @@ export class ContactsComponent implements OnInit {
     })
   }
 
-  deleteConatct(contact: Contact) {
+  deleteContact(contact: Contact) {
     if (contact.$id) {
       this.informationContact = undefined;
       this.contacts.splice(this.getConactIndex(contact), 1);
       this.appwriteService.deleteContact(contact.$id);
+      this.showInfoResp = false;
     }
   }
 
