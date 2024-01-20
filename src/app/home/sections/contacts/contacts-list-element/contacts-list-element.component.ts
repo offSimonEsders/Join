@@ -12,4 +12,13 @@ import {Contact} from "../../../modules/contact";
 export class ContactsListElementComponent {
   @Input() contact?: Contact;
   @Input() letter?: string;
+
+  checkLetter() {
+    if(this.letter) {
+      return this.contact?.name[0].toUpperCase() == this.letter;
+    } else {
+      return false;
+    }
+  }
+
 }

@@ -1,4 +1,4 @@
-<section *ngIf="this.contact?.name[0].toUpperCase() == letter" class="contacts-list-element-frame">
+<section *ngIf="checkLetter()" class="contacts-list-element-frame">
     <div class="contact-icon {{contact?.color}} ">
         {{contact?.initials}}
     </div>
