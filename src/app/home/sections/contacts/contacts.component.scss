@@ -92,6 +92,7 @@
 
     .contact-list {
       display: flex;
+      align-items: center;
       flex-direction: column;
       overflow-y: auto;
       overflow-x: hidden;
@@ -135,6 +136,16 @@
           font-weight: 400;
           line-height: 120%;
         }
+
+        svg {
+          width: 100%;
+
+          path {
+            height: 100%;
+          }
+
+        }
+
       }
 
       .contact-sorted {

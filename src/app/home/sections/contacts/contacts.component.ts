@@ -106,7 +106,7 @@ export class ContactsComponent implements OnInit {
     }, 50)
   }
 
-  checkContainerHeight(conactlist: HTMLUListElement, addbuttoncontainer: HTMLDivElement, conactslistcontainer: HTMLDivElement) {
+  checkContainerHeight(conactlist: HTMLUListElement, addbuttoncontainer: HTMLDivElement, conactslistcontainer: HTMLDivElement) : void {
     if (conactlist.offsetHeight + addbuttoncontainer.offsetHeight < conactslistcontainer.offsetHeight) {
       conactlist.style.padding = '0 20px 25px 25px';
       return;
