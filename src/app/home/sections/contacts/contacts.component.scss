@@ -204,7 +204,7 @@
 
       .back-to-list {
         cursor: pointer;
-        display: flex;
+        display: none;
         position: absolute;
         right: 0;
         border-radius: 90px;
@@ -280,6 +280,11 @@
       width: 604px;
       height: calc(100% - 50px);
       background: #F6F7F8;
+
+      .back-to-list {
+        display: flex !important;
+      }
+
     }
 
   }
@@ -307,7 +312,6 @@
     .contact-information-container {
       width: 604px;
     }
-
   }
 }
 
