@@ -8,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrl: './privacy-policy.component.scss'
 })
 export class PrivacyPolicyComponent {
-
+  scrollTo(id: string) {
+    const element = document.getElementById(id);
+    element?.scrollIntoView();
+  }
 }
