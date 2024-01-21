@@ -35,9 +35,9 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  logOut() {
-    this.appwriteService.appwriteLogOut();
-    this.router.navigate(['/']);
+  async logOut() {
+    await this.appwriteService.appwriteLogOut();
+    window.location.reload();
   }
 
   async getInitials() {
