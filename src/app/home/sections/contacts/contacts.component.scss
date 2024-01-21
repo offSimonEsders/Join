@@ -4,7 +4,7 @@
   flex-direction: row;
   max-width: calc(100vw - 232px);
   width: 100vw;
-  height: calc(100vh - 96px);
+  height: calc(100dvh - 96px);
   background: #F6F7F8;
 
   h1,
@@ -19,7 +19,7 @@
     align-items: center;
     flex-direction: column;
     width: 354px;
-    height: calc(100vh - 96px);
+    height: calc(100dvh - 96px);
     padding: 0 52px;
     background: #FFF;
 
@@ -166,7 +166,7 @@
     padding: 105px 0 25px 50px;
     overflow-y: auto;
     overflow-x: hidden;
-    min-height: calc(100vh - 231px);
+    min-height: calc(100dvh - 231px);
     width: calc(100% - 55px);
 
     header {
@@ -294,8 +294,8 @@
   .contacts-frame {
     max-width: 100vw;
     width: 100%;
-    max-height: calc(100vh - 166px) !important;
-    height: 100vh;
+    max-height: calc(100dvh - 166px) !important;
+    height: 100dvh;
 
     .contacts-list-container {
       height: auto !important;
