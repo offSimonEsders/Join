@@ -97,17 +97,10 @@ export class ContactsComponent implements OnInit {
   }
 
   async addNewContact(contact: Contact) {
-    const save = this.contacts;
-    let getContacts = setInterval(async () => {
-      if (this.contacts == save) {
-        this.contacts = (await this.appwriteService.getContacts());
-        return;
-      }
-      clearInterval(getContacts);
-    }, 50)
+    this.contacts.push(contact);
   }
 
-  checkContainerHeight(conactlist: HTMLUListElement, addbuttoncontainer: HTMLDivElement, conactslistcontainer: HTMLDivElement) : void {
+  checkContainerHeight(conactlist: HTMLUListElement, addbuttoncontainer: HTMLDivElement, conactslistcontainer: HTMLDivElement): void {
     if (conactlist.offsetHeight + addbuttoncontainer.offsetHeight < conactslistcontainer.offsetHeight) {
       conactlist.style.padding = '0 20px 25px 25px';
       return;
@@ -118,14 +111,14 @@ export class ContactsComponent implements OnInit {
   showContactInfoResponsive() {
     if (window.innerWidth <= 1350) {
       this.showInfoResp = !this.showInfoResp;
-      if(!this.showInfoResp) {
+      if (!this.showInfoResp) {
         this.informationContact = undefined;
       }
     }
   }
 
   showContactInfoResp() {
-    if(window.innerWidth < 1350) {
+    if (window.innerWidth < 1350) {
       return this.showInfoResp;
     }
     return true;

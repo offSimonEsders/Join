@@ -2,6 +2,7 @@ import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@an
 import {CommonModule} from '@angular/common';
 import {Contact} from '../../../modules/contact';
 import {AppwriteService} from '../../../../services/appwrite.service';
+import {ContactsComponent} from "../contacts.component";
 
 @Component({
   selector: 'app-create-edit-contact',
@@ -77,12 +78,14 @@ export class CreateEditContactComponent {
       return;
     }
     const newContact = new Contact(name, email, phone, this.getInitials(name), this.getVariant());
-    this.appwriteService.createContact(newContact);
     this.showUserFeedback();
     setTimeout(() => {
       this.closeCreateEditWindow(event);
-      this.contactCreated.emit(newContact);
     }, 1000);
+    const returnedContact: Contact | any = await this.appwriteService.createContact(newContact);
+    if (returnedContact) {
+      this.contactCreated.emit(returnedContact);
+    }
   }
 
   showUserFeedback() {

@@ -107,7 +107,7 @@ export class AppwriteService {
   }
 
   async createContact(data: object) {
-    await this.dataBase.createDocument(dataBaseID, contactsID, ID.unique(), data);
+    return await this.dataBase.createDocument(dataBaseID, contactsID, ID.unique(), data);
   }
 
   deleteContact(contactID: string) {
