@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { Client, Account, ID, Databases, Query } from 'appwrite';
-import { Contact } from '../home/modules/contact';
-import { Task } from '../home/modules/task';
+import {Injectable} from '@angular/core';
+import {Client, Account, ID, Databases, Query, Models} from 'appwrite';
+import {Contact} from '../home/modules/contact';
+import {Task} from '../home/modules/task';
 
 const dataBaseID = '6594cb434043ac3121d8';
 const tasksID = '6596e8b9f0bcc7400acc';
@@ -18,6 +18,9 @@ export class AppwriteService {
 
   loggedInUser: any = null;
 
+  /**
+   * Initials the database
+   * */
   constructor() {
     this.client
       .setEndpoint('https://cloud.appwrite.io/v1')
@@ -27,103 +30,154 @@ export class AppwriteService {
   }
 
   /**
-   * @param {string} newUserEmail - Email of new user
-   * @param {string} newUserPassword - Password for email of new user
-   * @param {string} newUserName - Name of new user
+   * Creates a new user
+   *
+   * @param newUserEmail
+   * @param newUserPassword
+   * @param newUserName
    */
-  async appwriteSignUp(newUserEmail: string, newUserPassword: string, newUserName: string) {
+  async appwriteSignUp(newUserEmail: string, newUserPassword: string, newUserName: string): Promise<boolean> {
     try {
       await this.account.create(ID.unique(), newUserEmail, newUserPassword, newUserName);
       return true;
-    }
-    catch {
+    } catch {
       return false;
     }
   }
 
-  async appwriteLoginEmailPassword(email: string, password: string) {
+  /**
+   * Creates a session for a user
+   *
+   * @param email
+   * @param password
+   * */
+  async appwriteLoginEmailPassword(email: string, password: string): Promise<any> {
     try {
       this.loggedInUser = await this.account.createEmailSession(email, password);
       return this.loggedInUser;
-    }
-    catch {
+    } catch {
       return false;
     }
   }
 
-  async appwriteSignInAnonymsly() {
+  /**
+   * Creates an anonymously session
+   * */
+  async appwriteSignInAnonymsly(): Promise<any> {
     try {
       await this.appwriteLogOut();
     } catch {
-
     }
     this.loggedInUser = await this.account.createAnonymousSession();
   }
 
-  async appwriteGetCurrentUser() {
+  /**
+   * Get the logged in user
+   * */
+  async appwriteGetCurrentUser(): Promise<any> {
     try {
       this.loggedInUser = await this.account.get();
       return this.loggedInUser;
-    }
-    catch {
+    } catch {
       return false;
     }
 
   }
 
-  async appwriteLogOut() {
+  /**
+   * Destroys the actual session
+   * */
+  async appwriteLogOut(): Promise<any> {
     try {
       await this.account.deleteSession('current');
       this.loggedInUser = null;
-    }
-    catch (error) {
+    } catch (error) {
 
     }
   }
 
-  async createTask(data: Task) {
-    await this.dataBase.createDocument(dataBaseID, tasksID, ID.unique(), data);
+  /**
+   * Creates a task on given data
+   *
+   * @param data
+   * */
+  async createTask(data: Task): Promise<false | Models.Document> {
+    return await this.dataBase.createDocument(dataBaseID, tasksID, ID.unique(), data);
   }
 
-  async getTasks() {
+  /**
+   * Gets all tasks from database
+   * */
+  async getTasks(): Promise<Models.Document[] | false> {
     try {
       return (await this.dataBase.listDocuments(dataBaseID, tasksID, [Query.orderAsc('index')])).documents;
-    }
-    catch {
+    } catch {
       return false;
     }
   }
 
-  async updateTask(taskID: string, task: any) {
+  /**
+   * Updates the tasks data with the new data
+   *
+   * @param taskID
+   * @param task
+   * */
+  async updateTask(taskID: string, task: any): Promise<void> {
     await this.dataBase.updateDocument(dataBaseID, tasksID, taskID, task);
   }
 
-  deleteTask(taskID: string) {
+  /**
+   * Deletes the complete task
+   * */
+  deleteTask(taskID: string): void {
     this.dataBase.deleteDocument(dataBaseID, tasksID, taskID);
   }
 
-  async getContacts() {
+  /**
+   * Gets all contacts from the database
+   * */
+  async getContacts(): Promise<Models.Document[]> {
     return (await this.dataBase.listDocuments(dataBaseID, contactsID, [Query.orderAsc('name')])).documents;
   }
 
-  async createContact(data: object) {
+  /**
+   * Creates a contact on the database
+   *
+   * @param data
+   * */
+  async createContact(data: object): Promise<Models.Document> {
     return await this.dataBase.createDocument(dataBaseID, contactsID, ID.unique(), data);
   }
 
-  deleteContact(contactID: string) {
+  /**
+   * Deletes a contact from the database
+   *
+   * @param contactID
+   * */
+  deleteContact(contactID: string): void {
     this.dataBase.deleteDocument(dataBaseID, contactsID, contactID);
   }
 
-  async updateContact(contact: Contact) {
-    if (contact.$id) { await (this.dataBase.updateDocument(dataBaseID, contactsID, contact.$id, contact)) }
+  /**
+   * Replaces the old contact data with the new
+   *
+   * @param contact
+   * */
+  async updateContact(contact: Contact): Promise<void> {
+    if (contact.$id) {
+      await (this.dataBase.updateDocument(dataBaseID, contactsID, contact.$id, contact))
+    }
   }
 
-  async getUserName() {
+  /**
+   * Gets username or guest
+   * */
+  async getUserName(): Promise<any> {
     let user = await this.appwriteGetCurrentUser();
-    if(user.name == '') {
+    if (user.name == '') {
       return 'Guest';
     }
     return user.name;
-}
+  }
 
 }

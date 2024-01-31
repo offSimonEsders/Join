@@ -20,11 +20,22 @@ export class LoginComponent implements OnInit{
 
   }
 
-  ngOnInit() {
+  /**
+   * Checks status of rememberme
+   * */
+  ngOnInit(): void {
     this.checked = this.getRememberMe();
   }
 
-  async loginEmailPassword(email: string, password: string) {
+  /**
+   * Logs the client in
+   * If it is successfull it sends him to home/summary
+   * else it gives the client feedback
+   *
+   * @param email
+   * @param password
+   * */
+  async loginEmailPassword(email: string, password: string): Promise<void> {
     if (!await this.appwriteService.appwriteLoginEmailPassword(email, password)) {
       this.loginform?.nativeElement.classList.add('wrong-input');
       return;
@@ -32,20 +43,36 @@ export class LoginComponent implements OnInit{
     this.router.navigate(['home/summary']);
   }
 
-  async guestLogin() {
+  /**
+   * Creates an anonymous session
+   * */
+  async guestLogin(): Promise<void> {
     await this.appwriteService.appwriteSignInAnonymsly();
     this.router.navigate(['home/summary']);
   }
 
-  removeWrongInput() {
+  /**
+   * Removes user feedback
+   * */
+  removeWrongInput(): void {
     this.loginform?.nativeElement.classList.remove('wrong-input');
   }
 
+  /**
+   * Checks and gives back value of localstorage key remember
+   *
+   * @returns boolean
+   * */
   getRememberMe(): boolean {
     return localStorage.getItem('remember') == 'true' ? true : false;
   }
 
-  setRememberMe(checkbox: HTMLInputElement) {
+  /**
+   * Changes the value of localstorage remember on state of the checkbox
+   *
+   * @param checkbox
+   * */
+  setRememberMe(checkbox: HTMLInputElement): void {
     if(checkbox.checked) {
       this.checked = true;
       localStorage.setItem('remember', 'true');

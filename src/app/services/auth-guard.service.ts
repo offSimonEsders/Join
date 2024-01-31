@@ -9,7 +9,12 @@ export class AuthGuardService {
 
   constructor(private appwriteService: AppwriteService, private router: Router) { }
 
-  async canActivate() {
+  /**
+   * Checks if the user is valid and returns
+   *
+   * @return boolean
+   * */
+  async canActivate(): Promise<boolean> {
     if (await this.appwriteService.appwriteGetCurrentUser()) {
       return true;
     } else {
