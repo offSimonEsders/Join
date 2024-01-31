@@ -1,19 +1,27 @@
-import { Component, ViewChild } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { AppwriteService } from '../../services/appwrite.service';
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [],
+  imports: [
+    NgIf
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   @ViewChild('loginform') loginform?: any;
+  checked: boolean = false;
 
   constructor(public router: Router, private appwriteService: AppwriteService) {
-    
+
+  }
+
+  ngOnInit() {
+    this.checked = this.getRememberMe();
   }
 
   async loginEmailPassword(email: string, password: string) {
@@ -39,8 +47,10 @@ export class LoginComponent {
 
   setRememberMe(checkbox: HTMLInputElement) {
     if(checkbox.checked) {
+      this.checked = true;
       localStorage.setItem('remember', 'true');
     } else {
+      this.checked = false;
       localStorage.setItem('remember', 'false');
     }
   }

@@ -1,11 +1,14 @@
 import {Component, ElementRef, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {Router} from '@angular/router';
 import {AppwriteService} from '../../services/appwrite.service';
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-registration',
   standalone: true,
-  imports: [],
+  imports: [
+    NgIf
+  ],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss'
 })
@@ -14,9 +17,13 @@ export class RegistrationComponent {
   @ViewChild('emailinputcontainer') emailinputcontainer?: ElementRef<HTMLDivElement>;
   @ViewChildren('passwordinputcontainer') passwordinputcontainer?: QueryList<ElementRef>;
   mailregex: RegExp = /[a-z0-9]+@[a-z]+\.[a-z]/;
-
+  checked: boolean = false;
   constructor(public router: Router, private appwriteService: AppwriteService) {
 
+  }
+
+  changeChecked() {
+    this.checked = !this.checked;
   }
 
   removeWrongInputClass(inputcontainer: HTMLDivElement) {
