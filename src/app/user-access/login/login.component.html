@@ -9,16 +9,16 @@
     </header>
     <form class="login-form" #loginform>
       <div class="input-container">
-        <input type="text" (input)="this.removeWrongInput()" placeholder="Email" #email>
+        <input type="text" (input)="removeWrongInput()" placeholder="Email" #email>
         <div class="icon-container icon-container-email"></div>
       </div>
       <div class="input-container">
-        <input type="password" (input)="this.removeWrongInput()" placeholder="Password" #password>
+        <input type="password" (input)="removeWrongInput()" placeholder="Password" #password>
         <div class="icon-container icon-container-password"></div>
       </div>
       <div class="rememberme-container">
-        <input type="checkbox" name="" id="remembermecheckbox" [checked]="this.getRememberMe()"
-               (change)="this.setRememberMe(checkbox)" #checkbox>
+        <input type="checkbox" name="" id="remembermecheckbox" [checked]="getRememberMe()"
+               (change)="setRememberMe(checkbox)" #checkbox>
         <label for="remembermecheckbox">
           <svg *ngIf="!checked" width="24" class="box" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="Property 1=Default">
@@ -51,12 +51,12 @@
       </div>
     </form>
     <div class="button-container">
-      <button (click)="this.loginEmailPassword(email.value, password.value)">Log in</button>
-      <button (click)="this.guestLogin()">Guest Log in</button>
+      <button (click)="loginEmailPassword(email.value, password.value)">Log in</button>
+      <button (click)="guestLogin()">Guest Log in</button>
     </div>
   </div>
   <div class="not-a-user">
     <p>Not a Join user?</p>
-    <button (click)="this.router.navigate(['registration'])">Sign up</button>
+    <button (click)="router.navigate(['registration'])">Sign up</button>
   </div>
 </section>

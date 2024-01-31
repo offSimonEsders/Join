@@ -2,7 +2,7 @@
 
   <div class="contacts-list-container" #conactslistcontainer>
     <div class="add-contact-button-container" #addbuttoncontainer>
-      <button (click)="this.changeCreateEditContact()">
+      <button (click)="changeCreateEditContact()">
         Add new contact
         <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33" fill="none">
           <mask id="mask0_120784_4635" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
@@ -18,7 +18,7 @@
       </button>
     </div>
 
-    <button *ngIf="this.informationContact == undefined && !this.showCreateEditContact" class="responsive-add-contact" (click)="this.changeCreateEditContact()">
+    <button *ngIf="informationContact == undefined && !showCreateEditContact" class="responsive-add-contact" (click)="changeCreateEditContact()">
       <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33" fill="none">
         <mask id="mask0_120784_4635" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
               width="33" height="33">
@@ -32,11 +32,11 @@
       </svg>
     </button>
 
-    <ul class="contact-list" (resize)="this.checkContainerHeight(contactlist, addbuttoncontainer, conactslistcontainer)"
+    <ul class="contact-list" (resize)="checkContainerHeight(contactlist, addbuttoncontainer, conactslistcontainer)"
         #contactlist>
       <ng-container *ngFor="let letter of letters">
-        {{ this.checkContainerHeight(contactlist, addbuttoncontainer, conactslistcontainer) }}
-        <section style="width: fit-content" class="contact-sorted" *ngIf="this.returnIfNameWithLetterexist(letter)">
+        {{ checkContainerHeight(contactlist, addbuttoncontainer, conactslistcontainer) }}
+        <section style="width: fit-content" class="contact-sorted" *ngIf="returnIfNameWithLetterexist(letter)">
           <div class="devider">
             <h2>{{ letter }}</h2>
             <svg xmlns="http://www.w3.org/2000/svg" width="353" height="2" viewBox="0 0 353 2" fill="none">
@@ -44,8 +44,8 @@
             </svg>
           </div>
           <app-contacts-list-element
-            (click)="this.setInformationContact(contact); this.showContactInfoResponsive()"
-            *ngFor="let contact of this.contacts" [contact]="contact"
+            (click)="setInformationContact(contact); showContactInfoResponsive()"
+            *ngFor="let contact of contacts" [contact]="contact"
             [letter]="letter">
           </app-contacts-list-element>
         </section>
@@ -81,18 +81,18 @@
     </header>
 
     <app-contact-information
-      (openEdit)="this.setEditContact(this.informationContact)"
-      (deleteContact)="this.deleteContact(this.informationContact)" [ngStyle]="{'width.%': 100}"
-      *ngIf="this.informationContact != undefined" [contact]="this.informationContact" [showtogglebtn]="!showCreateEditContact">
+      (openEdit)="setEditContact(informationContact)"
+      (deleteContact)="deleteContact(informationContact)" [ngStyle]="{'width.%': 100}"
+      *ngIf="informationContact != undefined" [contact]="informationContact" [showtogglebtn]="!showCreateEditContact">
     </app-contact-information>
 
   </div>
 
   <app-create-edit-contact
-    *ngIf="this.showCreateEditContact" (closeWindowEvent)="this.changeCreateEditContact()"
-    (deleteContactEvent)="this.deleteContact(this.editcontact)"
-    [editcontact]="this.editcontact"
-    (contactCreated)="this.addNewContact($event)">
+    *ngIf="showCreateEditContact" (closeWindowEvent)="changeCreateEditContact()"
+    (deleteContactEvent)="deleteContact(editcontact)"
+    [editcontact]="editcontact"
+    (contactCreated)="addNewContact($event)">
   </app-create-edit-contact>
 
 </section>

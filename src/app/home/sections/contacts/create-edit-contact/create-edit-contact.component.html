@@ -1,6 +1,6 @@
 <section class="create-edit-contact-frame">
 
-  <div class="background" (click)="this.closeCreateEditWindow($event)"></div>
+  <div class="background" (click)="closeCreateEditWindow($event)"></div>
 
   <div class="create-edit-contact-content">
     <div class="decoration-container">
@@ -22,9 +22,9 @@
       </div>
       <div class="action-container">
         <div class="text-container">
-          <h1 *ngIf="this.editcontact == undefined">Add contact</h1>
-          <h1 *ngIf="this.editcontact != undefined">Edit contact</h1>
-          <p *ngIf="this.editcontact == undefined">Tasks are better with a team!</p>
+          <h1 *ngIf="editcontact == undefined">Add contact</h1>
+          <h1 *ngIf="editcontact != undefined">Edit contact</h1>
+          <p *ngIf="editcontact == undefined">Tasks are better with a team!</p>
         </div>
         <div class="img-container">
           <svg xmlns="http://www.w3.org/2000/svg" width="94" height="3" viewBox="0 0 94 3" fill="none">
@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="form-container">
-      <button class="close-button" (click)="this.closeCreateEditWindow($event)">
+      <button class="close-button" (click)="closeCreateEditWindow($event)">
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
           <mask id="mask0_123108_4153" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
                 width="25" height="25">
@@ -47,9 +47,9 @@
           </g>
         </svg>
       </button>
-      <div class="user-icon-container {{this.editcontact?.color}}">
-        {{ this.editcontact?.initials }}
-        <svg *ngIf="this.editcontact == undefined" xmlns="http://www.w3.org/2000/svg" width="64" height="64"
+      <div class="user-icon-container {{editcontact?.color}}">
+        {{ editcontact?.initials }}
+        <svg *ngIf="editcontact == undefined" xmlns="http://www.w3.org/2000/svg" width="64" height="64"
              viewBox="0 0 64 64" fill="none">
           <mask id="mask0_71395_17941" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
                 width="64" height="64">
@@ -65,41 +65,41 @@
       <form>
         <div class="input-container" #namecontainer>
           <input type="text" class="" placeholder="Name"
-                 (input)="this.resetContainer(namecontainer, 'name-wrong-input')"
-                 [value]="this.editcontact?.name" #name>
+                 (input)="resetContainer(namecontainer, 'name-wrong-input')"
+                 [value]="editcontact?.name" #name>
           <div class="icon-container icon-container-name"></div>
         </div>
         <div class="input-container" #emailcontainer>
           <input type="text" class="" placeholder="Email"
-                 (input)="this.resetContainer(emailcontainer, 'email-wrong-input')"
-                 [value]="this.editcontact?.email" #email>
+                 (input)="resetContainer(emailcontainer, 'email-wrong-input')"
+                 [value]="editcontact?.email" #email>
           <div class="icon-container icon-container-email"></div>
         </div>
         <div class="input-container" #phonecontainer>
           <input type="text" [min]="0" class=""
-                 (input)="this.resetContainer(phonecontainer, 'phone-wrong-input')" placeholder="Phone"
-                 (input)="this.replaceLetters(phone)" [value]="this.editcontact?.phone" #phone>
+                 (input)="resetContainer(phonecontainer, 'phone-wrong-input')" placeholder="Phone"
+                 (input)="replaceLetters(phone)" [value]="editcontact?.phone" #phone>
           <div class="icon-container icon-container-phone"></div>
         </div>
 
         <div class="button-container">
-          <button class="cancel-delete-button" *ngIf="this.editcontact == undefined"
-                  (click)="this.closeCreateEditWindow($event)">
+          <button class="cancel-delete-button" *ngIf="editcontact == undefined"
+                  (click)="closeCreateEditWindow($event)">
             Cancel
             <div class="icon-container"></div>
           </button>
-          <button class="create-save-button" *ngIf="this.editcontact == undefined"
-                  (click)="this.createNewContact($event, name.value, email.value, phone.value, namecontainer, emailcontainer, phonecontainer)">
+          <button class="create-save-button" *ngIf="editcontact == undefined"
+                  (click)="createNewContact($event, name.value, email.value, phone.value, namecontainer, emailcontainer, phonecontainer)">
             Create contact
             <div class="icon-container"></div>
           </button>
-          <button class="cancel-delete-button" *ngIf="this.editcontact != undefined"
-                  (click)="this.deleteContact($event)">
+          <button class="cancel-delete-button" *ngIf="editcontact != undefined"
+                  (click)="deleteContact($event)">
             Delete
             <div class="icon-container" [ngStyle]="{'display': 'none'}"></div>
           </button>
-          <button class="create-save-button" *ngIf="this.editcontact != undefined"
-                  (click)="this.updateContact($event, name.value, email.value, phone.value, namecontainer, emailcontainer, phonecontainer)">
+          <button class="create-save-button" *ngIf="editcontact != undefined"
+                  (click)="updateContact($event, name.value, email.value, phone.value, namecontainer, emailcontainer, phonecontainer)">
             Save
             <div class="icon-container"></div>
           </button>

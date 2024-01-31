@@ -1,17 +1,17 @@
 <div class="contact-information-frame">
   <div class="contact-information-content">
     <header>
-      <div class="user-icon {{this.contact?.color}}">
-        {{ this.contact?.initials }}
+      <div class="user-icon {{contact?.color}}">
+        {{ contact?.initials }}
       </div>
       <div class="name-action-container">
-        <h1>{{ this.contact?.name }}</h1>
+        <h1>{{ contact?.name }}</h1>
         <div class="action-container">
-          <button (click)="this.openEdit.emit('change')">
+          <button (click)="openEdit.emit('change')">
             <div class="icon-container"></div>
             Edit
           </button>
-          <button (click)="this.deleteContact.emit('delete')">
+          <button (click)="deleteContact.emit('delete')">
             <div class="icon-container"></div>
             Delete
           </button>
@@ -22,11 +22,11 @@
     <div class="information-container">
       <div>
         <h2>Email</h2>
-        <a href="mailto:antom@gmail.com">{{ this.contact?.email }}</a>
+        <a href="mailto:antom@gmail.com">{{ contact?.email }}</a>
       </div>
       <div>
         <h2>Phone</h2>
-        <a href="tel:{{this.contact?.phone}}">{{ this.contact?.phone }}</a>
+        <a href="tel:{{contact?.phone}}">{{ contact?.phone }}</a>
       </div>
     </div>
   </div>
@@ -41,11 +41,11 @@
     </svg>
   </button>
   <div *ngIf="showaction" class="responsive-action action">
-    <button (click)="this.openEdit.emit('change')">
+    <button (click)="openEdit.emit('change')">
       <div class="icon-container"></div>
       Edit
     </button>
-    <button class="action" (click)="this.deleteContact.emit('delete')">
+    <button class="action" (click)="deleteContact.emit('delete')">
       <div class="icon-container"></div>
       Delete
     </button>

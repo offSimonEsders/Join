@@ -1,10 +1,10 @@
-<section class="task-frame" draggable="true" (dragstart)="this.setDragData($event, this.task)">
+<section class="task-frame" draggable="true" (dragstart)="setDragData($event, task)">
   <div class="categroy-change-state-container">
-    <div class="task-category" [ngClass]="this.task?.category == 'User Story' ? 'userstory' : 'technicaltask'">
-      {{ this.task?.category }}
+    <div class="task-category" [ngClass]="task?.category == 'User Story' ? 'userstory' : 'technicaltask'">
+      {{ task?.category }}
     </div>
     <div class="change-state-buttons">
-      <button class="change-state" (click)="this.changeStateUp()">
+      <button class="change-state" (click)="changeStateUp()">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
           <mask id="mask0_75597_14130" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="25">
             <rect y="0.96582" width="24" height="24" fill="#D9D9D9"/>
@@ -14,7 +14,7 @@
           </g>
         </svg>
       </button>
-      <button class="change-state" (click)="this.changeStateDown()">
+      <button class="change-state" (click)="changeStateDown()">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
           <mask id="mask0_75597_14124" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="25">
             <rect y="0.96582" width="24" height="24" fill="#D9D9D9"/>
@@ -27,26 +27,26 @@
     </div>
   </div>
   <div class="title-description-container">
-    <h1 class="task-title">{{ this.task?.title }}</h1>
-    <p class="task-describtion">{{ this.task?.description }}</p>
+    <h1 class="task-title">{{ task?.title }}</h1>
+    <p class="task-describtion">{{ task?.description }}</p>
   </div>
-  <div class="task-subtask-progress" *ngIf="this.checkSubtasks()">
+  <div class="task-subtask-progress" *ngIf="checkSubtasks()">
     <div class="progress-bar">
-      <div class="progress" [ngStyle]="{'width.%': this.getProgress()}"></div>
+      <div class="progress" [ngStyle]="{'width.%': getProgress()}"></div>
     </div>
-    <p>{{ this.getDoneTasks() }}/{{ this.task?.subtasks?.length }} Subtasks done</p>
+    <p>{{ getDoneTasks() }}/{{ task?.subtasks?.length }} Subtasks done</p>
   </div>
   <div class="contacts-prio-container">
     <div class="contacts">
-      <div *ngFor="let contact of this.contacts | slice:0:3" class="contact {{contact.color}}">
+      <div *ngFor="let contact of contacts | slice:0:3" class="contact {{contact.color}}">
         {{ contact.initials }}
       </div>
-      <div *ngIf="this.getContactsLength() > 3" class="contact rest-contacts">
-        +{{ this.getContactsLength() - 3 }}
+      <div *ngIf="getContactsLength() > 3" class="contact rest-contacts">
+        +{{ getContactsLength() - 3 }}
       </div>
     </div>
     <div class="prio">
-      <svg *ngIf="this.task?.prio == 'Low'" xmlns="http://www.w3.org/2000/svg" width="18" height="12"
+      <svg *ngIf="task?.prio == 'Low'" xmlns="http://www.w3.org/2000/svg" width="18" height="12"
            viewBox="0 0 18 12" fill="none">
         <g clip-path="url(#clip0_120784_5674)">
           <path
@@ -62,7 +62,7 @@
           </clipPath>
         </defs>
       </svg>
-      <svg *ngIf="this.task?.prio == 'Medium'" xmlns="http://www.w3.org/2000/svg" width="18" height="8"
+      <svg *ngIf="task?.prio == 'Medium'" xmlns="http://www.w3.org/2000/svg" width="18" height="8"
            viewBox="0 0 18 8" fill="none">
         <g clip-path="url(#clip0_120784_5646)">
           <path
@@ -78,7 +78,7 @@
           </clipPath>
         </defs>
       </svg>
-      <svg *ngIf="this.task?.prio == 'Urgent'" xmlns="http://www.w3.org/2000/svg" width="18" height="12"
+      <svg *ngIf="task?.prio == 'Urgent'" xmlns="http://www.w3.org/2000/svg" width="18" height="12"
            viewBox="0 0 18 12" fill="none">
         <g clip-path="url(#clip0_120784_5730)">
           <path

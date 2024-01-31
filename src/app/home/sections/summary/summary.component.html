@@ -25,7 +25,7 @@
         <div class="information-container">
 
             <div class="todo-done-container">
-                <div class="todo-done" (click)="this.goToBoard()">
+                <div class="todo-done" (click)="goToBoard()">
                     <div class="img-container">
                         <svg xmlns="http://www.w3.org/2000/svg" width="69" height="70" viewBox="0 0 69 70" fill="none">
                             <circle cx="34.5" cy="35" r="34.5" fill="#2A3647" />
@@ -53,11 +53,11 @@
                         </svg>
                     </div>
                     <div class="todo-done-text-container">
-                        <h2>{{this.getTasksInState('ToDo')}}</h2>
+                        <h2>{{getTasksInState('ToDo')}}</h2>
                         <p>To-do</p>
                     </div>
                 </div>
-                <div class="todo-done" (click)="this.goToBoard()">
+                <div class="todo-done" (click)="goToBoard()">
                     <div class="img-container">
                         <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 70 70" fill="none">
                             <circle cx="35" cy="35" r="34.5" fill="#2A3647" />
@@ -71,14 +71,14 @@
                         </svg>
                     </div>
                     <div class="todo-done-text-container">
-                        <h2>{{this.getTasksInState('Done')}}</h2>
+                        <h2>{{getTasksInState('Done')}}</h2>
                         <p>Done</p>
                     </div>
                 </div>
             </div>
 
             <div class="middle-container">
-                <div class="urgent-container" (click)="this.goToBoard()">
+                <div class="urgent-container" (click)="goToBoard()">
                     <div class="logo-amount-container">
                         <div class="img-container">
                             <svg xmlns="http://www.w3.org/2000/svg" width="61" height="61" viewBox="0 0 61 61"
@@ -104,7 +104,7 @@
                             </svg>
                         </div>
                         <div class="amount-text">
-                            <h2>{{this.getUrgentTasks()}}</h2>
+                            <h2>{{getUrgentTasks()}}</h2>
                             <p>Urgent</p>
                         </div>
                     </div>
@@ -115,27 +115,27 @@
                         </svg>
                     </div>
                     <div class="date-container">
-                        <h2>{{this.getNearestUrgentTask()}}</h2>
+                        <h2>{{getNearestUrgentTask()}}</h2>
                         <p>Upcoming Deadline</p>
                     </div>
                 </div>
                 <div class="greeting-container">
-                    <h2>{{this.getGreeting()}},</h2>
-                    <h2>{{this.userName}}</h2>
+                    <h2>{{getGreeting()}},</h2>
+                    <h2>{{userName}}</h2>
                 </div>
             </div>
 
             <div class="board-progress-feedback-container">
-                <div (click)="this.goToBoard()">
-                    <h2>{{this.tasks?.length}}</h2>
+                <div (click)="goToBoard()">
+                    <h2>{{tasks?.length}}</h2>
                     <p>Tasks in <br> Board</p>
                 </div>
-                <div (click)="this.goToBoard()">
-                    <h2>{{this.getTasksInState('InProgress')}}</h2>
+                <div (click)="goToBoard()">
+                    <h2>{{getTasksInState('InProgress')}}</h2>
                     <p>Tasks In <br> Progress</p>
                 </div>
-                <div (click)="this.goToBoard()">
-                    <h2>{{this.getTasksInState('AwaitFeedback')}}</h2>
+                <div (click)="goToBoard()">
+                    <h2>{{getTasksInState('AwaitFeedback')}}</h2>
                     <p>Awaiting <br> Feedback</p>
                 </div>
             </div>

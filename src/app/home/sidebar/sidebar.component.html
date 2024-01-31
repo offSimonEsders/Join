@@ -16,7 +16,7 @@
         </svg>
     </div>
     <nav class="sidebar-nav">
-        <li class="sidebar-nav-element" [ngClass]="{'sidebar-nav-element-activated': this.router.url == '/home/summary'}" (click)="this.router.navigate(['home/summary'])" >
+        <li class="sidebar-nav-element" [ngClass]="{'sidebar-nav-element-activated': router.url == '/home/summary'}" (click)="router.navigate(['home/summary'])" >
             <div class="icon-container">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="31" viewBox="0 0 30 31" fill="none">
                     <path
@@ -26,7 +26,7 @@
             </div>
             Summary
         </li>
-        <li class="sidebar-nav-element" [ngClass]="{'sidebar-nav-element-activated': this.router.url == '/home/addtask'}" (click)="this.router.navigate(['home/addtask'])">
+        <li class="sidebar-nav-element" [ngClass]="{'sidebar-nav-element-activated': router.url == '/home/addtask'}" (click)="router.navigate(['home/addtask'])">
             <div class="icon-container">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="31" viewBox="0 0 30 31" fill="none">
                     <mask id="mask0_120767_1282" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
@@ -42,7 +42,7 @@
             </div>
             Add Task
         </li>
-        <li class="sidebar-nav-element" [ngClass]="{'sidebar-nav-element-activated': this.router.url == '/home/board'}" (click)="this.router.navigate(['home/board'])">
+        <li class="sidebar-nav-element" [ngClass]="{'sidebar-nav-element-activated': router.url == '/home/board'}" (click)="router.navigate(['home/board'])">
             <div class="icon-container">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="26" viewBox="0 0 30 26" fill="none">
                     <path
@@ -55,7 +55,7 @@
             </div>
             Board
         </li>
-        <li class="sidebar-nav-element" [ngClass]="{'sidebar-nav-element-activated': this.router.url == '/home/contacts'}" (click)="this.router.navigate(['home/contacts'])">
+        <li class="sidebar-nav-element" [ngClass]="{'sidebar-nav-element-activated': router.url == '/home/contacts'}" (click)="router.navigate(['home/contacts'])">
             <div class="icon-container">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="31" viewBox="0 0 30 31" fill="none">
                     <mask id="mask0_120767_1294" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
@@ -73,7 +73,7 @@
         </li>
     </nav>
     <nav class="sidebar-legal">
-        <li (click)="this.router.navigate(['home/privacypolicy'])">Privacy Policy</li>
-        <li (click)="this.router.navigate(['home/legalnotice'])">Legal notice</li>
+        <li (click)="router.navigate(['home/privacypolicy'])">Privacy Policy</li>
+        <li (click)="router.navigate(['home/legalnotice'])">Legal notice</li>
     </nav>
 </section>

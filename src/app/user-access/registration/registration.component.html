@@ -2,7 +2,7 @@
 
   <div class="registration-content">
 
-    <button class="back-to-login" (click)="this.router.navigate([''])">
+    <button class="back-to-login" (click)="router.navigate([''])">
       <svg class="arrow" width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g id="Property 1=Default">
           <path id="Vector" d="M10.437 15.6325H25.333C26.0694 15.6325 26.6663 16.2295 26.6663 16.9659C26.6663 17.7023 26.0694 18.2992 25.333 18.2992H10.437L16.6463 24.5085C17.167 25.0292 17.167 25.8733 16.6463 26.3939C16.1257 26.9145 15.2816 26.9145 14.761 26.3939L6.74722 18.3801C5.96617 17.599 5.96617 16.3327 6.74722 15.5517L14.761 7.53788C15.2816 7.01726 16.1257 7.01726 16.6463 7.53788C17.167 8.0585 17.167 8.90259 16.6463 9.42322L10.437 15.6325Z" fill="#29ABE2"/>
@@ -26,11 +26,11 @@
 
     <form class="registration-form">
       <div class="input-container name-after" #nameinputcontainer>
-        <input (input)="this.removeWrongInputClass(nameinputcontainer)" type="text" placeholder="Name" #nameinput>
+        <input (input)="removeWrongInputClass(nameinputcontainer)" type="text" placeholder="Name" #nameinput>
         <div class="icon-container icon-container-name"></div>
       </div>
       <div class="input-container email-after" #emailinputcontainer>
-        <input (input)="this.removeWrongInputClass(emailinputcontainer)" type="text" placeholder="Email" #emailinput>
+        <input (input)="removeWrongInputClass(emailinputcontainer)" type="text" placeholder="Email" #emailinput>
         <div class="icon-container icon-container-email"></div>
       </div>
       <div class="input-container" #passwordinputcontainer>
@@ -38,7 +38,7 @@
         <div class="icon-container icon-container-password"></div>
       </div>
       <div class="input-container password-after" #passwordinputcontainer>
-        <input (input)="this.removeWrongInputClassPassword()" type="password" placeholder="Password" #passwordinput2>
+        <input (input)="removeWrongInputClassPassword()" type="password" placeholder="Password" #passwordinput2>
         <div class="icon-container icon-container-password"></div>
       </div>
       <div class="rememberme-container">
@@ -75,7 +75,7 @@
         <a (click)="router.navigate(['/legal/privacypolicy'])" target="_blank">Privacy policy</a>
       </div>
       <button
-        (click)="this.register($event, nameinput.value, emailinput.value, passwordinput1.value, passwordinput2.value, checkbox.checked)">
+        (click)="register($event, nameinput.value, emailinput.value, passwordinput1.value, passwordinput2.value, checkbox.checked)">
         Sign up
       </button>
     </form>
