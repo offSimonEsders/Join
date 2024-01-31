@@ -21,29 +21,44 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getInitials()
+    this.getInitials();
   }
 
-  changeShowPopup() {
+  /**
+   * Inverts the value of changeShowPopup which is connected with *ngif
+   * */
+  changeShowPopup(): void {
     this.showPopup = !this.showPopup;
   }
 
-  closePopup(event: Event) {
-    const targetElement = event.target as HTMLElement;
+  /**
+   * Sets showPopup to false when element without the class popup is clicked.
+   * The Popup closes because it is connected with *ngif
+   *
+   * @param event
+   * */
+  closePopup(event: Event): void {
+    const targetElement: HTMLElement = event.target as HTMLElement;
     if (!targetElement.classList.contains('popup')) {
       this.showPopup = false;
     }
   }
 
-  async logOut() {
+  /**
+   * Calls appwriteLogout, sets localstorage remember to false and reloads the page
+   * */
+  async logOut(): Promise<void> {
     await this.appwriteService.appwriteLogOut();
     localStorage.setItem('remember', 'false')
     window.location.reload();
   }
 
-  async getInitials() {
+  /**
+   * Gets the username from the database and splits it to get the initials
+   * */
+  async getInitials(): Promise<void> {
     let userName: string = await this.appwriteService.getUserName();
-    let userNameSplit = userName.split(' ');
+    let userNameSplit: string[] = userName.split(' ');
     if (userNameSplit.length == 1) {
       this.initials = userNameSplit[0][0];
     } else {

@@ -13,10 +13,13 @@ import { HeaderComponent } from "./header/header.component";
 export class HomeComponent implements OnInit {
 
     constructor (private router: Router) {
-        
+
     }
 
-    ngOnInit() {
+    /**
+     * If the route is /home it changes it to /home/summary
+     * */
+    ngOnInit(): void {
         if (this.router.url == '/home') {
             this.router.navigate(['/home/summary']);
         }
