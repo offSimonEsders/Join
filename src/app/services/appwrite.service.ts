@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Client, Account, ID, Databases, Query, Models} from 'appwrite';
-import {Contact} from '../home/modules/contact';
-import {Task} from '../home/modules/task';
+import {Contact} from '../home/models/contact';
+import {Task} from '../home/models/task';
 
 const dataBaseID = '6594cb434043ac3121d8';
 const tasksID = '6596e8b9f0bcc7400acc';

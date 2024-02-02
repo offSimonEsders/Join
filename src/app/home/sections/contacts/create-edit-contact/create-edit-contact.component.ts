@@ -1,6 +1,6 @@
 import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {Contact} from '../../../modules/contact';
+import {Contact} from '../../../models/contact';
 import {AppwriteService} from '../../../../services/appwrite.service';
 import {ContactsComponent} from "../contacts.component";
 

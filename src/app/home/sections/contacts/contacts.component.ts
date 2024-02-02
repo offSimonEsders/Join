@@ -4,7 +4,7 @@ import {AppwriteService} from '../../../services/appwrite.service';
 import {ContactsListElementComponent} from "./contacts-list-element/contacts-list-element.component";
 import {CreateEditContactComponent} from "./create-edit-contact/create-edit-contact.component";
 import {ContactInformationComponent} from "./contact-information/contact-information.component";
-import {Contact} from '../../modules/contact';
+import {Contact} from '../../models/contact';
 
 @Component({
   selector: 'app-contacts',

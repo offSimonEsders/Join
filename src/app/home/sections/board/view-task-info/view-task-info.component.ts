@@ -1,8 +1,8 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Task } from '../../../modules/task';
-import { Contact } from '../../../modules/contact';
-import { Subtask } from '../../../modules/subtask';
+import { Task } from '../../../models/task';
+import { Contact } from '../../../models/contact';
+import { Subtask } from '../../../models/subtask';
 import { AppwriteService } from '../../../../services/appwrite.service';
 
 @Component({

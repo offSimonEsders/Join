@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {Task} from '../../../modules/task';
-import {Contact} from '../../../modules/contact';
+import {Task} from '../../../models/task';
+import {Contact} from '../../../models/contact';
 
 @Component({
   selector: 'app-single-task',

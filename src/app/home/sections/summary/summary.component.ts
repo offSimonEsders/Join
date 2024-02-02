@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppwriteService } from '../../../services/appwrite.service';
-import { Task } from '../../modules/task';
+import { Task } from '../../models/task';
 
 @Component({
   selector: 'app-summary',

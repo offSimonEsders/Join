@@ -2,10 +2,10 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild }
 import { CommonModule } from '@angular/common';
 import { SelectableContactComponent } from "./selectable-contact/selectable-contact.component";
 import { AppwriteService } from '../../../services/appwrite.service';
-import { Contact } from '../../modules/contact';
+import { Contact } from '../../models/contact';
 import { SubtaskComponent } from "./subtask/subtask.component";
-import { Subtask } from '../../modules/subtask';
-import { Task } from '../../modules/task';
+import { Subtask } from '../../models/subtask';
+import { Task } from '../../models/task';
 import { Router } from '@angular/router';
 
 @Component({

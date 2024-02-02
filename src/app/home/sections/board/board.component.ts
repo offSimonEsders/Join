@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {SingleTaskComponent} from "./single-task/single-task.component";
 import {AppwriteService} from '../../../services/appwrite.service';
-import {Task} from '../../modules/task';
+import {Task} from '../../models/task';
 import {ViewTaskInfoComponent} from "./view-task-info/view-task-info.component";
 import {AddTaskComponent} from "../add-task/add-task.component";
-import {Contact} from '../../modules/contact';
+import {Contact} from '../../models/contact';
 
 @Component({
   selector: 'app-board',
