@@ -75,10 +75,12 @@ export class ContactsComponent implements OnInit {
   }
 
   setInformationContact(contact: Contact) {
-    this.informationContact = undefined;
-    setTimeout(() => {
-      this.informationContact = contact;
-    }, 1);
+    if(this.informationContact?.$id !== contact.$id) {
+      this.informationContact = undefined;
+      setTimeout(() => {
+        this.informationContact = contact;
+      }, 1);
+    }
   }
 
   getConactIndex(contact: Contact) {
