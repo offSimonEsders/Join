@@ -34,10 +34,10 @@
         <div class="icon-container icon-container-email"></div>
       </div>
       <div class="input-container" #passwordinputcontainer>
-        <input type="password" placeholder="Password" #passwordinput1>
+        <input (input)="removeWrongInputClassPassword()" type="password" placeholder="Password" #passwordinput1>
         <div class="icon-container icon-container-password"></div>
       </div>
-      <div class="input-container password-after" #passwordinputcontainer>
+      <div class="input-container registration-input" #passwordinputcontainer>
         <input (input)="removeWrongInputClassPassword()" type="password" placeholder="Password" #passwordinput2>
         <div class="icon-container icon-container-password"></div>
       </div>

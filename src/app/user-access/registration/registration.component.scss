@@ -153,10 +153,18 @@
         }
       }
 
-      .password-after {
+      .password-after-length {
         &::after {
           display: none;
-          content: "Password must be at least 8 characters long!";
+          content: "Password must be at least 8 characters long!" !important;
+          margin-top: 4px;
+        }
+      }
+
+      .password-after-equal {
+        &::after {
+          display: none;
+          content: "Passwords are not the same!";
           margin-top: 4px;
         }
       }

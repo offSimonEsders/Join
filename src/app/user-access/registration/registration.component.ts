@@ -83,13 +83,44 @@ export class RegistrationComponent {
    * @param password2
    * */
   validatePassword(password1: string, password2: string): boolean {
-    if (password1.length < 8 || password1 !== password2) {
+    if ((password1.length < 8 || password1 !== password2)) {
       this.passwordinputcontainer?.forEach((element) => {
         element.nativeElement.classList.add('wrong-input');
       });
+      this.validateSame(password1, password2);
+      this.validateLength(password1);
       return true;
     }
     return false;
+  }
+
+  /**
+   * Adds css class to passwordinputcontainer if condition is true
+   *
+   * @param password1
+   * @param password2
+   * */
+  validateSame(password1: string, password2: string) {
+    if(password1 !== password2 && this.passwordinputcontainer) {
+      const first = this.passwordinputcontainer.get(1);
+      if(first) {
+        first.nativeElement.classList.add('password-after-equal');
+      }
+    }
+  }
+
+  /**
+   * Adds css class to passwordinputcontainer if condition is true
+   *
+   * @param password1
+   * */
+  validateLength(password1: string) {
+    if(password1.length < 8 && this.passwordinputcontainer) {
+      const first = this.passwordinputcontainer.get(1);
+      if(first) {
+        first.nativeElement.classList.add('password-after-length');
+      }
+    }
   }
 
   /**
