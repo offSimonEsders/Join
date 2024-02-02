@@ -18,9 +18,17 @@ export class RegistrationComponent {
   @ViewChildren('passwordinputcontainer') passwordinputcontainer?: QueryList<ElementRef>;
   mailregex: RegExp = /[a-z0-9]+@[a-z]+\.[a-z]/;
   checked: boolean = false;
+  showPassword: boolean = false;
 
   constructor(public router: Router, private appwriteService: AppwriteService) {
 
+  }
+
+  /**
+   * Toggles showPassword
+   * */
+  togglePasswordView(): void {
+    this.showPassword = !this.showPassword;
   }
 
   /**

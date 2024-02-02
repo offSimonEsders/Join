@@ -28,6 +28,9 @@ export class LoginComponent implements OnInit{
     this.checked = this.getRememberMe();
   }
 
+  /**
+   * Toggles showPassword
+   * */
   togglePasswordView(): void {
     this.showPassword = !this.showPassword;
   }
