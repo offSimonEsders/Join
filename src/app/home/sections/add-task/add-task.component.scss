@@ -663,6 +663,7 @@
 
 .as-popup {
   padding: 0 !important;
+  padding-right: 5px !important;
   width: fit-content;
   background: #FFF;
 
@@ -714,6 +715,12 @@
   .add-task-form {
     .task-set-value-container {
       gap: 50px !important;
+      padding-bottom: 200px;
+    }
+  }
+  .as-popup {
+    .task-set-value-container {
+      padding-bottom: 110px !important;
     }
   }
 }
@@ -721,7 +728,6 @@
 @media (max-width: 1350px) {
   .task-set-value-container {
     flex-direction: column !important;
-    padding-bottom: 200px;
 
     .single-value-container {
       width: 500px !important;
@@ -776,16 +782,17 @@
 
   .as-popup {
     padding: 0 !important;
+    padding-right: 5px !important;
+
+
+    .info-button-container {
+      bottom: 0 !important;
+    }
+
   }
 
   .info-button-container {
     bottom: 86px;
-  }
-
-  .as-popup {
-    .info-button-container {
-      bottom: 0 !important;
-    }
   }
 }
 
@@ -799,7 +806,6 @@
 
   .task-set-value-container {
     flex-direction: column !important;
-    padding-bottom: 200px;
 
     .single-value-container {
       width: 400px !important;
