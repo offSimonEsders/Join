@@ -44,7 +44,7 @@ export class AddTaskComponent implements OnInit {
   }
 
   /**
-   * 
+   *
    * @returns {boolean} - editMode is active when this.taskToEdit === Task;
    */
   editMode(): boolean {
@@ -237,6 +237,7 @@ export class AddTaskComponent implements OnInit {
     if (task && this.taskToEdit?.$id) {
       task.$id = this.taskToEdit.$id;
       task.state = this.taskToEdit.state;
+      task.subtasksdone = this.taskToEdit.subtasksdone;
       this.clearAddTask(event, titleinput, descriptioninput, dateinput, categoryinput);
       this.activateUserFeedback();
       this.closePopup.emit(task);
