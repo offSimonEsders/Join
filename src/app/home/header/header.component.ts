@@ -49,8 +49,8 @@ export class HeaderComponent implements OnInit {
    * */
   async logOut(): Promise<void> {
     await this.appwriteService.appwriteLogOut();
-    localStorage.setItem('remember', 'false')
-    window.location.reload();
+    localStorage.setItem('remember', 'false');
+    this.router.navigate(['']);
   }
 
   /**
