@@ -18,7 +18,8 @@
       </button>
     </div>
 
-    <button *ngIf="informationContact == undefined && !showCreateEditContact" class="responsive-add-contact" (click)="changeCreateEditContact()">
+    <button *ngIf="informationContact == undefined && !showCreateEditContact" class="responsive-add-contact"
+            (click)="changeCreateEditContact()">
       <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" viewBox="0 0 33 33" fill="none">
         <mask id="mask0_120784_4635" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
               width="33" height="33">
@@ -45,6 +46,7 @@
           </div>
           <app-contacts-list-element
             (click)="setInformationContact(contact); showContactInfoResponsive()"
+            [infoContact]="informationContact"
             *ngFor="let contact of contacts" [contact]="contact"
             [letter]="letter">
           </app-contacts-list-element>
@@ -62,7 +64,8 @@
         <path d="M2 2V61" stroke="#29ABE2" stroke-width="3" stroke-linecap="round"/>
       </svg>
       <p>Better with a team</p>
-      <svg class="svg-responsive" xmlns="http://www.w3.org/2000/svg" width="94" height="4" viewBox="0 0 94 4" fill="none">
+      <svg class="svg-responsive" xmlns="http://www.w3.org/2000/svg" width="94" height="4" viewBox="0 0 94 4"
+           fill="none">
         <path d="M92 2L2 2" stroke="#29ABE2" stroke-width="3" stroke-linecap="round"/>
       </svg>
       <button class="back-to-list" (click)="showContactInfoResponsive()">
@@ -83,7 +86,7 @@
     <app-contact-information
       (openEdit)="setEditContact(informationContact)"
       (deleteContact)="deleteContact(informationContact)" [ngStyle]="{'width.%': 100}"
-      *ngIf="informationContact != undefined" [contact]="informationContact" [showtogglebtn]="!showCreateEditContact">
+      *ngIf="informationContact != undefined" [contact]="informationContact" [showToggleBtn]="!showCreateEditContact">
     </app-contact-information>
 
   </div>

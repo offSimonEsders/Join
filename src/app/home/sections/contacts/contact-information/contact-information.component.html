@@ -30,7 +30,7 @@
       </div>
     </div>
   </div>
-  <button *ngIf="showtogglebtn" class="togglebutton action" (click)="toggleAction()" >
+  <button *ngIf="showToggleBtn" class="togglebutton action" (click)="toggleAction()" >
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
       <mask id="mask0_126586_5371" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32">
         <rect width="32" height="32" fill="#D9D9D9"/>
@@ -40,7 +40,7 @@
       </g>
     </svg>
   </button>
-  <div *ngIf="showaction" class="responsive-action action">
+  <div *ngIf="showAction" class="responsive-action action">
     <button (click)="openEdit.emit('change')">
       <div class="icon-container"></div>
       Edit

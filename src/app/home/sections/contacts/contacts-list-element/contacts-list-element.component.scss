@@ -73,6 +73,18 @@
 
 }
 
+.highlight {
+  background: var(--Version-2-main-color, #2A3647) !important;
+
+  .contact-info-container {
+
+    h1 {
+      color: #FFF;
+    }
+
+  }
+}
+
 @media (max-width: 1350px) {
   .contacts-list-element-frame {
     width: 452px;

@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {Component, Input} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {Contact} from "../../../models/contact";
 
 @Component({
@@ -12,9 +12,10 @@ import {Contact} from "../../../models/contact";
 export class ContactsListElementComponent {
   @Input() contact?: Contact;
   @Input() letter?: string;
+  @Input() infoContact?: Contact;
 
   checkLetter() {
-    if(this.letter) {
+    if (this.letter) {
       return this.contact?.name[0].toUpperCase() == this.letter;
     } else {
       return false;

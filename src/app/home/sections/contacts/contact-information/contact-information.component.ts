@@ -11,10 +11,10 @@ import {CommonModule} from "@angular/common";
 })
 export class ContactInformationComponent implements OnInit{
   @Input() contact?: Contact;
-  @Input() showtogglebtn: boolean = true;
+  @Input() showToggleBtn: boolean = true;
   @Output() openEdit = new EventEmitter();
   @Output() deleteContact = new EventEmitter();
-  showaction: boolean = false;
+  showAction: boolean = false;
 
   ngOnInit() {
     window.addEventListener('click', (event: MouseEvent) => {
@@ -23,13 +23,13 @@ export class ContactInformationComponent implements OnInit{
   }
 
   toggleAction(): void {
-    this.showaction = !this.showaction;
+    this.showAction = !this.showAction;
   }
 
   closeAction(event: MouseEvent) {
     const targetElement = event.target as HTMLElement;
     if(!targetElement.classList.contains('action')) {{
-      this.showaction = false;
+      this.showAction = false;
     }}
   }
 
