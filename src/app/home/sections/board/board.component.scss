@@ -16,6 +16,16 @@
     margin: 0;
   }
 
+  .placeholder-no-tasks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: dotted gray;
+    border-radius: 8px;
+    width: 90%;
+    height: 30px;
+  }
+
   .board-content {
     display: flex;
     flex-direction: column;

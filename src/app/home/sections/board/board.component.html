@@ -7,7 +7,7 @@
       <div class="head-text-container">
         <h1>Board</h1>
 
-        <button class="add-task" (click)="this.openCloseAddTaskPopup()">
+        <button class="add-task" (click)="openCloseAddTaskPopup()">
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
             <mask id="mask0_120784_5191" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
                   width="32" height="32">
@@ -25,11 +25,11 @@
       <div class="search-addtask-container">
 
         <div class="search-container">
-          <input type="text" placeholder="Find Task" (input)="this.searchTaskInBoard(searchinput.value)"
+          <input type="text" placeholder="Find Task" (input)="searchTaskInBoard(searchinput.value)"
                  #searchinput>
         </div>
 
-        <button class="add-task" (click)="this.openCloseAddTaskPopup()">
+        <button class="add-task" (click)="openCloseAddTaskPopup()">
           Add Task
           <div class="img-container">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -54,7 +54,7 @@
       <div class="task-section todo-sec">
         <div class="task-head">
           To do
-          <button (click)="this.openCloseAddTaskPopup()">
+          <button (click)="openCloseAddTaskPopup()">
             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="11" viewBox="0 0 10 11" fill="none">
               <path d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
               <path d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
@@ -69,17 +69,20 @@
             </svg>
           </button>
         </div>
-        <div class="tasks" dropzone="true" (dragover)="this.allowDropEvent($event)"
-             (drop)="this.dropTask($event, 'ToDo')">
-          <app-single-task *ngFor="let task of this.tasksToDO" (click)="this.openTaskInfo($event, task)"
-                           (newState)="this.saveNewTaskState($event, task)"
+        <div class="tasks" dropzone="true" (dragover)="allowDropEvent($event)"
+             (drop)="dropTask($event, 'ToDo')">
+          <section *ngIf="tasksToDO?.length === 0" class="placeholder-no-tasks">
+            No tasks todo
+          </section>
+          <app-single-task *ngFor="let task of tasksToDO" (click)="openTaskInfo($event, task)"
+                           (newState)="saveNewTaskState($event, task)"
                            [task]="task"></app-single-task>
         </div>
       </div>
       <div class="task-section in-progress-sec">
         <div class="task-head">
           In progress
-          <button (click)="this.createTaskWithState = 'InProgress'; this.openCloseAddTaskPopup()">
+          <button (click)="createTaskWithState = 'InProgress'; openCloseAddTaskPopup()">
             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="11" viewBox="0 0 10 11" fill="none">
               <path d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
               <path d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
@@ -94,17 +97,20 @@
             </svg>
           </button>
         </div>
-        <div class="tasks" dropzone="true" (dragover)="this.allowDropEvent($event)"
-             (drop)="this.dropTask($event, 'InProgress')">
-          <app-single-task *ngFor="let task of this.tasksInProgress" (click)="this.openTaskInfo($event, task)"
-                           (newState)="this.saveNewTaskState($event, task)"
+        <div class="tasks" dropzone="true" (dragover)="allowDropEvent($event)"
+             (drop)="dropTask($event, 'InProgress')">
+          <section *ngIf="tasksInProgress?.length === 0" class="placeholder-no-tasks">
+            No tasks in progress
+          </section>
+          <app-single-task *ngFor="let task of tasksInProgress" (click)="openTaskInfo($event, task)"
+                           (newState)="saveNewTaskState($event, task)"
                            [task]="task"></app-single-task>
         </div>
       </div>
       <div class="task-section await-feedback-sec">
         <div class="task-head">
           Await feedback
-          <button (click)="this.createTaskWithState = 'AwaitFeedback'; this.openCloseAddTaskPopup()">
+          <button (click)="createTaskWithState = 'AwaitFeedback'; openCloseAddTaskPopup()">
             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="11" viewBox="0 0 10 11" fill="none">
               <path d="M5 1.5V9.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
               <path d="M9 5.57544L1 5.57544" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
@@ -119,10 +125,13 @@
             </svg>
           </button>
         </div>
-        <div class="tasks" dropzone="true" (dragover)="this.allowDropEvent($event)"
-             (drop)="this.dropTask($event, 'AwaitFeedback')">
-          <app-single-task *ngFor="let task of this.tasksAwaitFeedback" (click)="this.openTaskInfo($event, task)"
-                           (newState)="this.saveNewTaskState($event, task)"
+        <div class="tasks" dropzone="true" (dragover)="allowDropEvent($event)"
+             (drop)="dropTask($event, 'AwaitFeedback')">
+          <section *ngIf="tasksAwaitFeedback?.length === 0" class="placeholder-no-tasks">
+            No tasks await feedback
+          </section>
+          <app-single-task *ngFor="let task of tasksAwaitFeedback" (click)="openTaskInfo($event, task)"
+                           (newState)="saveNewTaskState($event, task)"
                            [task]="task"></app-single-task>
         </div>
       </div>
@@ -130,10 +139,13 @@
         <div class="task-head">
           Done
         </div>
-        <div class="tasks" dropzone="true" (dragover)="this.allowDropEvent($event)"
-             (drop)="this.dropTask($event, 'Done')">
-          <app-single-task *ngFor="let task of this.tasksDone" (click)="this.openTaskInfo($event, task)"
-                           (newState)="this.saveNewTaskState($event, task)"
+        <div class="tasks" dropzone="true" (dragover)="allowDropEvent($event)"
+             (drop)="dropTask($event, 'Done')">
+          <section *ngIf="tasksDone?.length === 0" class="placeholder-no-tasks">
+            No tasks done
+          </section>
+          <app-single-task *ngFor="let task of tasksDone" (click)="openTaskInfo($event, task)"
+                           (newState)="saveNewTaskState($event, task)"
                            [task]="task"></app-single-task>
         </div>
       </div>
@@ -141,15 +153,15 @@
 
   </div>
 
-  <app-view-task-info *ngIf="this.infoTask != undefined && !this.openAddTaskPopup" [task]="this.infoTask"
-                      (closeViewInfo)="this.closeViewTaskInfo()" (deleteTask)="this.deleteTask(this.infoTask)"
-                      (subtaskDone)="this.getSubtaskDone($event)"
-                      (editTaskInPopup)="this.openAddTaskPopup = true"></app-view-task-info>
+  <app-view-task-info *ngIf="infoTask != undefined && !openAddTaskPopup" [task]="infoTask"
+                      (closeViewInfo)="closeViewTaskInfo()" (deleteTask)="deleteTask(infoTask)"
+                      (subtaskDone)="getSubtaskDone($event)"
+                      (editTaskInPopup)="openAddTaskPopup = true"></app-view-task-info>
 
-  <section *ngIf="this.openAddTaskPopup" class="edit-task-frame">
-    <div class="background" (click)="this.openCloseAddTaskPopup()"></div>
-    <div class="popup" [ngClass]="{'': this.infoTask}">
-      <button class="close-button" (click)="this.openCloseAddTaskPopup()">
+  <section *ngIf="openAddTaskPopup" class="edit-task-frame">
+    <div class="background" (click)="openCloseAddTaskPopup()"></div>
+    <div class="popup" [ngClass]="{'': infoTask}">
+      <button class="close-button" (click)="openCloseAddTaskPopup()">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
           <mask id="mask0_71720_5473" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
                 width="24" height="25">
@@ -173,8 +185,8 @@
           </g>
         </svg>
       </button>
-      <app-add-task class="add-task" (closePopup)="this.closePopupAndUpdateData($event)"
-                    [taskState]="this.createTaskWithState" [isPopUp]="true" [taskToEdit]="this.infoTask"></app-add-task>
+      <app-add-task class="add-task" (closePopup)="closePopupAndUpdateData($event)"
+                    [taskState]="createTaskWithState" [isPopUp]="true" [taskToEdit]="infoTask"></app-add-task>
     </div>
   </section>
 
