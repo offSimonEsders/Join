@@ -16,6 +16,7 @@ export class RegistrationComponent {
   @ViewChild('nameinputcontainer') nameinputcontainer?: ElementRef<HTMLDivElement>;
   @ViewChild('emailinputcontainer') emailinputcontainer?: ElementRef<HTMLDivElement>;
   @ViewChildren('passwordinputcontainer') passwordinputcontainer?: QueryList<ElementRef>;
+  @ViewChild('checkboxcontainer') checkboxcontainer?: ElementRef<HTMLDivElement>
   mailregex: RegExp = /[a-z0-9]+@[a-z]+\.[a-z]/;
   checked: boolean = false;
   showPassword: boolean = false;
@@ -132,14 +133,39 @@ export class RegistrationComponent {
   }
 
   /**
+   * Validates accepp and adds wrong-input class if it is false
+   *
+   * @param accpp
+   * */
+  validateCheck(accpp: HTMLInputElement): boolean {
+    const value = accpp.checked;
+    if (!value) {
+      this.checkboxcontainer?.nativeElement.classList.add('wrong-input');
+    }
+    return !value;
+  }
+
+  /**
+   * Removes wrong-input class from checkboxcontainer
+   *
+   * @param value
+   * */
+  removeWrongInputCheck(value: boolean) {
+    if(value) {
+      this.checkboxcontainer?.nativeElement.classList.remove('wrong-input');
+    }
+  }
+
+  /**
    * Calls the data validation functions and checks if they are all true
    *
    * @param name
    * @param email
    * @param password1
    * @param password2
+   * @param accpp
    * */
-  validateData(name: string, email: string, password1: string, password2: string): boolean {
+  validateData(name: string, email: string, password1: string, password2: string, accpp: HTMLInputElement): boolean {
     let stop: boolean = false;
     if (this.validateName(name)) {
       stop = true;
@@ -148,6 +174,9 @@ export class RegistrationComponent {
       stop = true;
     }
     if (this.validatePassword(password1, password2)) {
+      stop = true;
+    }
+    if (this.validateCheck(accpp)) {
       stop = true;
     }
     return stop;
@@ -163,9 +192,9 @@ export class RegistrationComponent {
    * @param password2
    * @param accpp
    * */
-  async register(event: Event, name: string, email: string, password1: string, password2: string, accpp: boolean): Promise<void> {
+  async register(event: Event, name: string, email: string, password1: string, password2: string, accpp: HTMLInputElement): Promise<void> {
     event.preventDefault();
-    if (this.validateData(name, email, password1, password2) || !accpp) {
+    if (this.validateData(name, email, password1, password2, accpp)) {
       return;
     }
     if (await this.appwriteService.appwriteSignUp(email, password1, name)) {

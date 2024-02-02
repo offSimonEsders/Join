@@ -163,9 +163,9 @@
           </svg>
         </div>
       </div>
-      <div class="rememberme-container">
-        <input type="checkbox" name="" id="remembermecheckbox" (change)="changeChecked()" #checkbox>
-        <label for="remembermecheckbox">
+      <div class="acceptpp-container inputcontainer not-accepted" #checkboxcontainer>
+        <input type="checkbox" name="" id="acceptppcheckbox" (change)="changeChecked(); removeWrongInputCheck(checkbox.checked)" #checkbox>
+        <label for="acceptppcheckbox">
           <svg *ngIf="!checked" width="24" class="box" height="25" viewBox="0 0 24 25" fill="none"
                xmlns="http://www.w3.org/2000/svg">
             <g id="Property 1=Default">
@@ -207,7 +207,7 @@
         <a (click)="router.navigate(['/legal/privacypolicy'])" target="_blank">Privacy policy</a>
       </div>
       <button
-        (click)="register($event, nameinput.value, emailinput.value, passwordinput1.value, passwordinput2.value, checkbox.checked)">
+        (click)="register($event, nameinput.value, emailinput.value, passwordinput1.value, passwordinput2.value, checkbox)">
         Sign up
       </button>
     </form>
