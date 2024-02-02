@@ -381,28 +381,9 @@
   .board-frame {
 
     .board-header {
-      padding-right: 20px !important;
-      max-width: 860px;
-    }
-
-    .board-task-content {
-      justify-content: center !important;
-      flex-wrap: wrap !important;
-      padding-right: 20px !important;
-      max-width: 860px;
-    }
-
-  }
-}
-
-
-@media (max-width: 1222px) {
-
-  .board-frame {
-
-    .board-header {
       flex-direction: column;
       align-items: flex-start !important;
+      padding-right: 20px !important;
       max-width: 565px;
       gap: 40px;
 
@@ -413,10 +394,22 @@
     }
 
     .board-task-content {
+      justify-content: center !important;
+      flex-wrap: wrap !important;
+      padding-right: 20px !important;
       max-width: 565px;
+    }
 
+  }
+}
+
+
+@media (max-width: 1222px) {
+
+  .board-frame {
+
+    .board-task-content {
       .task-section {
-
         .tasks {
           height: fit-content !important;
           flex-direction: row !important;
