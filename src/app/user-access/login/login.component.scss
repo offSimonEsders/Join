@@ -41,6 +41,12 @@
       align-items: flex-start;
       gap: 32px;
 
+      .input-container-password {
+        .icon-container {
+          cursor: pointer;
+        }
+      }
+
       .input-container {
         position: relative;
 
@@ -79,15 +85,6 @@
           background-position: center;
           background-repeat: no-repeat;
         }
-
-        .icon-container-email {
-          background-image: url(../../../assets/Icons/Mail_Icon.svg);
-        }
-
-        .icon-container-password {
-          background-image: url(../../../assets/Icons/Lock_Icon.svg);
-        }
-
       }
 
       .rememberme-container {

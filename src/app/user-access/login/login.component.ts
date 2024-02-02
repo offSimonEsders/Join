@@ -15,6 +15,7 @@ import {NgIf} from "@angular/common";
 export class LoginComponent implements OnInit{
   @ViewChild('loginform') loginform?: any;
   checked: boolean = false;
+  showPassword: boolean = false;
 
   constructor(public router: Router, private appwriteService: AppwriteService) {
 
@@ -25,6 +26,10 @@ export class LoginComponent implements OnInit{
    * */
   ngOnInit(): void {
     this.checked = this.getRememberMe();
+  }
+
+  togglePasswordView(): void {
+    this.showPassword = !this.showPassword;
   }
 
   /**
