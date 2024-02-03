@@ -29,7 +29,7 @@ export class ContactsComponent implements OnInit {
 
   }
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     window.addEventListener('resize', () => {
       this.checkWindowWidth();
     });
@@ -37,7 +37,10 @@ export class ContactsComponent implements OnInit {
     this.contacts = (await this.appwriteService.getContacts());
   }
 
-  checkWindowWidth() {
+  /**
+   * Changes the style depending on the window width
+   * */
+  checkWindowWidth(): void {
     if (window.innerWidth > 1350) {
       this.showInfoResp = true;
       this.changed = false;
@@ -47,53 +50,93 @@ export class ContactsComponent implements OnInit {
     }
   }
 
-  changeCreateEditContact() {
+  /**
+   * Shows or hides CreateEditContact
+   * */
+  changeCreateEditContact(): void {
     this.showCreateEditContact = !this.showCreateEditContact;
     !this.showCreateEditContact ? this.resetEditContact() : undefined;
   }
 
-  setEditContact(contact: object) {
+  /**
+   * Sets the edit contact and calls changeCreateEditContact
+   *
+   * @param contact
+   * */
+  setEditContact(contact: object): void {
     this.editcontact = contact;
     this.changeCreateEditContact();
   }
 
-  resetEditContact() {
+  /**
+   * Sets editcontact to undefined
+   * */
+  resetEditContact(): void {
     this.editcontact = undefined;
   }
 
-  returnIfNameWithLetterexist(letter: string) {
+  /**
+   * Calls checkName
+   *
+   * @param letter
+   * */
+  returnIfNameWithLetterexist(letter: string): boolean | undefined {
     try {
-      for (let c of this.contacts) {
-        const firstLetter = c.name[0].toUpperCase();
-        if (firstLetter === letter) {
-          return true;
-        }
-        if(letter === '#' && (!this.letters.includes(firstLetter) || firstLetter ==='#')) {
-          return true;
-        }
-      }
-      return false;
+      return this.checkName(letter);
     } catch {
       return;
     }
   }
 
-  setInformationContact(contact: Contact) {
-    if(this.informationContact?.$id !== contact.$id) {
+  /**
+   * Checks if letter matches to name and returns it
+   *
+   * @param letter
+   * */
+  checkName(letter: string) {
+    for (let c of this.contacts) {
+      const firstLetter = c.name[0].toUpperCase();
+      if (firstLetter === letter) {
+        return true;
+      }
+      if (letter === '#' && (!this.letters.includes(firstLetter) || firstLetter === '#')) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Sets informationcontact to contact or undefined
+   *
+   * @param contact
+   * */
+  setInformationContact(contact: Contact): void {
+    if (this.informationContact?.$id !== contact.$id) {
       this.informationContact = undefined;
-      setTimeout(() => {
+      setTimeout((): void => {
         this.informationContact = contact;
       }, 1);
     }
   }
 
+  /**
+   * Returns the index in contacts array from the given contact
+   *
+   * @param contact
+   * */
   getConactIndex(contact: Contact) {
-    return this.contacts.findIndex((c: Contact) => {
+    return this.contacts.findIndex((c: Contact): boolean => {
       return c.$id == contact.$id;
     })
   }
 
-  deleteContact(contact: Contact) {
+  /**
+   * Deletes given contact from frontend and backend and closes the contact info
+   *
+   * @param contact
+   * */
+  deleteContact(contact: Contact): void {
     if (contact.$id) {
       this.informationContact = undefined;
       this.contacts.splice(this.getConactIndex(contact), 1);
@@ -102,10 +145,22 @@ export class ContactsComponent implements OnInit {
     }
   }
 
-  async addNewContact(contact: Contact) {
+  /**
+   * Adds new contact from create edit contact to contacts array
+   *
+   * @param contact
+   * */
+  async addNewContact(contact: Contact): Promise<void> {
     this.contacts.push(contact);
   }
 
+  /**
+   * Changes the padding of the contactlist when it has a scrollbar
+   *
+   * @param conactlist
+   * @param addbuttoncontainer
+   * @param conactslistcontainer
+   * */
   checkContainerHeight(conactlist: HTMLUListElement, addbuttoncontainer: HTMLDivElement, conactslistcontainer: HTMLDivElement): void {
     if (conactlist.offsetHeight + addbuttoncontainer.offsetHeight < conactslistcontainer.offsetHeight) {
       conactlist.style.padding = '0 20px 25px 25px';
@@ -114,7 +169,10 @@ export class ContactsComponent implements OnInit {
     conactlist.style.padding = '0 20px 25px 20px';
   }
 
-  showContactInfoResponsive() {
+  /**
+   * Closes the contact info on scaling
+   * */
+  showContactInfoResponsive(): void {
     if (window.innerWidth <= 1350) {
       this.showInfoResp = !this.showInfoResp;
       if (!this.showInfoResp) {
@@ -123,7 +181,10 @@ export class ContactsComponent implements OnInit {
     }
   }
 
-  showContactInfoResp() {
+  /**
+   * Turns Contacts info into Overlay
+   * */
+  showContactInfoResp(): boolean {
     if (window.innerWidth < 1350) {
       return this.showInfoResp;
     }

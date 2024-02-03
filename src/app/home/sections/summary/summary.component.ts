@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AppwriteService } from '../../../services/appwrite.service';
-import { Task } from '../../models/task';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {AppwriteService} from '../../../services/appwrite.service';
+import {Task} from '../../models/task';
 
 @Component({
   selector: 'app-summary',
@@ -19,17 +19,23 @@ export class SummaryComponent implements OnInit {
 
   }
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     this.tasks = await this.appwriteService.getTasks() as unknown as Task[];
     this.userName = await this.appwriteService.getUserName();
   }
 
-  goToBoard() {
+  /**
+   * Navigates client to board section
+   * */
+  goToBoard(): void {
     this.router.navigate(['/home/board']);
   }
 
-  getGreeting() {
-    const time = new Date().getHours();
+  /**
+   * Returns the Greeting depending on time
+   * */
+  getGreeting(): {} {
+    const time: number = new Date().getHours();
     if (time > 0 && time < 12) {
       return 'Good morning';
     } else if (time > 12 && time < 17) {
@@ -39,9 +45,14 @@ export class SummaryComponent implements OnInit {
     }
   }
 
-  getTasksInState(state: string) {
-    let count = 0;
-    this.tasks?.forEach((t: Task) => {
+  /**
+   * Returns number of tasks with given state
+   *
+   * @param state
+   * */
+  getTasksInState(state: string): number {
+    let count: number = 0;
+    this.tasks?.forEach((t: Task): void => {
       if (t.state == state) {
         count++;
       }
@@ -49,9 +60,12 @@ export class SummaryComponent implements OnInit {
     return count;
   }
 
-  getUrgentTasks() {
-    let count = 0;
-    this.tasks?.forEach((t: Task) => {
+  /**
+   * Returns amount of tasks with prio urgent
+   * */
+  getUrgentTasks(): number {
+    let count: number = 0;
+    this.tasks?.forEach((t: Task): void => {
       if (t.prio == 'Urgent') {
         count++;
       }
@@ -59,9 +73,12 @@ export class SummaryComponent implements OnInit {
     return count;
   }
 
-  getNearestUrgentTask() {
+  /**
+   * Returns the nearest date to today
+   * */
+  getNearestUrgentTask(): string {
     let dates: number[] = [];
-    this.tasks?.forEach(task => {
+    this.tasks?.forEach((task: Task): void => {
       if (task.prio == 'Urgent') {
         dates.push(parseInt(task.duedate.replace("-", "").replace("-", "")));
       }
@@ -69,7 +86,12 @@ export class SummaryComponent implements OnInit {
     return this.dateToString(dates);
   }
 
-  dateToString (dates: number[]) {
+  /**
+   * Returns the date converted to a string
+   *
+   * @param dates
+   * */
+  dateToString(dates: number[]): string {
     if (dates.length > 0) {
       let nearestDate = Math.min(...dates).toString();
       let year = parseInt(nearestDate.substr(0, 4));
