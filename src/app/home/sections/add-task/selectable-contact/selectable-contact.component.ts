@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CommonModule } from '@angular/common'
-import { Contact } from '../../../models/contact';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {CommonModule} from '@angular/common'
+import {Contact} from '../../../models/contact';
 
 @Component({
   selector: 'app-selectable-contact',
@@ -20,7 +20,7 @@ export class SelectableContactComponent {
    * */
   selectContact(): void {
     this.selected = !this.selected;
-    if(this.selected) {
+    if (this.selected) {
       this.selectSignal.emit(this.contact);
       return;
     }

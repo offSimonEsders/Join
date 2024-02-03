@@ -12,17 +12,20 @@ import {Contact} from '../../../models/contact';
 })
 export class SingleTaskComponent implements OnInit {
   @Input() task?: Task;
-  @Output() newState = new EventEmitter<string>();
+  @Output() newState: EventEmitter<string> = new EventEmitter<string>();
   contacts?: Contact[];
-  states = ['ToDo', 'InProgress', 'AwaitFeedback', 'Done'];
+  states: string[] = ['ToDo', 'InProgress', 'AwaitFeedback', 'Done'];
 
   ngOnInit(): void {
     if (this.task?.assignedContacts) {
-      this.contacts = this.task?.assignedContacts.map((c) => JSON.parse(c));
+      this.contacts = this.task?.assignedContacts.map((c: string) => JSON.parse(c));
     }
   }
 
-  getDoneTasks() {
+  /**
+   * Returns if a subtask is done
+   * */
+  getDoneSubtasks(): number {
     if (this.task?.subtasksdone) {
       return this.task.subtasksdone.filter((value: any) => {
         if (value == true) {
@@ -33,50 +36,72 @@ export class SingleTaskComponent implements OnInit {
     return 0;
   }
 
-  checkSubtasks() {
+  /**
+   * Checks if there are subtasks
+   * */
+  checkSubtasks(): boolean {
     if (this.task?.subtasks) {
       return this.task.subtasks.length > 0
     }
     return false;
   }
 
-  getProgress() {
+  /**
+   * Returns how many subtasks are done in percent to set the progressbar
+   * */
+  getProgress(): number | undefined {
     if (this.task?.subtasks) {
-      return (this.getDoneTasks() / this.task?.subtasks.length) * 100;
+      return (this.getDoneSubtasks() / this.task?.subtasks.length) * 100;
     }
     return;
   }
 
-  getContactsLength() {
+  /**
+   * Returns how many contacts there are
+   * */
+  getContactsLength(): number {
     if (this.contacts) {
       return this.contacts.length;
     }
     return 0;
   }
 
-  setDragData(event: DragEvent, data: any) {
+  /**
+   * Sets the actual task to dragdata for drag and drop
+   * */
+  setDragData(event: DragEvent, data: Task | undefined): void {
     event.dataTransfer?.setData('task', JSON.stringify(data));
   }
 
-  changeStateUp() {
-    const index = this.getIndexOfState();
+
+  /**
+   * Sets the state from ['ToDo', 'InProgress', 'AwaitFeedback', 'Done'] one up form where the task is
+   * */
+  changeStateUp(): void {
+    const index: number = this.getIndexOfState();
     if (index > 0 && this.task) {
       this.newState.emit(this.states[index - 1]);
     }
     console.log(this.task?.state)
   }
 
-  changeStateDown() {
-    const index = this.getIndexOfState();
+  /**
+   * Sets the state from ['ToDo', 'InProgress', 'AwaitFeedback', 'Done'] one down form where the task is
+   * */
+  changeStateDown(): void {
+    const index: number = this.getIndexOfState();
     if (index < this.states.length - 1 && this.task) {
       this.newState.emit(this.states[index + 1]);
     }
     console.log(this.task?.state)
   }
 
-  getIndexOfState() {
-    return this.states.findIndex((state: string) => {
-      return this.task?.state == state;
+  /**
+   * Returns the index from the task state from states array
+   * */
+  getIndexOfState(): number {
+    return this.states.findIndex((state: string): boolean => {
+      return this.task?.state === state;
     });
   }
 

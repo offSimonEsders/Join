@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Subtask } from '../../../models/subtask';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {Subtask} from '../../../models/subtask';
 
 @Component({
   selector: 'app-subtask',
@@ -36,7 +36,7 @@ export class SubtaskComponent {
    * @param subtaskframe
    * */
   saveSubtask(subtaskinput: HTMLInputElement, subtaskframe: HTMLElement): void {
-    if(this.subtask && subtaskinput.value.length > 0) {
+    if (this.subtask && subtaskinput.value.length > 0) {
       this.editMode = false;
       this.subtask.subtask = subtaskinput.value;
       this.editsubtaskevent.emit(this.subtask);

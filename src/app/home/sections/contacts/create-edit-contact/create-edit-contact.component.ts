@@ -89,7 +89,7 @@ export class CreateEditContactComponent {
   }
 
   showUserFeedback() {
-    if(this.userfeedback) {
+    if (this.userfeedback) {
       this.userfeedback.nativeElement.style.display = 'flex';
     }
   }
@@ -137,5 +137,4 @@ export class CreateEditContactComponent {
     this.deleteContactEvent.emit('delete');
     this.closeCreateEditWindow(event);
   }
-
 }
