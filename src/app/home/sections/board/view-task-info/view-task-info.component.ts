@@ -1,9 +1,9 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Task } from '../../../models/task';
-import { Contact } from '../../../models/contact';
-import { Subtask } from '../../../models/subtask';
-import { AppwriteService } from '../../../../services/appwrite.service';
+import {CommonModule} from '@angular/common';
+import {Task} from '../../../models/task';
+import {Contact} from '../../../models/contact';
+import {Subtask} from '../../../models/subtask';
+import {AppwriteService} from '../../../../services/appwrite.service';
 
 @Component({
   selector: 'app-view-task-info',
@@ -32,67 +32,108 @@ export class ViewTaskInfoComponent implements OnInit, AfterViewInit {
     this.getContacts();
     this.getSubtasks();
     this.subtaskdone = this.task?.subtasksdone;
-    window.addEventListener('resize', () => {
+    window.addEventListener('resize', (): void => {
       this.checkHeight();
     });
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.checkHeight();
   }
 
-  getContacts() {
-    this.contacts = this.task?.assignedContacts?.map((c) => { return JSON.parse(c) });
+  /**
+   * Downloads the contacts from the backend and set it to this.contacts
+   * */
+  getContacts(): void {
+    this.contacts = this.task?.assignedContacts?.map((c: string) => {
+      return JSON.parse(c)
+    });
   }
 
-  getSubtasks() {
-    this.subtasks = this.task?.subtasks?.map((s) => { return JSON.parse(s) });
+  /**
+   * Gets the Subtasks from the given task
+   * */
+  getSubtasks(): void {
+    this.subtasks = this.task?.subtasks?.map((s: string) => {
+      return JSON.parse(s)
+    });
   }
 
-  getIndexOfSubtask(subtask: Subtask) {
+  /**
+   * Returns the index from the giv en subtask
+   *
+   * @param subtask
+   * */
+  getIndexOfSubtask(subtask: Subtask): number {
     if (this.subtasks) {
-      return this.subtasks?.findIndex((s) => { return s == subtask });
+      return this.subtasks?.findIndex((s: Subtask): boolean => {
+        return s == subtask
+      });
     }
     return 0;
   }
 
-  getIfSubtaskIsDone(subtask: Subtask) {
+  /**
+   * Returns if a subtask is done
+   *
+   * @param subtask
+   * */
+  getIfSubtaskIsDone(subtask: Subtask): boolean {
     if (this.subtaskdone) {
       return this.subtaskdone[this.getIndexOfSubtask(subtask)];
     }
     return false;
   }
 
-  changeSubtaskIsDone(subtask: Subtask) {
+
+  /**
+   * Inverts the done state of a subtask
+   *
+   * @param subtask
+   * */
+  changeSubtaskIsDone(subtask: Subtask): void {
     if (this.subtaskdone) {
-      const index = this.getIndexOfSubtask(subtask)
+      const index: number = this.getIndexOfSubtask(subtask)
       this.subtaskdone[index] = !this.subtaskdone[index];
     }
     this.subtaskDone.emit(this.subtaskdone);
   }
 
-  getContactsLength() {
+
+  /**
+   * Returns the length of the contacts array
+   * */
+  getContactsLength(): number {
     if (this.contacts) {
       return this.contacts.length;
     }
     return 0;
   }
 
-  getSubtasksLength() {
+  /**
+   * Returns the length of the subtasks array
+   * */
+  getSubtasksLength(): number {
     if (this.subtasks) {
       return this.subtasks.length;
     }
     return 0;
   }
 
-  closeTaskInfo() {
+  /**
+   * Emits the close event
+   * */
+  closeTaskInfo(): void {
     this.closeViewInfo.emit(undefined);
   }
 
-  checkHeight() {
-    if(this.taskinfo && this.taskinfoframe) {
+  /**
+   * Checks the height of the window and changes the style
+   * */
+  checkHeight(): void {
+    if (this.taskinfo && this.taskinfoframe) {
       console.log(this.taskinfo.nativeElement.offsetHeight, this.taskinfoframe.nativeElement.offsetHeight)
-      if(this.taskinfo.nativeElement.offsetHeight >= this.taskinfoframe.nativeElement.offsetHeight) {
+      if (this.taskinfo.nativeElement.offsetHeight >= this.taskinfoframe.nativeElement.offsetHeight) {
         this.taskinfoframe.nativeElement.classList.add('use-max-height');
       } else {
         this.taskinfoframe.nativeElement.classList.remove('use-max-height');
