@@ -333,14 +333,21 @@ export class AddTaskComponent implements OnInit {
     }
     const task: Task | undefined = this.createTask(event, titleinput, descriptioninput, dateinput, categoryinput);
     if (task) {
-      this.clearAddTask(event, titleinput, descriptioninput, dateinput, categoryinput);
-      this.activateUserFeedback();
-      const resp: undefined | Task = await this.appwriteService.createTask(task) as unknown as Task;
-      if (resp) {
-        this.closePopup.emit(resp);
-      }
-      this.urlToBoard();
+      this.sendNewTaskToBackend(event, task, titleinput, descriptioninput, dateinput, categoryinput);
     }
+  }
+
+  /**
+   * Sends created task to the backend and emits the response to the board
+   * */
+  async sendNewTaskToBackend(event: Event, task: Task, titleinput: HTMLInputElement, descriptioninput: HTMLTextAreaElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement) {
+    this.clearAddTask(event, titleinput, descriptioninput, dateinput, categoryinput);
+    this.activateUserFeedback();
+    const resp: undefined | Task = await this.appwriteService.createTask(task) as unknown as Task;
+    if (resp) {
+      this.closePopup.emit(resp);
+    }
+    this.urlToBoard();
   }
 
   /**
