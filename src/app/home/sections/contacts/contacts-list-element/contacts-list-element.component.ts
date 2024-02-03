@@ -16,8 +16,11 @@ export class ContactsListElementComponent {
 
   letters: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#'];
 
-  checkLetter() {
-    if (this.letter && this.letter === '#' && this.checkName()) {
+  /**
+   * Checks and return if a user should be generated
+   * */
+  checkLetter(): boolean {
+    if (this.letter === '#' && this.checkName()) {
       return true;
     } else if (this.letter) {
       return this.contact?.name[0].toUpperCase() === this.letter;
@@ -26,8 +29,11 @@ export class ContactsListElementComponent {
     }
   }
 
-  checkName() {
-    const letter = this.contact?.name[0].toUpperCase();
+  /**
+   * Checks and returns if name is valid
+   * */
+  checkName(): boolean {
+    const letter: string | undefined = this.contact?.name[0].toUpperCase();
     if (letter === '#') {
       return true;
     } else if (letter) {
