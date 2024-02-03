@@ -294,7 +294,7 @@ export class BoardComponent implements OnInit {
   }
 
   /**
-   * Sets the infotask to the given task
+   * Sets the info task to the given task when the target does not contain the change-state class
    *
    * @param event
    * @param task
