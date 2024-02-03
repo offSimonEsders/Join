@@ -9,30 +9,37 @@ import {CommonModule} from "@angular/common";
   templateUrl: './contact-information.component.html',
   styleUrls: ['./contact-information.component.scss', '../../../extra-styles/contact-icon-color.scss']
 })
-export class ContactInformationComponent implements OnInit{
+export class ContactInformationComponent implements OnInit {
   @Input() contact?: Contact;
   @Input() showToggleBtn: boolean = true;
-  @Output() openEdit = new EventEmitter();
-  @Output() deleteContact = new EventEmitter();
+  @Output() openEdit: EventEmitter<any> = new EventEmitter<any>();
+  @Output() deleteContact: EventEmitter<any> = new EventEmitter<any>();
   showAction: boolean = false;
 
-  ngOnInit() {
-    window.addEventListener('click', (event: MouseEvent) => {
+  ngOnInit(): void {
+    window.addEventListener('click', (event: MouseEvent): void => {
       this.closeAction(event);
     });
   }
 
+  /**
+   * Inverts the showAction which shows or hides the action buttons
+   * */
   toggleAction(): void {
     this.showAction = !this.showAction;
   }
 
-  closeAction(event: MouseEvent) {
-    const targetElement = event.target as HTMLElement;
-    if(!targetElement.classList.contains('action')) {{
-      this.showAction = false;
-    }}
+  /**
+   * Hides the action buttons
+   *
+   * @param event
+   * */
+  closeAction(event: MouseEvent): void {
+    const targetElement: HTMLElement = event.target as HTMLElement;
+    if (!targetElement.classList.contains('action')) {
+      {
+        this.showAction = false;
+      }
+    }
   }
-
-
-
 }
