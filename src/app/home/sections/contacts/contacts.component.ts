@@ -21,7 +21,7 @@ export class ContactsComponent implements OnInit {
   showInfoResp: boolean = true;
   changed: boolean = false;
 
-  letters: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+  letters: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#'];
 
   showCreateEditContact: boolean = false;
 
@@ -64,7 +64,11 @@ export class ContactsComponent implements OnInit {
   returnIfNameWithLetterexist(letter: string) {
     try {
       for (let c of this.contacts) {
-        if (c.name[0].toUpperCase() == letter) {
+        const firstLetter = c.name[0].toUpperCase();
+        if (firstLetter === letter) {
+          return true;
+        }
+        if(letter === '#' && (!this.letters.includes(firstLetter) || firstLetter ==='#')) {
           return true;
         }
       }

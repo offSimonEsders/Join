@@ -14,12 +14,26 @@ export class ContactsListElementComponent {
   @Input() letter?: string;
   @Input() infoContact?: Contact;
 
+  letters: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#'];
+
   checkLetter() {
-    if (this.letter) {
-      return this.contact?.name[0].toUpperCase() == this.letter;
+    if (this.letter && this.letter === '#' && this.checkName()) {
+      return true;
+    } else if (this.letter) {
+      return this.contact?.name[0].toUpperCase() === this.letter;
     } else {
       return false;
     }
+  }
+
+  checkName() {
+    const letter = this.contact?.name[0].toUpperCase();
+    if (letter === '#') {
+      return true;
+    } else if (letter) {
+      return !this.letters.includes(letter);
+    }
+    return false;
   }
 
 }
