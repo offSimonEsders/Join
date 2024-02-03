@@ -219,14 +219,23 @@ export class AddTaskComponent implements OnInit {
     }
   }
 
-  getSubtaskIndex() {
+  /**
+   * Creates a new index for a subtask
+   * */
+  getSubtaskIndex(): string | 0 {
     if (this.subtasks.length == 0) {
       return 0;
     }
     return this.subtasks[this.subtasks.length - 1].index + 1;
   }
 
-  addNewSubtask(event: Event, subtaskinput: HTMLInputElement) {
+  /**
+   * Creates a new Subtask and adds it to the subtasks array
+   *
+   * @param event
+   * @param subtaskinput
+   * */
+  addNewSubtask(event: Event, subtaskinput: HTMLInputElement): void {
     event.preventDefault();
     if (subtaskinput.value != '') {
       const newSubtask = new Subtask(subtaskinput.value, this.getSubtaskIndex().toString())
@@ -238,32 +247,65 @@ export class AddTaskComponent implements OnInit {
     subtaskinput.classList.add('no-input');
   }
 
-  clearSubtaskinput(event: Event, subtaskinput: HTMLInputElement) {
+
+  /**
+   * Clears the Subtasksinput and blurs it
+   *
+   * @param event
+   * @param subtaskinput
+   * */
+  clearSubtaskinput(event: Event, subtaskinput: HTMLInputElement): void {
     event.preventDefault();
     subtaskinput.focus();
     subtaskinput.value = '';
   }
 
-  deleteSubtask(subtask: Subtask) {
-    const index = this.subtasks.findIndex((s) => {
+  /**
+   * Removes a subtask from the subtasks array
+   *
+   * @param subtask
+   * */
+  deleteSubtask(subtask: Subtask): void {
+    const index: number = this.subtasks.findIndex((s: Subtask): boolean => {
       return s == subtask;
     });
     this.subtasks.splice(index, 1);
   }
 
-  editSubtask(newsubtask: Subtask, subtask: Subtask) {
-    const index = this.subtasks.findIndex((s) => {
-      return s == subtask;
+  /**
+   * Replaces the value of an existing subtask with a new value
+   *
+   * @param newsubtask
+   * @param subtask
+   * */
+  editSubtask(newsubtask: Subtask, subtask: Subtask): void {
+    const index: number = this.subtasks.findIndex((s: Subtask): boolean => {
+      return s === subtask;
     });
     this.subtasks[index] = newsubtask;
   }
 
-  changePrio(event: Event, newPrio: string) {
+  /**
+   * Changes the actual prio to the new prio
+   *
+   * @param event
+   * @param newPrio
+   * */
+  changePrio(event: Event, newPrio: string): void {
     event.preventDefault();
     this.prio = newPrio;
   }
 
-  clearAddTask(event: Event, titleinput: HTMLInputElement, descriptioninput: HTMLTextAreaElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement) {
+  /**
+   * Resets the add task form
+   *
+   * @param event
+   * @param titleinput
+   * @param descriptioninput
+   * @param dateinput
+   * @param categoryinput
+   * */
+  clearAddTask(event: Event, titleinput: HTMLInputElement, descriptioninput: HTMLTextAreaElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement): void {
     event.preventDefault();
     titleinput.value = '';
     descriptioninput.value = '';
@@ -275,12 +317,21 @@ export class AddTaskComponent implements OnInit {
     this.removeWrongInputClass(titleinput, dateinput, categoryinput, true);
   }
 
-  async createAndUploadNewTask(event: Event, titleinput: HTMLInputElement, descriptioninput: HTMLTextAreaElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement) {
+  /**
+   *
+   *
+   * @param event
+   * @param titleinput
+   * @param descriptioninput
+   * @param dateinput
+   * @param categoryinput
+   * */
+  async createAndUploadNewTask(event: Event, titleinput: HTMLInputElement, descriptioninput: HTMLTextAreaElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement): Promise<void> {
     event.preventDefault();
     if (this.addWrongInputClass(titleinput, dateinput, categoryinput)) {
       return;
     }
-    const task = this.createTask(event, titleinput, descriptioninput, dateinput, categoryinput);
+    const task: Task | undefined = this.createTask(event, titleinput, descriptioninput, dateinput, categoryinput);
     if (task) {
       this.clearAddTask(event, titleinput, descriptioninput, dateinput, categoryinput);
       this.activateUserFeedback();
@@ -291,17 +342,35 @@ export class AddTaskComponent implements OnInit {
 
   }
 
-  createTask(event: Event, titleinput: HTMLInputElement, descriptioninput: HTMLTextAreaElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement) {
-    const preparedData = this.prepareDataForTask();
+  /**
+   * Creates a new Task and returns it
+   *
+   * @param event
+   * @param titleinput
+   * @param descriptioninput
+   * @param dateinput
+   * @param categoryinput
+   * */
+  createTask(event: Event, titleinput: HTMLInputElement, descriptioninput: HTMLTextAreaElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement): Task | undefined {
+    const preparedData: void | [string[], string[], Number] = this.prepareDataForTask();
     if (this.tasks && preparedData) {
-      const [selectedContacts, subtasks, index] = preparedData;
-      const task = new Task(titleinput.value, descriptioninput.value, selectedContacts, dateinput.value, this.prio, categoryinput.value, subtasks, this.taskState, index);
+      const [selectedContacts, subtasks, index]: [string[], string[], Number] = preparedData;
+      const task: Task = new Task(titleinput.value, descriptioninput.value, selectedContacts, dateinput.value, this.prio, categoryinput.value, subtasks, this.taskState, index);
       return task;
     }
     return undefined;
   }
 
-  updateTask(event: Event, titleinput: HTMLInputElement, descriptioninput: HTMLTextAreaElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement) {
+  /**
+   * Changes old values from the task through new the values and send the edited task to the backend
+   *
+   * @param event
+   * @param titleinput
+   * @param descriptioninput
+   * @param dateinput
+   * @param categoryinput
+   * */
+  updateTask(event: Event, titleinput: HTMLInputElement, descriptioninput: HTMLTextAreaElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement): void {
     event.preventDefault();
     if (this.addWrongInputClass(titleinput, dateinput, categoryinput)) {
       return;
@@ -318,19 +387,28 @@ export class AddTaskComponent implements OnInit {
     }
   }
 
-  activateUserFeedback() {
+  /**
+   * Shows user feedback to the display
+   * */
+  activateUserFeedback(): void {
     if (this.userfeedback) {
       this.userfeedback.nativeElement.style.display = 'flex';
     }
   }
 
-  urlToBoard() {
-    setTimeout(() => {
+  /**
+   * Navigate to board
+   * */
+  urlToBoard(): void {
+    setTimeout((): void => {
       this.router.navigate(['home/board']);
     }, 1000);
   }
 
-  getTaskIndex() {
+  /**
+   * Creates an index for a new task
+   * */
+  getTaskIndex(): number {
     if (this.tasks?.length == 0) {
       return 0;
     } else if (this.tasks) {
@@ -339,17 +417,27 @@ export class AddTaskComponent implements OnInit {
     return 0;
   }
 
+  /**
+   * Creates data which can be uploaded
+   * */
   prepareDataForTask(): [string[], string[], Number] | void {
     if (this.tasks) {
-      const selectedContacts: string[] = this.selectedContacts.map((c) => JSON.stringify(c));
-      const subtasks: string[] = this.subtasks.map((s) => JSON.stringify(s));
+      const selectedContacts: string[] = this.selectedContacts.map((c: Contact) => JSON.stringify(c));
+      const subtasks: string[] = this.subtasks.map((s: Subtask) => JSON.stringify(s));
       const index: Number = this.getTaskIndex();
       return [selectedContacts, subtasks, index];
     }
     return;
   }
 
-  addWrongInputClass(titleinput: HTMLInputElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement) {
+  /**
+   * Shows user feedback through adding a style class
+   *
+   * @param titleinput
+   * @param dateinput
+   * @param categoryinput
+   * */
+  addWrongInputClass(titleinput: HTMLInputElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement): boolean {
     let okay: boolean = false;
     if (titleinput.value.length <= 0) {
       this.titlecontainer?.nativeElement.classList.add('wrong-input');
@@ -366,7 +454,15 @@ export class AddTaskComponent implements OnInit {
     return okay;
   }
 
-  removeWrongInputClass(titleinput: HTMLInputElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement, clear: boolean | undefined = undefined) {
+  /**
+   * Removes the user feedback style class
+   *
+   * @param titleinput
+   * @param dateinput
+   * @param categoryinput
+   * @param clear
+   * */
+  removeWrongInputClass(titleinput: HTMLInputElement, dateinput: HTMLInputElement, categoryinput: HTMLInputElement, clear: boolean | undefined = undefined): void {
     if (titleinput.value.length > 0 || clear) {
       this.titlecontainer?.nativeElement.classList.remove('wrong-input');
     }
@@ -378,7 +474,13 @@ export class AddTaskComponent implements OnInit {
     }
   }
 
-  searchContact(name: string) {
+  /**
+   * Returns a new list of contacts which will be displayed.
+   * The added contacts depend on the searched value.
+   *
+   * @param name
+   * */
+  searchContact(name: string): void {
     this.contactsForList = this.contacts?.filter((c: Contact) => {
       return c.name.toLocaleLowerCase().includes(name.toLocaleLowerCase())
     });
