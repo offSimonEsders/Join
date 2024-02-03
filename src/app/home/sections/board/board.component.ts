@@ -35,21 +35,32 @@ export class BoardComponent implements OnInit {
     this.init();
   }
 
-  async init() {
+  /**
+   * Calls some functions to load and sort the data
+   * */
+  async init(): Promise<void> {
     this.tasks = await this.appwriteService.getTasks() as unknown as Task[];
     this.tasksForList = this.tasks;
     this.filterForAllStates();
   }
 
-  filterForAllStates() {
+  /**
+   * Sorts the tasks after their state
+   * */
+  filterForAllStates(): void {
     this.tasksToDO = this.filterForState('ToDo');
     this.tasksInProgress = this.filterForState('InProgress');
     this.tasksAwaitFeedback = this.filterForState('AwaitFeedback');
     this.tasksDone = this.filterForState('Done');
   }
 
-  filterForState(statefilter: string) {
-    return this.tasksForList?.filter((task: Task) => {
+  /**
+   * Returns an array of tasks depending on their state
+   *
+   * @param statefilter
+   * */
+  filterForState(statefilter: string): Task[] | undefined {
+    return this.tasksForList?.filter((task: Task): Task[] | undefined => {
       if (task.state == statefilter) {
         return Object.values(task);
       }
@@ -57,59 +68,102 @@ export class BoardComponent implements OnInit {
     });
   }
 
-  allowDropEvent(event: any) {
+  /**
+   * Allows the drop event
+   *
+   * @param event
+   * */
+  allowDropEvent(event: any): void {
     event.preventDefault()
   }
 
-  dropTask(event: any, newState: string) {
+  /**
+   * Saves the task with it new state after the drop
+   *
+   * @param event
+   * @param newState
+   * */
+  dropTask(event: any, newState: string): void {
     const task = JSON.parse(event.dataTransfer.getData('task'));
     this.saveNewTaskState(newState, task);
   }
 
-  getTaskIndex(task: Task) {
-    return this.tasksForList ? this.tasksForList?.findIndex((t: Task) => {
+  /**
+   * Returns the index of a task in the taskslist
+   *
+   * @param task
+   * */
+  getTaskIndex(task: Task): number {
+    return this.tasksForList ? this.tasksForList?.findIndex((t: Task): boolean => {
       return t.$id === task.$id
     }) : 0;
   }
 
-  changeTaskState(task: Task, newState: string) {
+  /**
+   * Returns Task with the new State
+   *
+   * @param task
+   * @param newState
+   * */
+  changeTaskState(task: Task, newState: string): Task {
     task.state = newState;
     return task;
   }
 
-  saveNewTaskState(newState: string, task: Task) {
-    const taskWithNewState = this.changeTaskState(task, newState);
+  /**
+   * Saves the task and loads it up
+   * */
+  saveNewTaskState(newState: string, task: Task): void {
+    const taskWithNewState: Task = this.changeTaskState(task, newState);
     this.changeTasksIndex(taskWithNewState);
     this.filterForAllStates();
     this.prepareAndUploadTasks();
   }
 
-  changeTasksIndex(task: Task) {
+  /**
+   * Sets the index of the task to the last of its array
+   *
+   * @param task
+   * */
+  changeTasksIndex(task: Task): void {
     if (this.tasksForList) {
-      const index = this.getTaskIndex(task);
+      const index: number = this.getTaskIndex(task);
       this.tasksForList.splice(index, 1);
       this.tasksForList.push(task);
-      for (let i = 0; i < this.tasksForList.length; i++) {
+      for (let i: number = 0; i < this.tasksForList.length; i++) {
         this.tasksForList[i].index = i;
       }
     }
   }
 
-  prepareAndUploadTasks() {
-    this.tasksForList?.forEach((t: Task) => {
+  /**
+   * Sends all tasks with new data to the backend
+   * */
+  prepareAndUploadTasks(): void {
+    this.tasksForList?.forEach((t: Task): void => {
       delete t.$databaseId;
       delete t.$collectionId;
       this.appwriteService.updateTask(String(t.$id), t);
     });
   }
 
-  prepareAndUploadSingleTask(task: Task) {
+  /**
+   * Sends a single Task to the backend
+   *
+   * @param task
+   * */
+  prepareAndUploadSingleTask(task: Task): void {
     delete task.$databaseId;
     delete task.$collectionId;
     this.appwriteService.updateTask(String(task.$id), task);
   }
 
-  deleteTask(task: Task) {
+  /**
+   * Deletes a task from the frontend and sends a delete request to the backend
+   *
+   * @param task
+   * */
+  deleteTask(task: Task): void {
     this.tasksForList?.splice(this.getTaskIndex(task), 1);
     this.infoTask = undefined;
     this.filterForAllStates();
@@ -118,36 +172,55 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  closeViewTaskInfo() {
+  /**
+   * Saves the subtasks state and closes the popup
+   * */
+  closeViewTaskInfo(): void {
     this.saveSubtaskDone();
     this.infoTask = undefined;
   }
 
-  getSubtaskDone(data: boolean[]) {
+  /**
+   * Gets the array where is the info which subtask is done
+   *
+   * @param data
+   * */
+  getSubtaskDone(data: boolean[]): void {
     if (this.infoTask && this.tasksForList) {
-      const index = this.getTaskIndex(this.infoTask);
+      const index: number = this.getTaskIndex(this.infoTask);
       this.tasksForList[index].subtasksdone = data;
     }
   }
 
-  saveSubtaskDone() {
+  /**
+   * Saves the subtask state and send it to the backend
+   * */
+  saveSubtaskDone(): void {
     if (this.infoTask && this.tasksForList) {
-      const index = this.getTaskIndex(this.infoTask);
+      const index: number = this.getTaskIndex(this.infoTask);
       this.prepareAndUploadSingleTask(this.tasksForList[index]);
     }
   }
 
-  openCloseAddTaskPopup() {
+  /**
+   * Inverts the open status from the addtask popup
+   * */
+  openCloseAddTaskPopup(): void {
     this.openAddTaskPopup = !this.openAddTaskPopup;
     if (!this.openAddTaskPopup) {
       this.infoTask = undefined;
     }
   }
 
-  closePopupAndUpdateData(task: Task) {
+  /**
+   * Closes the popup and updates the data
+   *
+   * @param task
+   * */
+  closePopupAndUpdateData(task: Task): void {
     const index: number = this.getTaskIndex(task);
     if (index == -1) {
-      setTimeout(() => {
+      setTimeout((): void => {
         this.init();
       }, 500);
     } else {
@@ -156,13 +229,18 @@ export class BoardComponent implements OnInit {
         this.filterForAllStates();
       }
     }
-    setTimeout(() => {
+    setTimeout((): void => {
       this.openCloseAddTaskPopup();
     }, 1000);
   }
 
-  searchTaskInBoard(searchParameter: string) {
-    this.tasksForList = this.tasks?.filter((t: Task) => {
+  /**
+   * Returns if a task matches the searched parameter
+   *
+   * @param searchParameter
+   * */
+  searchTaskInBoard(searchParameter: string): void {
+    this.tasksForList = this.tasks?.filter((t: Task): boolean => {
       if (this.checkIfValueIsContained(t.title, searchParameter)) {
         return true;
       } else if (this.checkIfValueIsContained(t.description, searchParameter)) {
@@ -177,35 +255,54 @@ export class BoardComponent implements OnInit {
     this.filterForAllStates();
   }
 
-  checkIfValueIsContained(containingValue: string | undefined, value: string) {
+  /**
+   * Returns if the mainvalue contains the value
+   * */
+  checkIfValueIsContained(containingValue: string | undefined, value: string): boolean {
     if (containingValue) {
       return containingValue.toLocaleLowerCase().includes(value.toLocaleLowerCase());
     }
     return false;
   }
 
+  /**
+   * Returns an array of the contactnames from the contacts assigned to the task
+   *
+   * @param task
+   * */
   getContactNames(task: Task): string[] {
     let contactNames: string[] = [];
     if (task.assignedContacts) {
-      const contacts = task.assignedContacts.map((c) => JSON.parse(c));
-      contacts.forEach((contact) => {
+      const contacts: any[] = task.assignedContacts.map((c: string) => JSON.parse(c));
+      contacts.forEach((contact): void => {
         contactNames.push(contact.name);
       });
     }
     return contactNames;
   }
 
-  checkValueInContactNames(names: string[], searchParameter: string) {
-    return names.some((n) => {
+  /**
+   * Checks if any name is matches to the searched parameter
+   *
+   * @param names
+   * @param searchParameter
+   * */
+  checkValueInContactNames(names: string[], searchParameter: string): boolean {
+    return names.some((n: string) => {
       return this.checkIfValueIsContained(n, searchParameter);
     })
   }
 
-  openTaskInfo(event: Event, task: Task) {
-    const targetElement = event.target as HTMLElement;
+  /**
+   * Sets the infotask to the given task
+   *
+   * @param event
+   * @param task
+   * */
+  openTaskInfo(event: Event, task: Task): void {
+    const targetElement: HTMLElement = event.target as HTMLElement;
     if(!targetElement.classList.contains('change-state')) {
       this.infoTask = task;
     }
   }
-
 }
