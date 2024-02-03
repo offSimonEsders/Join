@@ -19,7 +19,7 @@ export class AddTaskComponent implements OnInit {
   @Input() taskToEdit: Task | undefined;
   @Input() isPopUp: boolean = false;
   @Input() taskState: string = 'ToDo';
-  @Output() closePopup = new EventEmitter<Task>();
+  @Output() closePopup: EventEmitter<Task> = new EventEmitter<Task>();
   @ViewChild('titlecontainer') titlecontainer?: ElementRef<HTMLInputElement>;
   @ViewChild('datecontainer') datecontainer?: ElementRef<HTMLInputElement>;
   @ViewChild('categorycontainer') categorycontainer?: ElementRef<HTMLInputElement>;
@@ -335,11 +335,12 @@ export class AddTaskComponent implements OnInit {
     if (task) {
       this.clearAddTask(event, titleinput, descriptioninput, dateinput, categoryinput);
       this.activateUserFeedback();
-      this.closePopup.emit(task);
-      await this.appwriteService.createTask(task);
+      const resp: undefined | Task = await this.appwriteService.createTask(task) as unknown as Task;
+      if (resp) {
+        this.closePopup.emit(resp);
+      }
       this.urlToBoard();
     }
-
   }
 
   /**

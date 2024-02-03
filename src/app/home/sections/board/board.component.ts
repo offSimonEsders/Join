@@ -218,17 +218,8 @@ export class BoardComponent implements OnInit {
    * @param task
    * */
   closePopupAndUpdateData(task: Task): void {
-    const index: number = this.getTaskIndex(task);
-    if (index == -1) {
-      setTimeout((): void => {
-        this.init();
-      }, 500);
-    } else {
-      if (this.tasksForList) {
-        this.tasksForList[index] = task;
-        this.filterForAllStates();
-      }
-    }
+    this.tasks?.push(task);
+    this.filterForAllStates();
     setTimeout((): void => {
       this.openCloseAddTaskPopup();
     }, 1000);
