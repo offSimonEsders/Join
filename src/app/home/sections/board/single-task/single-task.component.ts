@@ -82,7 +82,6 @@ export class SingleTaskComponent implements OnInit {
     if (index > 0 && this.task) {
       this.newState.emit(this.states[index - 1]);
     }
-    console.log(this.task?.state)
   }
 
   /**
@@ -93,7 +92,6 @@ export class SingleTaskComponent implements OnInit {
     if (index < this.states.length - 1 && this.task) {
       this.newState.emit(this.states[index + 1]);
     }
-    console.log(this.task?.state)
   }
 
   /**

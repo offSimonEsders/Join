@@ -132,7 +132,6 @@ export class ViewTaskInfoComponent implements OnInit, AfterViewInit {
    * */
   checkHeight(): void {
     if (this.taskinfo && this.taskinfoframe) {
-      console.log(this.taskinfo.nativeElement.offsetHeight, this.taskinfoframe.nativeElement.offsetHeight)
       if (this.taskinfo.nativeElement.offsetHeight >= this.taskinfoframe.nativeElement.offsetHeight) {
         this.taskinfoframe.nativeElement.classList.add('use-max-height');
       } else {
