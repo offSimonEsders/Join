@@ -1,12 +1,12 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SelectableContactComponent } from "./selectable-contact/selectable-contact.component";
-import { AppwriteService } from '../../../services/appwrite.service';
-import { Contact } from '../../models/contact';
-import { SubtaskComponent } from "./subtask/subtask.component";
-import { Subtask } from '../../models/subtask';
-import { Task } from '../../models/task';
-import { Router } from '@angular/router';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {SelectableContactComponent} from "./selectable-contact/selectable-contact.component";
+import {AppwriteService} from '../../../services/appwrite.service';
+import {Contact} from '../../models/contact';
+import {SubtaskComponent} from "./subtask/subtask.component";
+import {Subtask} from '../../models/subtask';
+import {Task} from '../../models/task';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-task',
@@ -35,20 +35,13 @@ export class AddTaskComponent implements OnInit {
   openContacts: boolean = false;
   click = false;
   minDate?: string;
+
   [key: string]: any;
 
   focusSubtaskInput: boolean = false;
 
   constructor(private appwriteService: AppwriteService, private router: Router) {
     this.getMinDate();
-  }
-
-  /**
-   *
-   * @returns {boolean} - editMode is active when this.taskToEdit === Task;
-   */
-  editMode(): boolean {
-    return this.taskToEdit === undefined;
   }
 
   async ngOnInit() {
@@ -58,7 +51,19 @@ export class AddTaskComponent implements OnInit {
     this.tasks = await this.appwriteService.getTasks() as unknown as Task[];
   }
 
-  loadDataEditMode() {
+  /**
+   * Returns if taskToEdit is valid
+   *
+   * @returns {boolean} - editMode is active when this.taskToEdit === Task;
+   */
+  editMode(): boolean {
+    return this.taskToEdit === undefined;
+  }
+
+  /**
+   * Loads the data from the task into addtask component for edit
+   * */
+  loadDataEditMode(): void {
     if (!this.editMode() && this.taskToEdit) {
       if (this.taskToEdit?.assignedContacts) {
         this.selectedContacts = this.getDataAsObject(this.taskToEdit?.assignedContacts);
@@ -70,13 +75,21 @@ export class AddTaskComponent implements OnInit {
     }
   }
 
-  getDataAsObject(data: string[]) {
+  /**
+   * Returns data as usable array
+   *
+   * @param data
+   * */
+  getDataAsObject(data: string[]): any[] {
     return data.map((d: string) => {
       return JSON.parse(d);
     })
   }
 
-  getMinDate() {
+  /**
+   * Sets the date of today to minDate to set the minimum of the datepicker
+   * */
+  getMinDate(): void {
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
     let mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -85,13 +98,28 @@ export class AddTaskComponent implements OnInit {
     this.minDate = yyyy + '-' + mm + '-' + dd;
   }
 
-  changeOpenState(event: Event, input: HTMLInputElement, value: string) {
+  /**
+   * Inverts the given value.
+   * Focus or blurs an inputelement depending on the value of the invertet value
+   *
+   * @param event
+   * @param input
+   * @param value
+   * */
+  changeOpenState(event: Event, input: HTMLInputElement, value: string): void {
     event.preventDefault();
     this[value] = !this[value];
     this[value] ? input.focus() : input.blur();
   }
 
-  changeOpenCategoryStateOnId(event: Event, categoryinput: HTMLInputElement, contactsinput: HTMLInputElement) {
+  /**
+   * Closes or opens the lists of category and contacts
+   *
+   * @param event
+   * @param categoryinput
+   * @param contactsinput
+   * */
+  changeOpenCategoryStateOnId(event: Event, categoryinput: HTMLInputElement, contactsinput: HTMLInputElement): void {
     const targetElement = event.target as HTMLElement;
     if (!targetElement.classList.contains('category')) {
       this.closeCategoryList(categoryinput);
@@ -102,44 +130,89 @@ export class AddTaskComponent implements OnInit {
 
   }
 
-  closeCategoryList(categoryinput: HTMLInputElement) {
+  /**
+   * Closes the categorylist
+   *
+   * @param categoryinput
+   * */
+  closeCategoryList(categoryinput: HTMLInputElement): void {
     this.openCategory = false;
     categoryinput.blur();
   }
 
-  closeContactList(contactsinput: HTMLInputElement) {
+  /**
+   * Closes the cotactslist
+   *
+   * @param contactsinput
+   * */
+  closeContactList(contactsinput: HTMLInputElement): void {
     this.openContacts = false;
     contactsinput.blur()
   }
 
-  setCategoryValue(value: string, categoryinput: HTMLInputElement) {
+  /**
+   * Sets the value of the categoryinput element
+   *
+   * @param value
+   * @param categoryinput
+   * */
+  setCategoryValue(value: string, categoryinput: HTMLInputElement): void {
     categoryinput.value = value;
     this.closeCategoryList(categoryinput);
   }
 
-  selectContacts(event: Contact) {
+  /**
+   * Adds a contact to the selectedContacts array
+   *
+   * @param event
+   * */
+  selectContacts(event: Contact): void {
     this.selectedContacts.push(event);
   }
 
-  unselectContacts(event: Contact) {
-    const index = this.selectedContacts.findIndex((c) => {
+  /**
+   * Removes a contact form the selectedContacts array
+   *
+   * @param event
+   * */
+  unselectContacts(event: Contact): void {
+    const index: number = this.selectedContacts.findIndex((c: Contact): boolean => {
       return c.$id == event.$id;
     });
     this.selectedContacts.splice(index, 1);
   }
 
+  /**
+   * Checks if any contact is selected and returns if it is true or false
+   *
+   * @param contact
+   * */
   checkIfContactIsSelected(contact: Contact): boolean {
-    return this.selectedContacts.some(selectedContact => selectedContact.$id === contact.$id);
+    return this.selectedContacts.some((selectedContact: Contact): boolean => {
+      return selectedContact.$id === contact.$id;
+    });
   }
 
-  focusInput(event: Event, input: HTMLInputElement) {
+  /**
+   * Focuses the given inputelement and sets focusSubtaskInput to true
+   *
+   * @param event
+   * @param input
+   * */
+  focusInput(event: Event, input: HTMLInputElement): void {
     event.preventDefault();
     input.focus();
     this.focusSubtaskInput = true;
   }
 
-  unfocusSubtaskInput(event: Event, subtaskinput: HTMLInputElement) {
-    const targetElement = event.target as HTMLElement;
+  /**
+   * Blurs the given inputelement and sets focusSubtaskInput to false
+   *
+   * @param event
+   * @param subtaskinput
+   * */
+  unfocusSubtaskInput(event: Event, subtaskinput: HTMLInputElement): void {
+    const targetElement: HTMLElement = event.target as HTMLElement;
     if (!targetElement.classList.contains('subtaskelement')) {
       this.focusSubtaskInput = false;
       subtaskinput.classList.remove('no-input');
@@ -306,7 +379,9 @@ export class AddTaskComponent implements OnInit {
   }
 
   searchContact(name: string) {
-    this.contactsForList = this.contacts?.filter((c: Contact) => { return c.name.toLocaleLowerCase().includes(name.toLocaleLowerCase()) });
+    this.contactsForList = this.contacts?.filter((c: Contact) => {
+      return c.name.toLocaleLowerCase().includes(name.toLocaleLowerCase())
+    });
   }
 
 }

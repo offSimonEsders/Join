@@ -12,10 +12,13 @@ import { Contact } from '../../../models/contact';
 export class SelectableContactComponent {
   @Input() contact?: Contact;
   @Input() selected!: boolean;
-  @Output() selectSignal = new EventEmitter<Contact>();
-  @Output() unselectSignal = new EventEmitter<Contact>();
+  @Output() selectSignal: EventEmitter<Contact> = new EventEmitter<Contact>();
+  @Output() unselectSignal: EventEmitter<Contact> = new EventEmitter<Contact>();
 
-  selectContact() {
+  /**
+   * Inverts this.selected and emits the signal
+   * */
+  selectContact(): void {
     this.selected = !this.selected;
     if(this.selected) {
       this.selectSignal.emit(this.contact);

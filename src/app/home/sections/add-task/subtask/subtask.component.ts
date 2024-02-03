@@ -11,21 +11,33 @@ import { Subtask } from '../../../models/subtask';
 })
 export class SubtaskComponent {
   @Input() subtask?: Subtask;
-  @Output() editsubtaskevent = new EventEmitter<Subtask>();
-  @Output() deletesubtaskevent = new EventEmitter<boolean>();
-  editmode: boolean = false;
+  @Output() editsubtaskevent: EventEmitter<Subtask> = new EventEmitter<Subtask>();
+  @Output() deletesubtaskevent: EventEmitter<boolean> = new EventEmitter<boolean>();
+  editMode: boolean = false;
 
-  deleteSubtask() {
+  /**
+   * Emits that the subtasks has to be deleted
+   * */
+  deleteSubtask(): void {
     this.deletesubtaskevent.emit(true);
   }
 
-  editSubtask() {
-    this.editmode = true;
+  /**
+   * Activates the edit mode for this subtask
+   * */
+  editSubtask(): void {
+    this.editMode = true;
   }
 
-  saveSubtask(subtaskinput: HTMLInputElement, subtaskframe: HTMLElement) {
+  /**
+   * Saves the Subtak except the value is invalid
+   *
+   * @param subtaskinput
+   * @param subtaskframe
+   * */
+  saveSubtask(subtaskinput: HTMLInputElement, subtaskframe: HTMLElement): void {
     if(this.subtask && subtaskinput.value.length > 0) {
-      this.editmode = false;
+      this.editMode = false;
       this.subtask.subtask = subtaskinput.value;
       this.editsubtaskevent.emit(this.subtask);
       return;
@@ -33,7 +45,10 @@ export class SubtaskComponent {
     subtaskframe.classList.add('wrong-input');
   }
 
-  removeWrongInput(subtaskframe: HTMLElement) {
+  /**
+   * Removes wrong-input class
+   * */
+  removeWrongInput(subtaskframe: HTMLElement): void {
     subtaskframe.classList.remove('wrong-input');
   }
 

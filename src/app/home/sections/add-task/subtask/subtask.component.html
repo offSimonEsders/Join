@@ -1,8 +1,8 @@
-<section class="subtask-frame" (dblclick)="editSubtask()" [ngClass]="{'edit-mode': editmode}" #subtaskframe>
-    <li *ngIf="!editmode">{{subtask?.subtask}}</li>
-    <input [hidden]="!editmode" (input)="removeWrongInput(subtaskframe)" type="text" [value]="subtask?.subtask" #subtaskinput>
+<section class="subtask-frame" (dblclick)="editSubtask()" [ngClass]="{'edit-mode': editMode}" #subtaskframe>
+    <li *ngIf="!editMode">{{subtask?.subtask}}</li>
+    <input [hidden]="!editMode" (input)="removeWrongInput(subtaskframe)" type="text" [value]="subtask?.subtask" #subtaskinput>
     <div class="action-buttons">
-        <div *ngIf="!editmode" class="hover-buttons">
+        <div *ngIf="!editMode" class="hover-buttons">
             <svg (click)="editSubtask()" xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                 <mask id="mask0_75601_14818" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="25"
                     height="24">
@@ -32,7 +32,7 @@
             </svg>
         </div>
 
-        <div *ngIf="editmode" class="on-edit-buttons">
+        <div *ngIf="editMode" class="on-edit-buttons">
             <svg (click)="deleteSubtask()" xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                 <mask id="mask0_75601_14824" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="25"
                     height="24">

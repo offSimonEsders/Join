@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
   }
 
   /**
-   * Calls appwriteLogout, sets localstorage remember to false and reloads the page
+   * Calls appwriteLogout, sets localstorage remember to false and navigates to login
    * */
   async logOut(): Promise<void> {
     await this.appwriteService.appwriteLogOut();
