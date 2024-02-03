@@ -24,17 +24,37 @@ export class CreateEditContactComponent {
 
   }
 
-  closeCreateEditWindow(event: Event) {
+  /**
+   * Emits a close event
+   *
+   * @param event
+   * */
+  closeCreateEditWindow(event: Event): void {
     event.preventDefault();
     this.closeWindowEvent.emit('change');
   }
 
-  replaceLetters(element: HTMLInputElement) {
+  /**
+   * Replaces all letters with ''
+   *
+   * @param element
+   * */
+  replaceLetters(element: HTMLInputElement): void {
     element.value = element.value.replace(/[^+0-9 ]/g, "");
   }
 
-  checkInputs(name: string, email: string, phone: string, namecontainer: HTMLDivElement, emailcontainer: HTMLDivElement, phonecontainer: HTMLDivElement) {
-    let stop = false;
+  /**
+   * Validates all input values and returns if it is valid
+   *
+   * @param name
+   * @param email
+   * @param phone
+   * @param namecontainer
+   * @param emailcontainer
+   * @param phonecontainer
+   * */
+  checkInputs(name: string, email: string, phone: string, namecontainer: HTMLDivElement, emailcontainer: HTMLDivElement, phonecontainer: HTMLDivElement): boolean {
+    let stop: boolean = false;
     stop = this.checkName(name, namecontainer, stop);
     stop = this.checkEmail(email, emailcontainer, stop);
     stop = this.checkPhone(phone, phonecontainer, stop)
@@ -44,7 +64,14 @@ export class CreateEditContactComponent {
     return false;
   }
 
-  checkName(name: string, namecontainer: HTMLDivElement, stop: boolean) {
+  /**
+   * Checks if name is valid else it shows user feedback
+   *
+   * @param name
+   * @param namecontainer
+   * @param stop
+   * */
+  checkName(name: string, namecontainer: HTMLDivElement, stop: boolean): boolean {
     if (name.length <= 0) {
       namecontainer.classList.add('name-wrong-input');
       return true;
@@ -52,7 +79,14 @@ export class CreateEditContactComponent {
     return stop;
   }
 
-  checkEmail(email: string, emailcontainer: HTMLDivElement, stop: boolean) {
+  /**
+   * Checks if email is valid else it shows user feedback
+   *
+   * @param email
+   * @param emailcontainer
+   * @param stop
+   * */
+  checkEmail(email: string, emailcontainer: HTMLDivElement, stop: boolean): boolean {
     if (!this.mailregex.test(email)) {
       emailcontainer.classList.add('email-wrong-input');
       return true;
@@ -60,7 +94,10 @@ export class CreateEditContactComponent {
     return stop;
   }
 
-  checkPhone(phone: string, phonecontainer: HTMLDivElement, stop: boolean) {
+  /**
+   * Checks if phone number is valid else it shows user feedback
+   * */
+  checkPhone(phone: string, phonecontainer: HTMLDivElement, stop: boolean): boolean {
     if (phone.length <= 0) {
       phonecontainer.classList.add('phone-wrong-input');
       return true;
@@ -68,11 +105,28 @@ export class CreateEditContactComponent {
     return stop;
   }
 
-  resetContainer(container: HTMLDivElement, classToRemove: string) {
+  /**
+   * Removes the given class from the given container
+   *
+   * @param container
+   * @param classToRemove
+   * */
+  resetContainer(container: HTMLDivElement, classToRemove: string): void {
     container.classList.remove(classToRemove);
   }
 
-  async createNewContact(event: Event, name: string, email: string, phone: string, namecontainer: HTMLDivElement, mailcontainer: HTMLDivElement, phonecontainer: HTMLDivElement) {
+  /**
+   * Creates a new contact, sends it to the backend and updates the data
+   *
+   * @param event
+   * @param name
+   * @param email
+   * @param phone
+   * @param namecontainer
+   * @param mailcontainer
+   * @param phonecontainer
+   * */
+  async createNewContact(event: Event, name: string, email: string, phone: string, namecontainer: HTMLDivElement, mailcontainer: HTMLDivElement, phonecontainer: HTMLDivElement): Promise<void> {
     event.preventDefault();
     if (this.checkInputs(name, email, phone, namecontainer, mailcontainer, phonecontainer)) {
       return;
@@ -88,13 +142,21 @@ export class CreateEditContactComponent {
     }
   }
 
-  showUserFeedback() {
+  /**
+   * Sets the user feedback to the display
+   * */
+  showUserFeedback(): void {
     if (this.userfeedback) {
       this.userfeedback.nativeElement.style.display = 'flex';
     }
   }
 
-  getInitials(name: string) {
+  /**
+   * Returns the initials form the name
+   *
+   * @param name
+   * */
+  getInitials(name: string): string {
     let nameSplitted = name.split(' ');
     let initials;
     if (nameSplitted.length > 1) {
@@ -105,16 +167,30 @@ export class CreateEditContactComponent {
     return initials;
   }
 
-  getVariant() {
-    let randInt = Math.random();
-    let variantNumber = Math.round(randInt * 15);
+  /**
+   * Gets random color variant for a new contact and returns it
+   * */
+  getVariant(): string {
+    let randInt: number = Math.random();
+    let variantNumber: number = Math.round(randInt * 15);
     while (variantNumber <= 0) {
       this.getVariant();
     }
     return 'variant' + variantNumber;
   }
 
-  updateContact(event: Event, name: string, email: string, phone: string, namecontainer: HTMLDivElement, mailcontainer: HTMLDivElement, phonecontainer: HTMLDivElement) {
+  /**
+   * Updates the data from a existing contact and sends it to the backend an updates the local data
+   *
+   * @param event
+   * @param name
+   * @param email
+   * @param phone
+   * @param namecontainer
+   * @param mailcontainer
+   * @param phonecontainer
+   * */
+  updateContact(event: Event, name: string, email: string, phone: string, namecontainer: HTMLDivElement, mailcontainer: HTMLDivElement, phonecontainer: HTMLDivElement): void {
     event.preventDefault();
     if (this.checkInputs(name, email, phone, namecontainer, mailcontainer, phonecontainer)) {
       return;
@@ -125,7 +201,14 @@ export class CreateEditContactComponent {
     this.closeCreateEditWindow(event);
   }
 
-  changeConactData(name: string, email: string, phone: string) {
+  /**
+   * Sets the contact data to the new data
+   *
+   * @param name
+   * @param email
+   * @param phone
+   * */
+  changeConactData(name: string, email: string, phone: string): void {
     this.editcontact.name = name;
     this.editcontact.email = email;
     this.editcontact.phone = phone;
@@ -133,7 +216,12 @@ export class CreateEditContactComponent {
     delete this.editcontact.$collectionId;
   }
 
-  deleteContact(event: Event) {
+  /**
+   * Deletes a delete event for the actual contact
+   *
+   * @param event
+   * */
+  deleteContact(event: Event): void {
     this.deleteContactEvent.emit('delete');
     this.closeCreateEditWindow(event);
   }
