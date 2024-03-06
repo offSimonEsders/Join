@@ -473,6 +473,7 @@ input {
   position: absolute;
   overflow-y: auto;
   max-height: 68px;
+  height: 68px;
   bottom: 0;
   gap: 4px;
   transform: translateY(calc(100% + 8px));
@@ -708,7 +709,7 @@ input {
   .add-task-form {
     .task-set-value-container {
       gap: 50px;
-      padding-bottom: 200px;
+      padding-bottom: 100px;
     }
   }
   .as-popup {
