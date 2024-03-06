@@ -743,6 +743,11 @@
       }
     }
 
+    .subtask-list {
+      position: static !important;
+      transform: none !important;
+    }
+
     .date-container {
       padding-top: 10px;
     }
