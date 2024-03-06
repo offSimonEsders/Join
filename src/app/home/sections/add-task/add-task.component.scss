@@ -794,6 +794,25 @@ input {
   }
 }
 
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (max-width: 430px) and (max-height: 1000px) {
+  .single-value-container {
+    width: 300px;
+
+    .value-container {
+      flex-direction: column;
+
+      .input-container {
+        width: 300px;
+        input {
+          max-width: 256px !important;
+        }
+      }
+
+    }
+
+  }
+}
+
 @media (max-width: 650px) {
 
   header {
@@ -817,6 +836,7 @@ input {
       }
 
     }
+
   }
 
   .prio-container {
@@ -832,7 +852,6 @@ input {
 
   .info-button-container {
     width: 400px;
-
 
     .clear-button {
       display: none;
@@ -861,6 +880,7 @@ input {
       }
 
     }
+
   }
 
   .prio-container {
