@@ -228,6 +228,7 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: center;
   gap: 32px;
 
   .description-container {
@@ -706,7 +707,7 @@ input {
 }
 
 
-@media (max-width: 1350px) {
+@media (max-width: 1450px) {
   .task-set-value-container {
     flex-direction: column;
   }
@@ -763,6 +764,7 @@ input {
     justify-content: space-between;
     bottom: 0;
     width: 500px;
+    z-index: 10;
     background-color: #F6F7F8;
   }
 }
