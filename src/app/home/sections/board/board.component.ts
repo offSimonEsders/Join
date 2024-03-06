@@ -95,8 +95,8 @@ export class BoardComponent implements OnInit {
    * */
   getTaskIndex(task: Task): number | undefined {
     return this.tasksForList ? this.tasksForList?.findIndex((t: Task): boolean => {
-      return t.$id === task.$id
-    }) : 0;
+      return t.$id === task.$id;
+    }) : undefined;
   }
 
   /**
@@ -167,8 +167,8 @@ export class BoardComponent implements OnInit {
    * */
   deleteTask(task: Task): void {
     const index: number | undefined = this.getTaskIndex(task);
-    if (index !== undefined) {
-      this.tasksForList?.slice(index, 1);
+    if (index !== undefined && index !== -1) {
+      this.tasksForList?.splice(index, 1);
       this.infoTask = undefined;
       this.filterForAllStates();
       if (task.$id) {
@@ -193,7 +193,7 @@ export class BoardComponent implements OnInit {
   getSubtaskDone(data: boolean[]): void {
     if (this.infoTask && this.tasksForList) {
       const index: number | undefined = this.getTaskIndex(this.infoTask);
-      if (index !== undefined) {
+      if (index !== undefined && index !== -1) {
         this.tasksForList[index].subtasksdone = data;
       }
     }
@@ -205,7 +205,7 @@ export class BoardComponent implements OnInit {
   saveSubtaskDone(): void {
     if (this.infoTask && this.tasksForList) {
       const index: number | undefined = this.getTaskIndex(this.infoTask);
-      if (index !== undefined) {
+      if (index !== undefined && index !== -1) {
         this.prepareAndUploadSingleTask(this.tasksForList[index]);
       }
     }
@@ -228,7 +228,7 @@ export class BoardComponent implements OnInit {
    * */
   closePopupAndUpdateData(task: Task): void {
     const index: number | undefined = this.getTaskIndex(task);
-    if (index !== undefined && this.tasks) {
+    if (index !== -1 && index !== undefined && this.tasks) {
       this.tasks?.splice(index, 1);
     }
     if (this.tasks) {
