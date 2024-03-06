@@ -351,6 +351,11 @@ input {
     line-height: 120%;
     font-family: Inter, sans-serif;
 
+    &::-webkit-calendar-picker-indicator {
+      position: absolute;
+      right: 16px;
+    }
+
     &::placeholder {
       color: var(--Style, #D1D1D1);
     }
