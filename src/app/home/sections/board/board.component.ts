@@ -128,7 +128,6 @@ export class BoardComponent implements OnInit {
   changeTasksIndex(task: Task): void {
     if (this.tasksForList) {
       const index: number | undefined = this.getTaskIndex(task);
-      console.log(index)
       if (index !== undefined) {
         this.tasksForList.splice(index, 1);
         this.tasksForList.push(task);
