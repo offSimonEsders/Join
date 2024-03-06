@@ -31,7 +31,7 @@ export class BoardComponent implements OnInit {
 
   }
 
-  ngOnInit() : void {
+  ngOnInit(): void {
     this.init();
   }
 
@@ -60,7 +60,7 @@ export class BoardComponent implements OnInit {
    * @param statefilter
    * */
   filterForState(statefilter: string): Task[] | undefined {
-    return this.tasksForList?.filter((task: Task): Task[] | undefined => {
+    return this.tasksForList?.filter((task): any[] | undefined => {
       if (task.state == statefilter) {
         return Object.values(task);
       }
@@ -93,7 +93,7 @@ export class BoardComponent implements OnInit {
    *
    * @param task
    * */
-  getTaskIndex(task: Task): number {
+  getTaskIndex(task: Task): number | undefined {
     return this.tasksForList ? this.tasksForList?.findIndex((t: Task): boolean => {
       return t.$id === task.$id
     }) : 0;
@@ -127,11 +127,14 @@ export class BoardComponent implements OnInit {
    * */
   changeTasksIndex(task: Task): void {
     if (this.tasksForList) {
-      const index: number = this.getTaskIndex(task);
-      this.tasksForList.splice(index, 1);
-      this.tasksForList.push(task);
-      for (let i: number = 0; i < this.tasksForList.length; i++) {
-        this.tasksForList[i].index = i;
+      const index: number | undefined = this.getTaskIndex(task);
+      console.log(index)
+      if (index !== undefined) {
+        this.tasksForList.splice(index, 1);
+        this.tasksForList.push(task);
+        for (let i: number = 0; i < this.tasksForList.length; i++) {
+          this.tasksForList[i].index = i;
+        }
       }
     }
   }
@@ -164,11 +167,14 @@ export class BoardComponent implements OnInit {
    * @param task
    * */
   deleteTask(task: Task): void {
-    this.tasksForList?.splice(this.getTaskIndex(task), 1);
-    this.infoTask = undefined;
-    this.filterForAllStates();
-    if (task.$id) {
-      this.appwriteService.deleteTask(task.$id);
+    const index: number | undefined = this.getTaskIndex(task);
+    if (index !== undefined) {
+      this.tasksForList?.slice(index, 1);
+      this.infoTask = undefined;
+      this.filterForAllStates();
+      if (task.$id) {
+        this.appwriteService.deleteTask(task.$id);
+      }
     }
   }
 
@@ -187,8 +193,10 @@ export class BoardComponent implements OnInit {
    * */
   getSubtaskDone(data: boolean[]): void {
     if (this.infoTask && this.tasksForList) {
-      const index: number = this.getTaskIndex(this.infoTask);
-      this.tasksForList[index].subtasksdone = data;
+      const index: number | undefined = this.getTaskIndex(this.infoTask);
+      if (index !== undefined) {
+        this.tasksForList[index].subtasksdone = data;
+      }
     }
   }
 
@@ -197,8 +205,10 @@ export class BoardComponent implements OnInit {
    * */
   saveSubtaskDone(): void {
     if (this.infoTask && this.tasksForList) {
-      const index: number = this.getTaskIndex(this.infoTask);
-      this.prepareAndUploadSingleTask(this.tasksForList[index]);
+      const index: number | undefined = this.getTaskIndex(this.infoTask);
+      if (index !== undefined) {
+        this.prepareAndUploadSingleTask(this.tasksForList[index]);
+      }
     }
   }
 
@@ -218,8 +228,14 @@ export class BoardComponent implements OnInit {
    * @param task
    * */
   closePopupAndUpdateData(task: Task): void {
-    this.tasks?.push(task);
-    this.filterForAllStates();
+    const index: number | undefined = this.getTaskIndex(task);
+    if (index !== undefined && this.tasks) {
+      this.tasks?.splice(index, 1);
+    }
+    if (this.tasks) {
+      this.tasks.push(task)
+      this.filterForAllStates();
+    }
     setTimeout((): void => {
       this.openCloseAddTaskPopup();
     }, 1000);
@@ -292,7 +308,7 @@ export class BoardComponent implements OnInit {
    * */
   openTaskInfo(event: Event, task: Task): void {
     const targetElement: HTMLElement = event.target as HTMLElement;
-    if(!targetElement.classList.contains('change-state')) {
+    if (!targetElement.classList.contains('change-state')) {
       this.infoTask = task;
     }
   }
