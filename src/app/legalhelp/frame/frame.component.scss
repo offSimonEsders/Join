@@ -9,7 +9,7 @@
   align-items: center;
   position: relative;
   width: 232px;
-  height: calc(100vh - 128px);
+  height: calc(100dvh - 128px);
   padding: 64px 0px;
   background: #2A3647;
   border: none;
@@ -67,7 +67,7 @@
   width: calc(100vw - 232px);
 
   .content {
-    height: calc(100vh - 206px);
+    height: calc(100dvh - 206px);
   }
 }
 
@@ -93,7 +93,7 @@
     width: 100vw;
 
     .content {
-      height: calc(100vh - 146px);
+      height: calc(100dvh - 146px);
       overflow-y: auto;
     }
   }

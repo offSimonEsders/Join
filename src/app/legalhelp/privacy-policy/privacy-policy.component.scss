@@ -6,7 +6,7 @@
   font-family: 'Inter', sans-serif;
   width: calc(100vw - 232px);
   padding-top: 110px;
-  height: calc(100vh - 206px);
+  height: calc(100dvh - 206px);
   overflow-y: auto;
 }
 
@@ -63,7 +63,7 @@ h2 {
   .privacy-frame {
     width: 100%;
     padding-top: 50px;
-    height: calc(100vh - 216px);
+    height: calc(100dvh - 216px);
     overflow-y: auto;
   }
 }

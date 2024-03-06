@@ -4,10 +4,10 @@
   align-items: center;
   gap: 24px;
   font-family: 'Inter', sans-serif;
-  width: calc(100vw - 332px);
+  width: calc(100dvw - 332px);
   padding-top: 110px;
   padding: 110px 50px 0 50px;
-  height: calc(100vh - 206px);
+  height: calc(100dvh - 206px);
   overflow-y: auto;
 }
 
@@ -72,7 +72,7 @@ ol li::before {
   .help-frame {
     width: calc(100% - 50px);
     padding: 50px 25px 0 25px;
-    height: calc(100vh - 216px);
+    height: calc(100dvh - 216px);
     overflow-y: auto;
   }
 }
