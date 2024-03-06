@@ -451,6 +451,10 @@
     height: 100dvh;
     padding: 50px 0 0 0 !important;
 
+    .placeholder-no-tasks {
+      width: 100%;
+    }
+
     .board-header {
       flex-direction: column;
       align-items: flex-start !important;
