@@ -423,6 +423,10 @@
 
   .board-frame {
 
+    .placeholder-no-tasks {
+      width: 100%;
+    }
+
     .board-task-content {
       .task-section {
         .tasks {
@@ -450,10 +454,6 @@
     max-height: calc(100dvh - 216px) !important;
     height: 100dvh;
     padding: 50px 0 0 0 !important;
-
-    .placeholder-no-tasks {
-      width: 100%;
-    }
 
     .board-header {
       flex-direction: column;
