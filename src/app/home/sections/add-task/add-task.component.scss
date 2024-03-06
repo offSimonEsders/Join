@@ -705,7 +705,12 @@ input {
   }
 }
 
-@media (max-width: 1500px) {
+
+@media (max-width: 1350px) {
+  .task-set-value-container {
+    flex-direction: column;
+  }
+
   .add-task-form {
     .task-set-value-container {
       gap: 50px;
@@ -714,14 +719,8 @@ input {
   }
   .as-popup {
     .task-set-value-container {
-      padding-bottom: 80px;
+      padding-bottom: 40px;
     }
-  }
-}
-
-@media (max-width: 1350px) {
-  .task-set-value-container {
-    flex-direction: column;
   }
 
   .single-value-container {
