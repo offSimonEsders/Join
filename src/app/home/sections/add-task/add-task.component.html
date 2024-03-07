@@ -74,7 +74,7 @@
           <div class="date-container single-value-container" #datecontainer>
             <div>Due date <p>*</p>
             </div>
-            <input type="date" [min]="minDate"
+            <input type="date" [min]="minDate" max="9999-12-31"
                    (input)="removeWrongInputClass(titleinput, dateinput, categoryinput)"
                    [value]="taskToEdit?.duedate" #dateinput>
           </div>
