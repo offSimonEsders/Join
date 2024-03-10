@@ -17,7 +17,7 @@ export class RegistrationComponent {
   @ViewChild('emailinputcontainer') emailinputcontainer?: ElementRef<HTMLDivElement>;
   @ViewChildren('passwordinputcontainer') passwordinputcontainer?: QueryList<ElementRef>;
   @ViewChild('checkboxcontainer') checkboxcontainer?: ElementRef<HTMLDivElement>
-  mailregex: RegExp = /[a-z0-9]+@[a-z]+\.[a-z]/;
+  mailregex: RegExp = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
   checked: boolean = false;
   showPassword: boolean = false;
 
